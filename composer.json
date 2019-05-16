@@ -1,5 +1,5 @@
 {
-    "name": "gambio/gpotector",
+    "name": "gambio/gprotector",
     "description": "Protection against possible Cross-Site Scripting (XSS) attacks.",
 	"version": "1.0.0",
     "license": "GPL-2.0",
