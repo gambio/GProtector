@@ -1,11 +1,12 @@
 <?php
 /* --------------------------------------------------------------
-  G-Protector v1.2
+  start.inc.php 2019-06-07
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2016 Gambio GmbH
-  --------------------------------------------------------------
-*/
+  Copyright (c) 2019 Gambio GmbH
+  Released under the GNU General Public License (Version 2)
+  [http://www.gnu.org/licenses/gpl-2.0.html]
+  --------------------------------------------------------------*/
 
 if(defined('E_DEPRECATED'))
 {

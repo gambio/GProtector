@@ -1,11 +1,12 @@
 <?php
 /* --------------------------------------------------------------
-  G-Protector v1.2
+  standard.inc.php 2019-06-07
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2018 Gambio GmbH
-  --------------------------------------------------------------
-*/
+  Copyright (c) 2019 Gambio GmbH
+  Released under the GNU General Public License (Version 2)
+  [http://www.gnu.org/licenses/gpl-2.0.html]
+  --------------------------------------------------------------*/
 
 $this->add_filter('Alphabetisch-Filter 1', 'admin/gm_emails.php', '_GET["gm_type"]', 'only_alphabetic');
 $this->add_filter('Alphabetisch-Filter 2', 'admin/yatego.php', array('_GET["section"]', 
