@@ -117,7 +117,6 @@ $this->add_filter('Alphanumerisch-Filter 22', 'admin/intraship.php', array('_POS
 																			'_POST["intraship"]["zone_4_partner_id"]'), 'only_alphanumeric');
 $this->add_filter('Alphanumerisch-Filter 23', 'admin/orders.php', '_GET["oID"]', 'only_alphanumeric');
 $this->add_filter('Alphanumerisch-Filter 24', 'admin/orders.php', '_GET["ptd_rand"]', 'only_alphanumeric');
-$this->add_filter('Alphanumerisch-Filter 24', 'admin/coupon_admin.php', '_POST["coupon_code"]', 'only_alphanumeric');
 
 $this->add_filter('Rekursiv-Integer-Filter 1', 'admin/gm_feature_control.php', '_POST["featureMode"]', 'recursive_integer_value');
 $this->add_filter('Rekursiv-Integer-Filter 2', 'admin/gm_meta.php', '_POST["gm_delete"]', 'recursive_integer_value');
@@ -440,6 +439,7 @@ $this->add_filter('htmlspecialchars-Filter 4', array(
 ), array(
   '_GET["filter_url"]'
 ), 'htmlspecialchars');
+$this->add_filter('htmlspecialchars-Filter 5', 'admin/coupon_admin.php', '_POST["coupon_code"]', 'htmlspecialchars');
 
 $this->add_filter('Tag-Filter 1', 'account_edit.php', array('_POST["gender"]',
                                                             '_POST["firstname"]',
