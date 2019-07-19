@@ -13,8 +13,6 @@ $this->add_filter('Alphabetisch-Filter 2', 'admin/yatego.php', array('_GET["sect
 																	'_GET["selectArticles"]', 
 																	'_GET["selectCategoryArticles"]'), 'only_alphabetic');
 $this->add_filter('Alphabetisch-Filter 3', 'admin/gm_offline.php', '_POST["shop_offline"]', 'only_alphabetic');
-$this->add_filter('Alphabetisch-Filter 4', 'admin/template_configuration.php', array('_POST["show_gallery"]', 
-																					'_POST["show_wishlist"]'), 'only_alphabetic');
 $this->add_filter('Alphabetisch-Filter 5', 'admin/magnalister.php', array('_GET["expert"]', 
 																			'_GET["MLDEBUG"]', 
 																			'_GET["update"]'), 'only_alphabetic');
@@ -227,7 +225,6 @@ $this->add_filter('Integer-Filter 11', 'admin/products_attributes.php', array('_
 $this->add_filter('Integer-Filter 12', array('admin/tax_classes.php', 'admin/tax_rates.php'), '_GET["tID"]', 'convert_to_integer');
 $this->add_filter('Integer-Filter 13', 'admin/yatego.php', array('_GET["topseller"]', '_GET["selectall"]'), 'convert_to_integer');
 $this->add_filter('Integer-Filter 14', 'admin/customers.php', '_GET["status"]', 'convert_to_integer');
-$this->add_filter('Integer-Filter 15', 'admin/template_configuration.php', '_POST["show_flyover"]', 'convert_to_integer');
 $this->add_filter('Integer-Filter 16', 'admin/orders_edit.php', '_GET["cID"]', 'convert_to_integer');
 $this->add_filter('Integer-Filter 17', 'admin/languages.php', '_GET["lID"]', 'convert_to_integer');
 $this->add_filter('Integer-Filter 18', 'admin/gm_sitemap.php', '_GET["update"]', 'convert_to_integer');
