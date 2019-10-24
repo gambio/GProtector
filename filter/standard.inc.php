@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  standard.inc.php 2019-06-07
+  standard.inc.php 2019-10-24
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2019 Gambio GmbH
@@ -309,6 +309,11 @@ $this->add_filter('Integer-Filter 47', array(
 ), array(
     '_GET["categories_id"]',
     '_GET["filter_categories_id"]'
+), 'convert_to_integer');
+$this->add_filter('Integer-Filter 48', array(
+    'request_port.php'
+), array(
+    '_GET["coID"]',
 ), 'convert_to_integer');
 
 $this->add_filter('Nummerisch-Filter 1', 'admin/gm_gmotion.php', array('_POST["gm_gmotion_standard_zoom_from"]', '_POST["gm_gmotion_standard_zoom_to"]'), 'only_numeric');
