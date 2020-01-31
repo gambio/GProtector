@@ -15,6 +15,11 @@ class GProtector
 	private $log_header_template = '';
 	private $separator = "\r\n";
 	private $log_connectors_array = array();
+    
+    /**
+     * @var GProtectorFilterReader
+     */
+	private $filterReader;
 	
 	public function __construct()
 	{
@@ -22,10 +27,72 @@ class GProtector
 		$this->set_log_header_template("===========================================================\nIP: {IP}\nDatum: {DATETIME}\nScript: {SCRIPT}\nNachricht: {MESSAGE}\n\n");
 		$this->init_log_connectors();
 		$this->load_functions();
+		$this->loadFilterReader();
+	}
+    
+    
+    /**
+     * Was tut diese Methode
+     */
+    public function start()
+    {
+        $filters = $this->readFilterFiles();
+        $this->applyFilters($filters);
+        $this->blockForbiddenIps();
+	}
+    
+    
+    /**
+     * @param GProtectorFilterCollection $filters
+     */
+    private function applyFilters(GProtectorFilterCollection $filters)
+    {
+        $this->addFilters($filters);
+        $this->filter();
+    }
+    
+    
+    /**
+     * @param GProtectorFilterCollection $filters
+     */
+    private function addFilters(GProtectorFilterCollection $filters)
+    {
+        foreach($filters as $filter)
+        {
+            $this->addFilter(
+                $filter->key(),
+                $filter->scriptName(),
+                $filter->variables(),
+                $filter->function(),
+                $filter->severity());
+        }
+    }
+    
+    
+    /**
+     * @return GProtectorFilterCollection
+     */
+    private function readFilterFiles()
+    {
+        $filterArray = $this->filterReader->getDefaultFilterRules() + $this->filterReader->getCustomFilterRules();
+        
+        return new GProtectorFilterCollection($filterArray);
+    }
+	
+	
+    /**
+     *
+     */
+    private function blockForbiddenIps()
+    {
+        if($this->searchIpInBlacklist($this->getUserIp()) === true)
+        {
+            $this->blockIp();
+        }
 	}
 	
-
-	public function start()
+	
+	/*public function start()
 	{
 		$t_files_array = glob(GAMBIO_PROTECTOR_FILTER_DIR . $this->get_file_pattern());
 		
@@ -44,14 +111,14 @@ class GProtector
 			$this->log('no filters found', 'gprotector_error', 'warning');
 		}
 		
-		$t_ip_blocker_result = $this->search_ip_in_blacklist($this->get_user_ip());
+		$t_ip_blocker_result = $this->searchIpInBlacklist($this->getUserIp());
 		if($t_ip_blocker_result)
 		{
-			$this->block_ip();
+			$this->blockIp();
 		}
 		
 		return true;
-	}
+	}*/
 
 
 	private function init_log_connectors()
@@ -73,7 +140,7 @@ class GProtector
 	 * 
 	 * @return string Visitor's IP address
 	 */
-	private function get_user_ip()
+	private function getUserIp()
 	{
 		if(isset($_SERVER['HTTP_X_FORWARDED_FOR']) && !empty($_SERVER['HTTP_X_FORWARDED_FOR']))
 		{
@@ -99,7 +166,7 @@ class GProtector
 	 * @return bool OK:false | blocked IP: true
 	 * 
 	 */
-	private function search_ip_in_blacklist($p_user_ip)
+	private function searchIpInBlacklist($p_user_ip)
 	{
 		if(file_exists($this->get_ip_blacklist_path()))
 		{
@@ -129,13 +196,14 @@ class GProtector
 				$this->log('Can not read IP-blacklist', 'gprotector_error', 'error');
 			}
 		}
+		return false;
 	}
 	
 	
 	/**
 	 * Sends 403 Header to any blocked IPs
 	 */
-	private function block_ip()
+	private function blockIp()
 	{
 		header("HTTP/1.0 403 forbidden");
 		echo 'forbidden';
@@ -143,7 +211,7 @@ class GProtector
 	}
 
 
-	private function add_filter($p_key, $p_script_name, $p_variables, $p_function, $p_severity = 'error')
+	private function addFilter($p_key, $p_script_name, $p_variables, $p_function, $p_severity = 'error')
 	{
 		$t_variables = $p_variables;
 		
@@ -322,7 +390,7 @@ class GProtector
 
 	private function get_file_pattern()
 	{
-		$t_file_pattern = '*.inc.php';
+		$t_file_pattern = '*.json';
 		if(defined('GAMBIO_PROTECTOR_FILE_PATTERN'))
 		{
 			$t_pattern = trim((string)GAMBIO_PROTECTOR_FILE_PATTERN);
@@ -605,7 +673,7 @@ class GProtector
 		$c_log_filename = (string)$p_log_filename;
 		$c_message_details = (string)$p_message_details;
 		
-		$c_template = $this->substitute($c_template, '{IP}', $this->get_user_ip());
+		$c_template = $this->substitute($c_template, '{IP}', $this->getUserIp());
 		$c_template = $this->substitute($c_template, '{DATETIME}', date('Y-m-d H:i:s'));
 		$c_template = $this->substitute($c_template, '{MESSAGE}', $c_message);
 		$c_template = $this->substitute($c_template, '{SCRIPT}', $this->get_running_script_path());

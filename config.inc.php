@@ -19,6 +19,6 @@ define('GAMBIO_PROTECTOR_CACHE_DIR', dirname(dirname(__FILE__)) . '/cache/');
 define('GAMBIO_PROTECTOR_BASE_DIR', dirname(dirname(__FILE__)) . '/');
 define('GAMBIO_PROTECTOR_FUNCTION_PREFIX', 'gprotector_');
 define('GAMBIO_PROTECTOR_TOKEN_FILE_PREFIX', 'gprotector_token_');
-define('GAMBIO_PROTECTOR_FILE_PATTERN', '*.inc.php');
+define('GAMBIO_PROTECTOR_FILE_PATTERN', '*.json');
 define('GAMBIO_PROTECTOR_GZIP_LOG', true);
 define('GAMBIO_PROTECTOR_LOG_MAX_FILESIZE', 1); // megabytes
