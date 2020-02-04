@@ -10,12 +10,12 @@
 
 class GXLogConnector implements GProtectorLogConnectorInterface
 {
-	public function log($p_message, $p_group, $p_filename, $p_severity, $p_error_type, $p_message_details)
+	public function log($message, $group, $filename, $severity, $errorType, $messageDetails)
 	{
 		if(class_exists('LogControl'))
 		{
 			LogControl::get_instance()
-			          ->notice($p_message, $p_group, $p_filename, $p_severity, $p_error_type, 0, $p_message_details);
+			          ->notice($message, $group, $filename, $severity, $errorType, 0, $messageDetails);
 			LogControl::get_instance()->write_stack(array('security'));
 			
 			return true;

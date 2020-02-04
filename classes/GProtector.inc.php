@@ -10,11 +10,11 @@
 
 class GProtector
 {
-	private $secure_token = '';
-	private $filter_array = array();
-	private $log_header_template = '';
-	private $separator = "\r\n";
-	private $log_connectors_array = array();
+	private $secureToken        = '';
+	private $filterArray        = array();
+	private $logHeaderTemplate  = '';
+	private $separator          = "\r\n";
+	private $logConnectorsArray = array();
     
     /**
      * @var GProtectorFilterReader
@@ -23,16 +23,15 @@ class GProtector
 	
 	public function __construct()
 	{
-		$this->set_secure_token();
-		$this->set_log_header_template("===========================================================\nIP: {IP}\nDatum: {DATETIME}\nScript: {SCRIPT}\nNachricht: {MESSAGE}\n\n");
-		$this->init_log_connectors();
-		$this->load_functions();
-		$this->loadFilterReader();
+		$this->setSecureToken();
+		$this->setLogHeaderTemplate("===========================================================\nIP: {IP}\nDatum: {DATETIME}\nScript: {SCRIPT}\nNachricht: {MESSAGE}\n\n");
+		$this->initLogConnectors();
+		$this->loadFunctions();
 	}
     
     
     /**
-     * Was tut diese Methode
+     * This function starts the GProtector filters
      */
     public function start()
     {
@@ -74,9 +73,22 @@ class GProtector
      */
     private function readFilterFiles()
     {
-        $filterArray = $this->filterReader->getDefaultFilterRules() + $this->filterReader->getCustomFilterRules();
+        $filterArray = $this->filterReader()->getDefaultFilterRules() + $this->filterReader()->getCustomFilterRules();
         
         return new GProtectorFilterCollection($filterArray);
+    }
+    
+    
+    /**
+     * @return GProtectorFilterReader
+     */
+    private function filterReader()
+    {
+        if(!isset($this->filterReader)) {
+            $this->filterReader = new GProtectorFilterReader();
+        }
+        
+        return $this->filterReader;
     }
 	
 	
@@ -121,15 +133,15 @@ class GProtector
 	}*/
 
 
-	private function init_log_connectors()
+	private function initLogConnectors()
 	{
-		$t_files_array = glob(GAMBIO_PROTECTOR_CONNECTORS_DIR . $this->get_file_pattern());
+		$tFilesArray = glob(GAMBIO_PROTECTOR_CONNECTORS_DIR . $this->getFilePattern());
 
-		if(is_array($t_files_array))
+		if(is_array($tFilesArray))
 		{
-			foreach($t_files_array as $t_file)
+			foreach($tFilesArray as $tFile)
 			{
-				include_once($t_file);
+				include_once($tFile);
 			}
 		}
 	}
@@ -144,50 +156,51 @@ class GProtector
 	{
 		if(isset($_SERVER['HTTP_X_FORWARDED_FOR']) && !empty($_SERVER['HTTP_X_FORWARDED_FOR']))
 		{
-			$t_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			$tIp = $_SERVER['HTTP_X_FORWARDED_FOR'];
 		}
 		elseif(isset($_SERVER['HTTP_CLIENT_IP']) && !empty($_SERVER['HTTP_CLIENT_IP']))
 		{
-			$t_ip = $_SERVER['HTTP_CLIENT_IP'];
+			$tIp = $_SERVER['HTTP_CLIENT_IP'];
 		}
 		else
 		{
-			$t_ip = $_SERVER['REMOTE_ADDR'];
+			$tIp = $_SERVER['REMOTE_ADDR'];
 		}
 		
-		return $t_ip;
+		return $tIp;
 	}
 	
 		
 	/**
 	 * Search the given IP in blacklist and returns true if it is in the blacklist. 
 	 * 
-	 * @param string $p_user_ip User IP to check
+	 * @param string $userIp User IP to check
+	 *
 	 * @return bool OK:false | blocked IP: true
 	 * 
 	 */
-	private function searchIpInBlacklist($p_user_ip)
+	private function searchIpInBlacklist($userIp)
 	{
-		if(file_exists($this->get_ip_blacklist_path()))
+		if(file_exists($this->getIpBlacklistPath()))
 		{
-			if(is_readable($this->get_ip_blacklist_path()))
+			if(is_readable($this->getIpBlacklistPath()))
 			{
-				$t_file_handle = fopen($this->get_ip_blacklist_path(), 'r');
-				while(!feof($t_file_handle))
+				$tFileHandle = fopen($this->getIpBlacklistPath(), 'r');
+				while(!feof($tFileHandle))
 				{
-					$t_blocked_ip = fgets($t_file_handle);
-					$t_blocked_ip = trim($t_blocked_ip);
+					$tBlockedIp = fgets($tFileHandle);
+					$tBlockedIp = trim($tBlockedIp);
 					
-					if(!empty($t_blocked_ip))
+					if(!empty($tBlockedIp))
 					{
-						if(strpos(trim($p_user_ip), trim($t_blocked_ip)) === 0)
+						if(strpos(trim($userIp), trim($tBlockedIp)) === 0)
 						{
-							fclose($t_file_handle);
+							fclose($tFileHandle);
 							return true;
 						}
 					}
 				}
-				fclose($t_file_handle);
+				fclose($tFileHandle);
 				return false;
 
 			}
@@ -211,119 +224,119 @@ class GProtector
 	}
 
 
-	private function addFilter($p_key, $p_script_name, $p_variables, $p_function, $p_severity = 'error')
+	private function addFilter($key, $scriptName, $variables, $function, $severity = 'error')
 	{
-		$t_variables = $p_variables;
+		$tVariables = $variables;
 		
-		if(!is_array($t_variables))
+		if(!is_array($tVariables))
 		{
-			$t_variables = array($t_variables);
+			$tVariables = array($tVariables);
 		}
 		
-		$t_script_path_array = $p_script_name;
+		$tScriptPathArray = $scriptName;
 		
-		if(!is_array($t_script_path_array))
+		if(!is_array($tScriptPathArray))
 		{
-			$t_script_path_array = array($p_script_name);
+			$tScriptPathArray = array($scriptName);
 		}
-		
-		$this->filter_array[$p_key] = array(	'script_name_array' => $t_script_path_array, 
-												'variables_array' => $t_variables, 
-												'function' => $p_function,
-												'severity' => $p_severity);
+        
+        $this->filterArray[$key] = array('script_name_array' => $tScriptPathArray,
+                                         'variables_array'   => $tVariables,
+                                         'function'          => $function,
+                                         'severity'          => $severity);
 	}
 
 
 	private function filter()
 	{
-		if(is_array($this->filter_array))
+		if(is_array($this->filterArray))
 		{
-			foreach($this->filter_array as $t_filter_name => $t_data_array)
+			foreach($this->filterArray as $tFilterName => $tDataArray)
 			{
-				if(isset($value_reference))
+				if(isset($valueReference))
 				{
-					unset($value_reference);
+					unset($valueReference);
 				}
 			    
-				if(is_array($t_data_array) && isset($t_data_array['script_name_array']) && is_array($t_data_array['script_name_array']))
+				if(is_array($tDataArray) && isset($tDataArray['script_name_array']) && is_array($tDataArray['script_name_array']))
 				{
-					foreach($t_data_array['script_name_array'] as $t_script_path)
+					foreach($tDataArray['script_name_array'] as $tScriptPath)
 					{
-						if($this->is_script($t_script_path) === true)
+						if($this->isScript($tScriptPath) === true)
 						{
-							if(isset($t_data_array['function']))
+							if(isset($tDataArray['function']))
 							{
-								$c_function = (string)$t_data_array['function'];
-								$t_function_prefix = $this->get_function_prefix();
-								$c_function = $t_function_prefix . $c_function;
+								$cFunction = (string)$tDataArray['function'];
+								$tFunctionPrefix = $this->getFunctionPrefix();
+								$cFunction = $tFunctionPrefix . $cFunction;
 
-								if(function_exists($c_function))
+								if(function_exists($cFunction))
 								{
-									if(isset($t_data_array['variables_array']) && is_array($t_data_array['variables_array']))
+									if(isset($tDataArray['variables_array']) && is_array($tDataArray['variables_array']))
 									{
-										foreach($t_data_array['variables_array'] as $t_variable)
+										foreach($tDataArray['variables_array'] as $tVariable)
 										{
-											$c_variable_string = (string)$t_variable;
+											$cVariableString = (string)$tVariable;
 
-											$t_array_bracket_pos = (int)strpos($c_variable_string, '[');
-											$t_variable_name_end_pos = strlen($c_variable_string);
+											$tArrayBracketPos = (int)strpos($cVariableString, '[');
+											$tVariableNameEndPos = strlen($cVariableString);
 											
-											if($t_array_bracket_pos > 0)
+											if($tArrayBracketPos > 0)
 											{
-												$t_variable_name_end_pos = $t_array_bracket_pos;
+												$tVariableNameEndPos = $tArrayBracketPos;
 											}
 
-											if($t_variable_name_end_pos > 0)
+											if($tVariableNameEndPos > 0)
 											{
-												$t_variable_name = substr($c_variable_string, 0, $t_variable_name_end_pos);
+												$tVariableName = substr($cVariableString, 0, $tVariableNameEndPos);
 
-												global ${$t_variable_name};
+												global ${$tVariableName};
 
-												$t_variable_reference =& ${$t_variable_name};
+												$tVariableReference =& ${$tVariableName};
 
-												preg_match_all('/\[("|\')?([^"\'\]]+)("|\')?]/', $c_variable_string, $t_matches_array);
+												preg_match_all('/\[("|\')?([^"\'\]]+)("|\')?]/', $cVariableString, $tMatchesArray);
 
-												if(isset($t_matches_array[2]) && !empty($t_matches_array[2]))
+												if(isset($tMatchesArray[2]) && !empty($tMatchesArray[2]))
 												{
-													foreach($t_matches_array[2] as $key)
+													foreach($tMatchesArray[2] as $key)
 													{
-														if(!isset($value_reference) && isset($t_variable_reference[$key]))
+														if(!isset($valueReference) && isset($tVariableReference[$key]))
 														{
-															$value_reference =& $t_variable_reference[$key];
+															$valueReference =& $tVariableReference[$key];
 														}
-														elseif(isset($value_reference) && is_array($value_reference))
+														elseif(isset($valueReference) && is_array($valueReference))
 														{
-															$value_reference =& $value_reference[$key];
+															$valueReference =& $valueReference[$key];
 														}
 													}
 												}
 												else
 												{
-													$value_reference = $t_variable_reference;
+													$valueReference = $tVariableReference;
 												}
 
-												if(isset($value_reference) && $value_reference !== '')
+												if(isset($valueReference) && $valueReference !== '')
 												{
                                                     // run filter
-                                                    $t_variable_copy = $value_reference;
-                                                    $value_reference = call_user_func($c_function, $value_reference);
-                                                    if($t_variable_copy != $value_reference)
+                                                    $tVariableCopy = $valueReference;
+                                                    $valueReference = call_user_func($cFunction, $valueReference);
+                                                    if($tVariableCopy != $valueReference)
                                                     {
-                                                        $this->log('Die Regel "' . $t_filter_name . '" hat einen unerwarteten Variablenwert erkannt und erfolgreich gefiltert.', 'security', $t_data_array['severity']);
-                                                        if(is_array($t_variable_copy) || is_object($t_variable_copy))
+                                                        $this->log('Die Regel "' . $tFilterName . '" hat einen unerwarteten Variablenwert erkannt und erfolgreich gefiltert.', 'security', $tDataArray['severity']);
+                                                        if(is_array($tVariableCopy) || is_object($tVariableCopy))
                                                         {
-                                                            $this->log("unerwarteter Variablenwert\r\nFilterregel: " . $t_filter_name . "\r\nVariable: $$c_variable_string\rnvorher: " . print_r($t_variable_copy, true) . "\r\nnachher: " . print_r($value_reference, true), 'security_debug', $t_data_array['severity']);
+                                                            $this->log("unerwarteter Variablenwert\r\nFilterregel: " . $tFilterName . "\r\nVariable: $$cVariableString\rnvorher: " . print_r($tVariableCopy, true) . "\r\nnachher: " . print_r($valueReference, true), 'security_debug', $tDataArray['severity']);
                                                         }
                                                         else
                                                         {
-                                                            $this->log("unerwarteter Variablenwert\r\nFilterregel: " . $t_filter_name . "\r\nVariable: $$c_variable_string\r\nvorher: " . $t_variable_copy . "\r\nnachher: " . $value_reference, 'security_debug', $t_data_array['severity']);
+                                                            $this->log("unerwarteter Variablenwert\r\nFilterregel: " . $tFilterName . "\r\nVariable: $$cVariableString\r\nvorher: " . $tVariableCopy . "\r\nnachher: " . $valueReference, 'security_debug', $tDataArray['severity']);
                                                         }
                                                     }
 												}
 												
-												if(isset($value_reference))
+												if(isset($valueReference))
 												{
-													unset($value_reference);
+													unset($valueReference);
 												}
 											}
 										}							
@@ -337,7 +350,7 @@ class GProtector
 								else
 								{
 									// todo 
-									$this->log('filter function "' . $c_function . '" does not exist', 'gprotector_error', 'error');
+									$this->log('filter function "' . $cFunction . '" does not exist', 'gprotector_error', 'error');
 								}
 							}
 							else
@@ -365,15 +378,15 @@ class GProtector
 	}
 
 
-	private function load_functions()
+	private function loadFunctions()
 	{
-		$t_files_array = glob(GAMBIO_PROTECTOR_FUNCTIONS_DIR . $this->get_file_pattern());
+		$tFilesArray = glob(GAMBIO_PROTECTOR_FUNCTIONS_DIR . $this->getFilePattern());
 		
-		if(is_array($t_files_array))
+		if(is_array($tFilesArray))
 		{
-			foreach($t_files_array as $t_filepath)
+			foreach($tFilesArray as $tFilepath)
 			{
-				include_once($t_filepath);
+				include_once($tFilepath);
 			}
 			
 			return true;
@@ -388,123 +401,123 @@ class GProtector
 	}
 
 
-	private function get_file_pattern()
+	private function getFilePattern()
 	{
-		$t_file_pattern = '*.json';
+		$tFilePattern = '*.json';
 		if(defined('GAMBIO_PROTECTOR_FILE_PATTERN'))
 		{
-			$t_pattern = trim((string)GAMBIO_PROTECTOR_FILE_PATTERN);
-			if($t_pattern != '')
+			$tPattern = trim((string)GAMBIO_PROTECTOR_FILE_PATTERN);
+			if($tPattern != '')
 			{
-				$t_file_pattern = $t_pattern;
+				$tFilePattern = $tPattern;
 			}
 		}
 		
-		return $t_file_pattern;
+		return $tFilePattern;
 	}
 
 
-	private function get_running_script_path()
+	private function getRunningScriptPath()
 	{
-		$t_script_path = false;
+		$tScriptPath = false;
 		
-		$t_backtrace_array = debug_backtrace();
-		if(is_array($t_backtrace_array))
+		$tBacktraceArray = debug_backtrace();
+		if(is_array($tBacktraceArray))
 		{
-			$t_running_script_data_array = array_pop($t_backtrace_array);
-			$t_script_path = $t_running_script_data_array['file'];
+			$tRunningScriptDataArray = array_pop($tBacktraceArray);
+			$tScriptPath = $tRunningScriptDataArray['file'];
 			
 			if(defined('GAMBIO_PROTECTOR_BASE_DIR') && is_string(GAMBIO_PROTECTOR_BASE_DIR))
 			{
-				$t_script_path = str_replace(GAMBIO_PROTECTOR_BASE_DIR, '', $t_script_path);
+				$tScriptPath = str_replace(GAMBIO_PROTECTOR_BASE_DIR, '', $tScriptPath);
 			}
 		}
 		
-		if($t_script_path === false)
+		if($tScriptPath === false)
 		{
 			// todo
 			$this->log('script name could not be determined', 'gprotector_error', 'warning');
 		}	
 		
 		
-		return $t_script_path;
+		return $tScriptPath;
 	}
 
 
-	private function get_function_prefix()
+	private function getFunctionPrefix()
 	{
-		$t_function_prefix = 'gprotector_';
+		$tFunctionPrefix = 'gprotector_';
 		
 		if(defined('GAMBIO_PROTECTOR_FUNCTION_PREFIX'))
 		{
-			$t_prefix = preg_replace('/[^a-zA-Z_]/', '', trim((string)GAMBIO_PROTECTOR_FUNCTION_PREFIX));
-			if($t_prefix != '')
+			$tPrefix = preg_replace('/[^a-zA-Z_]/', '', trim((string)GAMBIO_PROTECTOR_FUNCTION_PREFIX));
+			if($tPrefix != '')
 			{
-				$t_function_prefix = $t_prefix;
+				$tFunctionPrefix = $tPrefix;
 			}
 		}
 		
-		return $t_function_prefix;		
+		return $tFunctionPrefix;
 	}
 
 
-	private function get_token_prefix()
+	private function getTokenPrefix()
 	{
-		$t_token_prefix = 'gprotector_';
+		$tTokenPrefix = 'gprotector_';
 		
 		if(defined('GAMBIO_PROTECTOR_TOKEN_FILE_PREFIX'))
 		{
-			$t_prefix = preg_replace('/[^a-zA-Z0-9_-]/', '', trim((string)GAMBIO_PROTECTOR_TOKEN_FILE_PREFIX));
-			if($t_prefix != '')
+			$tPrefix = preg_replace('/[^a-zA-Z0-9_-]/', '', trim((string)GAMBIO_PROTECTOR_TOKEN_FILE_PREFIX));
+			if($tPrefix != '')
 			{
-				$t_token_prefix = $t_prefix;
+				$tTokenPrefix = $tPrefix;
 			}
 		}
 		
-		return $t_token_prefix;
+		return $tTokenPrefix;
 	}
 
 
-	private function set_secure_token()
+	private function setSecureToken()
 	{
-		$t_files_array = glob(GAMBIO_PROTECTOR_TOKEN_DIR . $this->get_token_prefix() . '*');
+		$tFilesArray = glob(GAMBIO_PROTECTOR_TOKEN_DIR . $this->getTokenPrefix() . '*');
 
-		if(is_array($t_files_array))
+		if(is_array($tFilesArray))
 		{
-			foreach($t_files_array as $t_filepath)
+			foreach($tFilesArray as $tFilepath)
 			{
-				$t_token_filename = basename($t_filepath);
-				$t_token = str_replace($this->get_token_prefix(), '', $t_token_filename);
+				$tTokenFilename = basename($tFilepath);
+				$tToken = str_replace($this->getTokenPrefix(), '', $tTokenFilename);
 
-				if(strlen($t_token) > 0)
+				if(strlen($tToken) > 0)
 				{
-					$this->secure_token = $t_token;
+					$this->secureToken = $tToken;
 				}				
 			}
 		}
 		elseif(is_writable(GAMBIO_PROTECTOR_TOKEN_DIR))
 		{
-			$t_token = md5(time() . rand());
-			$t_token_file = GAMBIO_PROTECTOR_TOKEN_DIR . $this->get_token_prefix() . $t_token;
+			$tToken = md5(time() . rand());
+			$tTokenFile = GAMBIO_PROTECTOR_TOKEN_DIR . $this->getTokenPrefix() . $tToken;
 
 			if(function_exists('file_put_contents'))
 			{
-				@file_put_contents($t_token_file, 'empty');
+				@file_put_contents($tTokenFile, 'empty');
 			}
 			else
 			{
-				$fp = @fopen($t_token_file, 'w');
+				$fp = @fopen($tTokenFile, 'w');
 				@fwrite($fp, 'empty');
 				@fclose($fp);
 			}
 
-			if(!file_exists($t_token_file))
+			if(!file_exists($tTokenFile))
 			{
 				return false;
 			}
 			else
 			{
-				$this->secure_token = $t_token;
+				$this->secureToken = $tToken;
 			}
 		}
 
@@ -512,102 +525,102 @@ class GProtector
 	}
 
 
-	private function get_secure_token()
+	private function getSecureToken()
 	{
-		return preg_replace('/[^a-zA-Z0-9_-]/', '', (trim((string)$this->secure_token)));
+		return preg_replace('/[^a-zA-Z0-9_-]/', '', (trim((string)$this->secureToken)));
 	}
 
 
-	private function write_custom_log($p_message, $p_type, $p_severity = 'error')
+	private function writeCustomLog($pMessage, $pType, $pSeverity = 'error')
 	{
-		$c_message = (string)$p_message;
-		$t_message_details = $this->prepare_log_message($c_message);
+		$cMessage = (string)$pMessage;
+		$tMessageDetails = $this->prepareLogMessage($cMessage);
 		
-		if(strpos($c_message, $this->separator) !== false)
+		if(strpos($cMessage, $this->separator) !== false)
 		{
-			$c_message = substr($c_message, 0, strpos($c_message, $this->separator));
+			$cMessage = substr($cMessage, 0, strpos($cMessage, $this->separator));
 		}
 		
 		$logSuccess = 1;
 
-		foreach($this->log_connectors_array as $coo_gprotector_log_connector)
+		foreach($this->logConnectorsArray as $cooGProtectorLogConnector)
 		{
-			$t_error_type = 'GPROTECTOR ' . strtoupper($p_severity);
-			$logSuccess &= $coo_gprotector_log_connector->log($c_message, 'security', $p_type, $p_severity, $t_error_type, $t_message_details);
+			$tErrorType = 'GPROTECTOR ' . strtoupper($pSeverity);
+			$logSuccess &= $cooGProtectorLogConnector->log($cMessage, 'security', $pType, $pSeverity, $tErrorType, $tMessageDetails);
 		}
 		
 		if(!$logSuccess)
 		{
-			$this->write_log($p_message, $p_type, $p_severity);
+			$this->writeLog($pMessage, $pType, $pSeverity);
 		}
 		
 		return true;
 	}
 
 
-	private function prepare_log_message($p_string)
+	private function prepareLogMessage($string)
 	{
-		$c_string = (string)$p_string;
-		$t_prepared_message = '';
+		$cString = (string)$string;
+		$tPreparedMessage = '';
 
-		if(strpos($c_string, $this->separator) !== false)
+		if(strpos($cString, $this->separator) !== false)
 		{ 
-			$t_prepared_message = str_replace("'", "\\'", substr($c_string, strpos($c_string, $this->separator) + strlen($this->separator)));
+			$tPreparedMessage = str_replace("'", "\\'", substr($cString, strpos($cString, $this->separator) + strlen($this->separator)));
 		}
 		
-		return $t_prepared_message;
+		return $tPreparedMessage;
 	}
 
 
-	private function write_log($p_message, $p_type, $p_severity = 'error')
+	private function writeLog($message, $type, $severity = 'error')
 	{
-		$c_message = (string)$p_message;
-		$c_log_filename = $this->get_log_filename($p_type);
-		if($c_log_filename !== false)
+		$cMessage = (string)$message;
+		$cLogFilename = $this->getLogFilename($type);
+		if($cLogFilename !== false)
 		{
-			$t_logfile_path = GAMBIO_PROTECTOR_LOG_DIR . $c_log_filename;
-			$t_written_bytes = false;
+			$tLogFilePath = GAMBIO_PROTECTOR_LOG_DIR . $cLogFilename;
+			$tWrittenBytes = false;
 
 			if(is_dir(GAMBIO_PROTECTOR_LOG_DIR)
 			   && is_writable(GAMBIO_PROTECTOR_LOG_DIR)
-			   && ((	file_exists($t_logfile_path)
-						&& is_writeable($t_logfile_path)
+			   && ((	file_exists($tLogFilePath)
+						&& is_writeable($tLogFilePath)
 				   )
-				   || (!file_exists($t_logfile_path)))
+				   || (!file_exists($tLogFilePath)))
 			)
 			{
 				if(function_exists('file_put_contents'))
 				{
-					$t_written_bytes = @file_put_contents($t_logfile_path, $this->get_substituted_log_content($this->log_header_template, $c_message, $p_severity), FILE_APPEND | LOCK_EX);
+					$tWrittenBytes = @file_put_contents($tLogFilePath, $this->getSubstitutedLogContent($this->logHeaderTemplate, $cMessage, $severity), FILE_APPEND | LOCK_EX);
 				}
 				else
 				{
-					$fp = @fopen($t_logfile_path, 'a');
-					$t_written_bytes = @fwrite($fp, $this->get_substituted_log_content($this->log_header_template, $c_message, $p_severity));
+					$fp = @fopen($tLogFilePath, 'a');
+					$tWrittenBytes = @fwrite($fp, $this->getSubstitutedLogContent($this->logHeaderTemplate, $cMessage, $severity));
 					@fclose($fp);
 				}
 
 				if((defined('GAMBIO_PROTECTOR_GZIP_LOG') && GAMBIO_PROTECTOR_GZIP_LOG === true) || defined('GAMBIO_PROTECTOR_GZIP_LOG') === false)
 				{
-					$t_max_filesize = 1 * 1024 * 1024; // standard: 1 megabyte
+					$tMaxFilesize = 1 * 1024 * 1024; // standard: 1 megabyte
 					if(defined('GAMBIO_PROTECTOR_LOG_MAX_FILESIZE') && (double)GAMBIO_PROTECTOR_LOG_MAX_FILESIZE > 0)
 					{
-						$t_max_filesize = (double)GAMBIO_PROTECTOR_LOG_MAX_FILESIZE * 1024 * 1024;
+						$tMaxFilesize = (double)GAMBIO_PROTECTOR_LOG_MAX_FILESIZE * 1024 * 1024;
 					}
 
 					// compress logfile if larger than GAMBIO_PROTECTOR_LOG_MAX_FILESIZE megabyte
-					if(filesize($t_logfile_path) > $t_max_filesize)
+					if(filesize($tLogFilePath) > $tMaxFilesize)
 					{
-						$fp = @fopen($t_logfile_path, 'r+');
+						$fp = @fopen($tLogFilePath, 'r+');
 						if($fp !== false)
 						{
 							@date_default_timezone_set('Europe/Berlin');
-							$t_compressed_file_path = substr($t_logfile_path, 0, strpos($t_logfile_path, ".")) . '-' . date('Ymd_His') . '.log.gz';
-							$t_compressed_file = @gzopen($t_compressed_file_path, 'w9');
-							if($t_compressed_file !== false)
+							$tCompressedFilePath = substr($tLogFilePath, 0, strpos($tLogFilePath, ".")) . '-' . date('Ymd_His') . '.log.gz';
+							$tCompressedFile = @gzopen($tCompressedFilePath, 'w9');
+							if($tCompressedFile !== false)
 							{
-								@gzwrite($t_compressed_file, fread($fp, filesize($t_logfile_path)));
-								@gzclose($t_compressed_file);
+								@gzwrite($tCompressedFile, fread($fp, filesize($tLogFilePath)));
+								@gzclose($tCompressedFile);
 
 								// delete content of log which was compressed before
 								@ftruncate($fp, 0);
@@ -618,7 +631,7 @@ class GProtector
 				}
 			}
 
-			if($t_written_bytes === false || $t_written_bytes == 0)
+			if($tWrittenBytes === false || $tWrittenBytes == 0)
 			{
 				return false;
 			}
@@ -630,79 +643,79 @@ class GProtector
 	}
 
 
-	private function log($p_message, $p_type, $p_severity = 'error')
+	private function log($message, $type, $severity = 'error')
 	{
-		if(!empty($this->log_connectors_array))
+		if(!empty($this->logConnectorsArray))
 		{
-			return $this->write_custom_log($p_message, $p_type, $p_severity);
+			return $this->writeCustomLog($message, $type, $severity);
 		}
 
-		return $this->write_log($p_message, $p_type, $p_severity);
+		return $this->writeLog($message, $type, $severity);
 	}
 
 
-	private function get_log_filename($p_type)
+	private function getLogFilename($type)
 	{
-		$c_type = basename(trim((string)$p_type));
-		$t_secure_token = $this->get_secure_token();
+		$cType = basename(trim((string)$type));
+		$tSecureToken = $this->getSecureToken();
 		
-		if($c_type != '' && $t_secure_token != '')
+		if($cType != '' && $tSecureToken != '')
 		{
-			$t_log_filename = $c_type . '-' . $t_secure_token . '.log';
-			return $t_log_filename;
+			$tLogFilename = $cType . '-' . $tSecureToken . '.log';
+			return $tLogFilename;
 		}
 		
 		return false;		
 	}
 
 
-	private function set_log_header_template($p_template)
+	private function setLogHeaderTemplate($template)
 	{
-		$c_template = (string)$p_template;
-		$this->log_header_template = $c_template;
+		$cTemplate              = (string)$template;
+		$this->logHeaderTemplate = $cTemplate;
 	}
 
 
-	private function get_substituted_log_content($p_template, $p_message = '', $p_severity = 'error', $p_log_filename = 'security', $p_message_details = '')
+	private function getSubstitutedLogContent($template, $message = '', $severity = 'error', $logFilename = 'security', $messageDetails = '')
 	{
 		@date_default_timezone_set('Europe/Berlin');
 		
-		$c_template = (string)$p_template;
-		$c_message = (string)$p_message;
-		$c_severity = (string)$p_severity;
-		$c_log_filename = (string)$p_log_filename;
-		$c_message_details = (string)$p_message_details;
+		$cTemplate = (string)$template;
+		$cMessage = (string)$message;
+		$cSeverity = (string)$severity;
+		$cLogFilename = (string)$logFilename;
+		$cMessageDetails = (string)$messageDetails;
 		
-		$c_template = $this->substitute($c_template, '{IP}', $this->getUserIp());
-		$c_template = $this->substitute($c_template, '{DATETIME}', date('Y-m-d H:i:s'));
-		$c_template = $this->substitute($c_template, '{MESSAGE}', $c_message);
-		$c_template = $this->substitute($c_template, '{SCRIPT}', $this->get_running_script_path());
-		$c_template = $this->substitute($c_template, '{LOGFILE_NAME}', (string)$c_log_filename);
-		$c_template = $this->substitute($c_template, '{SEVERITY}', $c_severity);
-		$c_template = $this->substitute($c_template, '{ERROR_TYPE}', 'GPROTECTOR ' . strtoupper($p_severity));
-		$c_template = $this->substitute($c_template, '{MESSAGE_DETAILS}', $c_message_details);
+		$cTemplate = $this->substitute($cTemplate, '{IP}', $this->getUserIp());
+		$cTemplate = $this->substitute($cTemplate, '{DATETIME}', date('Y-m-d H:i:s'));
+		$cTemplate = $this->substitute($cTemplate, '{MESSAGE}', $cMessage);
+		$cTemplate = $this->substitute($cTemplate, '{SCRIPT}', $this->getRunningScriptPath());
+		$cTemplate = $this->substitute($cTemplate, '{LOGFILE_NAME}', (string)$cLogFilename);
+		$cTemplate = $this->substitute($cTemplate, '{SEVERITY}', $cSeverity);
+		$cTemplate = $this->substitute($cTemplate, '{ERROR_TYPE}', 'GPROTECTOR ' . strtoupper($severity));
+		$cTemplate = $this->substitute($cTemplate, '{MESSAGE_DETAILS}', $cMessageDetails);
 		
-		return $c_template;
+		return $cTemplate;
 	}
 
 
-	private function substitute($p_content, $p_place_holder, $p_substitution = '')
+	private function substitute($content, $placeHolder, $substitution = '')
 	{
-		$t_content = (string)$p_content;
+		$tContent = (string)$content;
 		
-		if(strpos($p_content, $p_place_holder) !== false)
+		if(strpos($content, $placeHolder) !== false)
 		{
-			$t_content = str_replace((string)$p_place_holder, (string)$p_substitution, $t_content);
+			$tContent = str_replace((string)$placeHolder, (string)$substitution, $tContent);
 		}
 		
-		return $t_content;
+		return $tContent;
 	}
 
 
-	private function is_script($p_script_path)
+	private function isScript($scriptPath)
 	{
-		$c_script_path = (string)$p_script_path;
-		if($this->get_running_script_path() == $c_script_path)
+		$cScriptPath = (string)$scriptPath;
+		if($this->getRunningScriptPath() == $cScriptPath)
 		{
 			return true;
 		}
@@ -711,15 +724,15 @@ class GProtector
 	}
 
 
-	private function get_ip_blacklist_path()
+	private function getIpBlacklistPath()
 	{
-		$t_dir = dirname(__FILE__) . '/';
+		$tDir = dirname(__FILE__) . '/';
 		
 		if(defined('GAMBIO_PROTECTOR_DIR') && is_string(GAMBIO_PROTECTOR_DIR) && @is_dir(GAMBIO_PROTECTOR_DIR))
 		{
-			$t_dir = GAMBIO_PROTECTOR_DIR;
+			$tDir = GAMBIO_PROTECTOR_DIR;
 		}
 		
-		return $t_dir . 'ip_blacklist.txt';
+		return $tDir . 'ip_blacklist.txt';
 	}
 }
