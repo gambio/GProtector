@@ -36,49 +36,64 @@ class GProtectorFilter
     private $severity;
     
     
-    public function __construct($key, $scriptName, $variables, $function, $severity)
+    /**
+     * GProtectorFilter constructor.
+     *
+     * @param mixed              $key
+     * @param mixed              $scriptName
+     * @param VariableCollection $variables
+     * @param mixed              $function
+     * @param mixed              $severity
+     */
+    public function __construct($key, $scriptName, VariableCollection $variables, $function, $severity)
     {
+        $this->validateKey($key);
+        $this->validateScriptName($scriptName);
+        
+        $this->key        = $key;
+        $this->scriptName = $scriptName;
+        
         if ($this->validateKey($key) === true) {
             $this->key = $key;
         }
-        if ( $this->validateScriptName($scriptName) === true){
+        if ($this->validateScriptName($scriptName) === true) {
             $this->scriptName = $scriptName;
         }
-        if( $this->validateVariables($variables) === true){
-         $this->variables = $variables;
+        if ($this->validateVariables($variables) === true) {
+            $this->variables = $variables;
         }
-        if( $this->validateFunction($function) === true){
-         $this->function = $function;
+        if ($this->validateFunction($function) === true) {
+            $this->function = $function;
         }
-        if( $this->validateSeverity($severity) === true){
-         $this->severity = $severity;
+        if ($this->validateSeverity($severity) === true) {
+            $this->severity = $severity;
         }
     }
     
     
     /**
-     * @param $key
+     * Validates a key.
      *
-     * @return bool
+     * @param mixed $key The key to validate
      */
     private function validateKey($key)
     {
-        if ($key !== null){
-            return true;
+        if ($key === null) {
+            throw new InvalidArgumentException('Invalid $key \'' . $key . '\'');
         }
     }
     
+    
     /**
-     * @param $scriptName
+     * @param mixed $scriptName
      *
      * @return boolean
      */
     private function validateScriptName($scriptName)
     {
         if (is_array($scriptName)) {
-            return  true;
+            return true;
         }
-        
     }
     
     
@@ -103,10 +118,9 @@ class GProtectorFilter
      */
     private function validateFunction($function)
     {
-        if ($function !== null){
+        if ($function !== null) {
             return true;
         }
-        
     }
     
     
@@ -117,8 +131,14 @@ class GProtectorFilter
      */
     private function validateSeverity($severity)
     {
-        if ($severity !== null){
+        if ($severity !== null) {
             return true;
         }
+    }
+    
+    
+    private function key()
+    {
+    
     }
 }
