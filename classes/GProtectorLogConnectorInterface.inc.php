@@ -10,5 +10,5 @@
 
 interface GProtectorLogConnectorInterface
 {
-	public function log($message, $group, $filename, $severity, $errorType, $messageDetails);
+    public function log($message, $group, $filename, $severity, $errorType, $messageDetails);
 }

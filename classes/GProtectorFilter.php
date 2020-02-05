@@ -23,7 +23,7 @@ class Filter
     private $scriptName;
     
     /**
-     * @var array $variables
+     * @var VariableCollection $variables
      */
     private $variables;
     
@@ -51,25 +51,15 @@ class Filter
     {
         $this->validateKey($key);
         $this->validateScriptName($scriptName);
+        $this->validateVariables($variables);
+        $this->validateFunction($function);
+        $this->validateSeverity($severity);
         
         $this->key        = $key;
         $this->scriptName = $scriptName;
-        
-        if ($this->validateKey($key) === true) {
-            $this->key = $key;
-        }
-        if ($this->validateScriptName($scriptName) === true) {
-            $this->scriptName = $scriptName;
-        }
-        if ($this->validateVariables($variables) === true) {
-            $this->variables = $variables;
-        }
-        if ($this->validateFunction($function) === true) {
-            $this->function = $function;
-        }
-        if ($this->validateSeverity($severity) === true) {
-            $this->severity = $severity;
-        }
+        $this->variables  = $variables;
+        $this->function   = $function;
+        $this->severity   = $severity;
     }
     
     
@@ -87,60 +77,113 @@ class Filter
     
     
     /**
-     * @param mixed $scriptName
+     * Validates a scriptname
      *
-     * @return boolean
+     * @param mixed $scriptName The scriptname to validate
      */
     private function validateScriptName($scriptName)
     {
-        if (is_array($scriptName)) {
-            return true;
+        if ($scriptName === null) {
+            throw new InvalidArgumentException('Invalid $key \'' . $scriptName . '\'');
         }
     }
     
     
     /**
-     * @param $variables
+     * Validates the variables
      *
-     * @return boolean
+     * @param mixed $variables The variables to validate
+     *
      */
     private function validateVariables($variables)
     {
         
-        if (is_array($variables)) {
-            return true;
+        if ($variables === null) {
+            throw new InvalidArgumentException('Invalid $variables \'' . $variables . '\'');
         }
     }
     
     
     /**
-     * @param $function
+     * Validates a function
      *
-     * @return boolean
+     * @param mixed $function The function to validate
+     *
      */
     private function validateFunction($function)
     {
-        if ($function !== null) {
-            return true;
+        if ($function === null) {
+            throw new InvalidArgumentException('Invalid $function \'' . $function . '\'');
         }
     }
     
     
     /**
-     * @param $severity
+     * Validates a severity level
      *
-     * @return boolean
+     * @param mixed $severity The severity to validate
+     *
      */
     private function validateSeverity($severity)
     {
-        if ($severity !== null) {
-            return true;
+        if ($severity === null) {
+            throw new InvalidArgumentException('Invalid $severity \'' . $severity . '\'');
         }
     }
     
     
+    /**
+     * Getter for key
+     *
+     * @return string
+     */
     private function key()
     {
-    
+        return $this->key;
     }
+    
+    
+    /**
+     * Getter for scriptname
+     *
+     * @return array
+     */
+    private function scriptName()
+    {
+        return $this->scriptName;
+    }
+    
+    
+    /**
+     * Getter for variables
+     *
+     * @return VariableCollection
+     */
+    private function variables()
+    {
+        return $this->variables;
+    }
+    
+    
+    /**
+     * Getter for function
+     *
+     * @return string
+     */
+    private function function ()
+    {
+        return $this->function;
+    }
+    
+    
+    /**
+     * Getter for severity
+     *
+     * @return string
+     */
+    private function severity()
+    {
+        return $this->severity;
+    }
+    
 }
