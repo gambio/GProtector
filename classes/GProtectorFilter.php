@@ -8,7 +8,9 @@
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
 
-class GProtectorFilter
+namespace GProtector;
+
+class Filter
 {
     /**
      * @var  string $key
