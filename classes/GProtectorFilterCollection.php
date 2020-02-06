@@ -41,7 +41,7 @@ class FilterCollection implements IteratorAggregate
     /**
      * Add a new item.
      *
-     * @param GProtectorFilter $item Item which should add to the collection
+     * @param GProtectorFilter $item Item which should be added to the collection
      *
      */
     public function add(GProtectorFilter $item)
