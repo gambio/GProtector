@@ -8,26 +8,14 @@
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
 
-if(defined('E_DEPRECATED'))
-{
-	error_reporting(
-		E_ALL
-		& ~E_NOTICE
-		& ~E_DEPRECATED
-		& ~E_STRICT
-		& ~E_CORE_ERROR
-		& ~E_CORE_WARNING
-	);
-}
-else
-{
-	error_reporting(
-		E_ALL
-		& ~E_NOTICE
-		& ~E_STRICT
-		& ~E_CORE_ERROR
-		& ~E_CORE_WARNING
-	);
+if (defined('E_DEPRECATED')) {
+    error_reporting(
+        E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_CORE_ERROR & ~E_CORE_WARNING
+    );
+} else {
+    error_reporting(
+        E_ALL & ~E_NOTICE & ~E_STRICT & ~E_CORE_ERROR & ~E_CORE_WARNING
+    );
 }
 
 require_once(dirname(__FILE__) . '/config.inc.php');
