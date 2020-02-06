@@ -34,6 +34,6 @@ require_once(dirname(__FILE__) . '/config.inc.php');
 require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/GProtectorLogConnectorInterface.inc.php');
 require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/GProtector.inc.php');
 
-$cooGprotector = new GProtector();
-$cooGprotector->start();
-unset($cooGprotector);
+$gprotector = new GProtector();
+$gprotector->start();
+unset($gprotector);
