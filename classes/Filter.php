@@ -49,7 +49,7 @@ class Filter
      * @param mixed              $method
      * @param mixed              $severity
      */
-    public function __construct($key, $scriptName, VariableCollection $variables, $method, $severity)
+    public function __construct(Key $key, $scriptName, VariableCollection $variables, $method, $severity)
     {
         $this->validateKey($key);
         $this->validateScriptName($scriptName);
@@ -76,7 +76,7 @@ class Filter
     private function validateKey($key)
     {
         if ($key === null || (is_string($key)) === false) {
-            throw new InvalidArgumentException('Invalid $key \'' . $key . '\'');
+            throw new InvalidArgumentException('Invalid $key');
         }
     }
     
@@ -86,13 +86,13 @@ class Filter
      *
      * @param mixed $scriptName The scriptname to validate
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException If the script name is null or not an array
      *
      */
     private function validateScriptName($scriptName)
     {
         if ($scriptName === null || (is_array($scriptName)) === false) {
-            throw new InvalidArgumentException('Invalid $scriptName \'' . $scriptName . '\'');
+            throw new InvalidArgumentException('Invalid $scriptName');
         }
     }
     
@@ -107,9 +107,8 @@ class Filter
      */
     private function validateVariables($variables)
     {
-        
         if ($variables === null) {
-            throw new InvalidArgumentException('Invalid $variables ');
+            throw new InvalidArgumentException('$variables must not be null');
         }
     }
     
