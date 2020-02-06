@@ -84,7 +84,7 @@ class Filter
     private function validateScriptName($scriptName)
     {
         if ($scriptName === null) {
-            throw new InvalidArgumentException('Invalid $key \'' . $scriptName . '\'');
+            throw new InvalidArgumentException('Invalid $scriptName \'' . $scriptName . '\'');
         }
     }
     
