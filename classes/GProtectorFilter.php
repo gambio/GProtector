@@ -137,7 +137,7 @@ class Filter
      *
      * @return string
      */
-    private function key()
+    public function key()
     {
         return $this->key;
     }
@@ -148,7 +148,7 @@ class Filter
      *
      * @return array
      */
-    private function scriptName()
+    public function scriptName()
     {
         return $this->scriptName;
     }
@@ -159,7 +159,7 @@ class Filter
      *
      * @return VariableCollection
      */
-    private function variables()
+    public function variables()
     {
         return $this->variables;
     }
@@ -170,7 +170,7 @@ class Filter
      *
      * @return string
      */
-    private function function ()
+    public function function ()
     {
         return $this->function;
     }
@@ -181,7 +181,7 @@ class Filter
      *
      * @return string
      */
-    private function severity()
+    public function severity()
     {
         return $this->severity;
     }
