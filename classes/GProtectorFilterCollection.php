@@ -8,7 +8,7 @@
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
 
-namespace GProtector;
+namespace GProtector\FilterCollection;
 
 class FilterCollection implements IteratorAggregate
 {
