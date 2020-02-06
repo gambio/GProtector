@@ -22,3 +22,6 @@ define('GAMBIO_PROTECTOR_TOKEN_FILE_PREFIX', 'gprotector_token_');
 define('GAMBIO_PROTECTOR_FILE_PATTERN', '*.json');
 define('GAMBIO_PROTECTOR_GZIP_LOG', true);
 define('GAMBIO_PROTECTOR_LOG_MAX_FILESIZE', 1); // megabytes
+define('GAMBIO_PROTECTOR_REMOTE_FILTERRULES_URL', 'http://ton.dev.gambio-server.net/standard.json');
+define('GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR', dirname(__FILE__) . '/filter/');
+define('GAMBIO_PROTECTOR_LOCAL_FILERULES_FILENAME', 'standard.json');
