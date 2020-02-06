@@ -8,14 +8,19 @@
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
 
-namespace GProtector\FilterCollection;
+namespace GProtector;
+
+use \InvalidArgumentException;
+use \IteratorAggregate;
+use \ArrayIterator;
+use \Traversable;
 
 class FilterCollection implements IteratorAggregate
 {
     /**
      * @var array
      */
-    private $gprotectorFilterArray = [];
+    private $filterArray = [];
     
     
     /**
@@ -41,12 +46,12 @@ class FilterCollection implements IteratorAggregate
     /**
      * Add a new item.
      *
-     * @param GProtectorFilter $item Item which should be added to the collection
+     * @param Filter $item Item which should be added to the collection
      *
      */
-    public function add(GProtectorFilter $item)
+    public function add(Filter $item)
     {
-        $this->gprotectorFilterArray[] = $item;
+        $this->filterArray[] = $item;
     }
     
     
@@ -55,6 +60,6 @@ class FilterCollection implements IteratorAggregate
      */
     public function getIterator()
     {
-        return new ArrayIterator($this->gprotectorFilterArray);
+        return new ArrayIterator($this->filterArray);
     }
 }

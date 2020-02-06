@@ -8,7 +8,9 @@
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
 
-namespace GProtector\Filter;
+namespace GProtector;
+
+use \InvalidArgumentException;
 
 class Filter
 {
@@ -28,9 +30,9 @@ class Filter
     private $variables;
     
     /**
-     * @var string $function
+     * @var string $method
      */
-    private $function;
+    private $method;
     
     /**
      * @var string $severity
@@ -44,21 +46,21 @@ class Filter
      * @param mixed              $key
      * @param mixed              $scriptName
      * @param VariableCollection $variables
-     * @param mixed              $function
+     * @param mixed              $method
      * @param mixed              $severity
      */
-    public function __construct($key, $scriptName, VariableCollection $variables, $function, $severity)
+    public function __construct($key, $scriptName, VariableCollection $variables, $method, $severity)
     {
         $this->validateKey($key);
         $this->validateScriptName($scriptName);
         $this->validateVariables($variables);
-        $this->validateFunction($function);
+        $this->validateMethod($method);
         $this->validateSeverity($severity);
         
         $this->key        = $key;
         $this->scriptName = $scriptName;
         $this->variables  = $variables;
-        $this->function   = $function;
+        $this->method   = $method;
         $this->severity   = $severity;
     }
     
@@ -67,10 +69,13 @@ class Filter
      * Validates a key.
      *
      * @param mixed $key The key to validate
+     *
+     * @throws InvalidArgumentException
+     *
      */
     private function validateKey($key)
     {
-        if ($key === null) {
+        if ($key === null || (is_string($key)) === false) {
             throw new InvalidArgumentException('Invalid $key \'' . $key . '\'');
         }
     }
@@ -80,10 +85,13 @@ class Filter
      * Validates a scriptname
      *
      * @param mixed $scriptName The scriptname to validate
+     *
+     * @throws InvalidArgumentException
+     *
      */
     private function validateScriptName($scriptName)
     {
-        if ($scriptName === null) {
+        if ($scriptName === null || (is_array($scriptName)) === false) {
             throw new InvalidArgumentException('Invalid $scriptName \'' . $scriptName . '\'');
         }
     }
@@ -94,26 +102,30 @@ class Filter
      *
      * @param mixed $variables The variables to validate
      *
+     * @throws InvalidArgumentException
+     *
      */
     private function validateVariables($variables)
     {
         
         if ($variables === null) {
-            throw new InvalidArgumentException('Invalid $variables \'' . $variables . '\'');
+            throw new InvalidArgumentException('Invalid $variables ');
         }
     }
     
     
     /**
-     * Validates a function
+     * Validates a method
      *
-     * @param mixed $function The function to validate
+     * @param mixed $method The method to validate
+     *
+     * @throws InvalidArgumentException
      *
      */
-    private function validateFunction($function)
+    private function validateMethod($method)
     {
-        if ($function === null) {
-            throw new InvalidArgumentException('Invalid $function \'' . $function . '\'');
+        if ($method === null || (is_string($method)) === false) {
+            throw new InvalidArgumentException('Invalid $method \'' . $method . '\'');
         }
     }
     
@@ -123,10 +135,12 @@ class Filter
      *
      * @param mixed $severity The severity to validate
      *
+     * @throws InvalidArgumentException
+     *
      */
     private function validateSeverity($severity)
     {
-        if ($severity === null) {
+        if ($severity === null || (is_string($severity)) === false) {
             throw new InvalidArgumentException('Invalid $severity \'' . $severity . '\'');
         }
     }
@@ -166,13 +180,13 @@ class Filter
     
     
     /**
-     * Getter for function
+     * Getter for method
      *
      * @return string
      */
-    public function function ()
+    public function method ()
     {
-        return $this->function;
+        return $this->method;
     }
     
     

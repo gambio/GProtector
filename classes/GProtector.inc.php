@@ -44,9 +44,9 @@ class GProtector
     
     
     /**
-     * @param GProtectorFilterCollection $filters
+     * @param FilterCollection $filters
      */
-    private function applyFilters(GProtectorFilterCollection $filters)
+    private function applyFilters(FilterCollection $filters)
     {
         $this->addFilters($filters);
         $this->filter();
@@ -54,9 +54,9 @@ class GProtector
     
     
     /**
-     * @param GProtectorFilterCollection $filters
+     * @param FilterCollection $filters
      */
-    private function addFilters(GProtectorFilterCollection $filters)
+    private function addFilters(FilterCollection $filters)
     {
         foreach($filters as $filter)
         {
@@ -64,20 +64,20 @@ class GProtector
                 $filter->key(),
                 $filter->scriptName(),
                 $filter->variables(),
-                $filter->function(),
+                $filter->method(),
                 $filter->severity());
         }
     }
     
     
     /**
-     * @return GProtectorFilterCollection
+     * @return FilterCollection
      */
     private function readFilterFiles()
     {
         $filterArray = $this->filterReader()->getDefaultFilterRules() + $this->filterReader()->getCustomFilterRules();
         
-        return new GProtectorFilterCollection($filterArray);
+        return new FilterCollection($filterArray);
     }
     
     
