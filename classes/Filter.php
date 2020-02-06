@@ -60,7 +60,7 @@ class Filter
         $this->key        = $key;
         $this->scriptName = $scriptName;
         $this->variables  = $variables;
-        $this->method   = $method;
+        $this->method     = $method;
         $this->severity   = $severity;
     }
     
@@ -184,7 +184,7 @@ class Filter
      *
      * @return string
      */
-    public function method ()
+    public function method()
     {
         return $this->method;
     }
