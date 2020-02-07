@@ -21,7 +21,14 @@ class Key
     private $key;
     
     
-    public function __construct($key)
+    /**
+     * Initializes Key instance
+     *
+     * Key constructor.
+     *
+     * @param $key
+     */
+    private function __construct($key)
     {
         $this->validateKey($key);
         $this->key = $key;
@@ -31,7 +38,7 @@ class Key
     /**
      * Validates key.
      *
-     * @param mixed $key The key to validate
+     * @param mixed $key The key to be validated
      *
      * @throws InvalidArgumentException if key is null or not string
      *

@@ -23,13 +23,13 @@ class ScriptName
     
     
     /**
-     * Initializes scriptName instance
+     * Initializes scriptName instance inside this class
      *
      * ScriptName constructor.
      *
      * @param $scriptName
      */
-    public function __construct($scriptName)
+    private function __construct($scriptName)
     {
         $this->validateScriptName($scriptName);
         $this->scriptName = $scriptName;

@@ -22,13 +22,13 @@ class Method
     
     
     /**
-     * initializes method instance
+     * initializes method instance inside this class
      *
      * Method constructor.
      *
      * @param $method
      */
-    public function __construct($method)
+    private function __construct($method)
     {
         $this->validateMethod($method);
         $this->method = $method;

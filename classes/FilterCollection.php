@@ -24,7 +24,7 @@ class FilterCollection implements IteratorAggregate
     
     
     /**
-     * Initialize the collection instance.
+     * Initializes the collection instance inside this class.
      *
      * @param array $items
      *
@@ -49,7 +49,7 @@ class FilterCollection implements IteratorAggregate
      * @param Filter $item Item which should be added to the collection
      *
      */
-    public function add(Filter $item)
+    private function add(Filter $item)
     {
         $this->filterArray[] = $item;
     }

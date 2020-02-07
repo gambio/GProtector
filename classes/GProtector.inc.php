@@ -498,7 +498,7 @@ class GProtector
     }
     
     
-    private function writeCustomLog($message, $pType, $pSeverity = 'error')
+    private function writeCustomLog($message, $type, $severity = 'error')
     {
         $receivedMessage = (string)$message;
         $messageDetails  = $this->prepareLogMessage($receivedMessage);
@@ -510,19 +510,19 @@ class GProtector
         $logSuccess = 1;
         
         foreach ($this->logConnectorsArray as $GProtectorLogConnector) {
-            $tErrorType = 'GPROTECTOR ' . strtoupper($pSeverity);
+            $errorType = 'GPROTECTOR ' . strtoupper($severity);
             $logSuccess &= $GProtectorLogConnector->log(
                 $receivedMessage,
                 'security',
-                $pType,
-                $pSeverity,
-                $tErrorType,
+                $type,
+                $severity,
+                $errorType,
                 $messageDetails
             );
         }
         
         if (!$logSuccess) {
-            $this->writeLog($message, $pType, $pSeverity);
+            $this->writeLog($message, $type, $severity);
         }
         
         return true;

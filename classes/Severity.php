@@ -22,13 +22,13 @@ class Severity
     
     
     /**
-     * Initializes severity instance
+     * Initializes severity instance inside this class
      *
      * Severity constructor.
      *
      * @param $severity
      */
-    public function __construct($severity)
+    private function __construct($severity)
     {
         $this->validateSeverity($severity);
         $this->severity = $severity;

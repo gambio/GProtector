@@ -39,7 +39,7 @@ class Filter
     
     
     /**
-     * Initializes the filter instance
+     * Initializes filter instance inside this class
      *
      * GProtectorFilter constructor.
      *
@@ -49,7 +49,7 @@ class Filter
      * @param Method             $method
      * @param Severity           $severity
      */
-    public function __construct(
+    private function __construct(
         Key $key,
         ScriptName $scriptName,
         VariableCollection $variables,
