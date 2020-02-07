@@ -26,16 +26,16 @@ class FilterCollection implements IteratorAggregate
     /**
      * Initializes the collection instance inside this class.
      *
-     * @param array $items
+     * @param array $filters
      *
      * @throws InvalidArgumentException
      *
      */
-    public function __construct(array $items)
+    public function __construct(array $filters)
     {
-        foreach ($items as $item) {
+        foreach ($filters as $filter) {
             try {
-                $this->add($item);
+                $this->add($filter);
             } catch (InvalidArgumentException $e) {
                 throw $e;
             }
@@ -46,12 +46,12 @@ class FilterCollection implements IteratorAggregate
     /**
      * Add a new item.
      *
-     * @param Filter $item Item which should be added to the collection
+     * @param Filter $filter Item which should be added to the collection
      *
      */
-    private function add(Filter $item)
+    private function add(Filter $filter)
     {
-        $this->filterArray[] = $item;
+        $this->filterArray[] = $filter;
     }
     
     
