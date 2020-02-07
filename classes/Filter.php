@@ -51,13 +51,12 @@ class Filter
      */
     public function __construct(Key $key, $scriptName, VariableCollection $variables, $method, $severity)
     {
-        $this->validateKey($key);
         $this->validateScriptName($scriptName);
         $this->validateVariables($variables);
         $this->validateMethod($method);
         $this->validateSeverity($severity);
         
-        $this->key        = $key;
+        $this->key        = $key->key();
         $this->scriptName = $scriptName;
         $this->variables  = $variables;
         $this->method     = $method;
@@ -65,20 +64,7 @@ class Filter
     }
     
     
-    /**
-     * Validates a key.
-     *
-     * @param mixed $key The key to validate
-     *
-     * @throws InvalidArgumentException
-     *
-     */
-    private function validateKey($key)
-    {
-        if ($key === null || (is_string($key)) === false) {
-            throw new InvalidArgumentException('Invalid $key');
-        }
-    }
+  
     
     
     /**
@@ -144,16 +130,6 @@ class Filter
         }
     }
     
-    
-    /**
-     * Getter for key
-     *
-     * @return string
-     */
-    public function key()
-    {
-        return $this->key;
-    }
     
     
     /**
