@@ -44,7 +44,7 @@ class VariableCollection implements IteratorAggregate
     
     
     /**
-     * Add a new item.
+     * Adds a new item.
      *
      * @param Variable $item Item which should be added to the collection
      *

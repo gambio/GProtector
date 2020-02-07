@@ -22,18 +22,26 @@ class Variable
     private $type;
     
     /**
-     * @var array $property
+     * @var array $properties
      */
-    private $property = [];
+    private $properties = [];
     
     
-    public function __construct($type, $property)
+    /**
+     * Initializes variable instance
+     *
+     * Variable constructor.
+     *
+     * @param $type
+     * @param $properties
+     */
+    public function __construct($type, $properties)
     {
         $this->validateType($type);
-        $this->validateProperty($property);
+        $this->validateProperty($properties);
         
-        $this->type     = $type;
-        $this->property = $property;
+        $this->type       = $type;
+        $this->properties = $properties;
     }
     
     
@@ -42,11 +50,11 @@ class Variable
      *
      * @param mixed $type to be validated
      *
-     * @throws InvalidArgumentException if type is null or not a string
+     * @throws InvalidArgumentException if type is null or not not equals to post or get
      */
     private function validateType($type)
     {
-        if ($type === null || (is_string($type)) === false) {
+        if ($type === null || (strtolower($type)) !== 'post' || (strtolower($type)) !== 'get') {
             throw new InvalidArgumentException('Invalid $type');
         }
     }
@@ -55,22 +63,23 @@ class Variable
     /**
      * Validates property
      *
-     * @param mixed $property to be validated
+     * @param mixed $properties to be validated
      *
-     * @throws InvalidArgumentException, UnexpectedValueException
-     *   if property is null or not an array or if property value is not a string or null
+     * @throws InvalidArgumentException if property is null or not an array
+     *
+     * @throws  UnexpectedValueException if property is null or not a string
      *
      */
-    private function validateProperty($property)
+    private function validateProperty($properties)
     {
-        if ($property === null || (is_array($property)) === false) {
+        if ($properties === null || (is_array($properties)) === false) {
             throw new InvalidArgumentException('Invalid $property');
         }
         
-        foreach ($property as $propertyValue) {
+        foreach ($properties as $property) {
             
-            if ($propertyValue === null || (is_string($propertyValue)) === false) {
-                throw  new UnexpectedValueException('Invalid $propertyValue');
+            if ($property === null || (is_string($property)) === false) {
+                throw  new UnexpectedValueException('Invalid $property');
             }
         }
     }
@@ -94,6 +103,6 @@ class Variable
      */
     public function property()
     {
-        return $this->property;
+        return $this->properties;
     }
 }

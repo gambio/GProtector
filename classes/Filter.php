@@ -10,17 +10,15 @@
 
 namespace GProtector;
 
-use \InvalidArgumentException;
-
 class Filter
 {
     /**
-     * @var  string $key
+     * @var  Key $key
      */
     private $key;
     
     /**
-     * @var array $scriptName
+     * @var ScriptName $scriptName
      */
     private $scriptName;
     
@@ -30,149 +28,39 @@ class Filter
     private $variables;
     
     /**
-     * @var string $method
+     * @var Method $method
      */
     private $method;
     
     /**
-     * @var string $severity
+     * @var Severity $severity
      */
     private $severity;
     
     
     /**
+     * Initializes the filter instance
+     *
      * GProtectorFilter constructor.
      *
-     * @param mixed              $key
-     * @param mixed              $scriptName
+     * @param Key                $key
+     * @param ScriptName         $scriptName
      * @param VariableCollection $variables
-     * @param mixed              $method
-     * @param mixed              $severity
+     * @param Method             $method
+     * @param Severity           $severity
      */
-    public function __construct(Key $key, $scriptName, VariableCollection $variables, $method, $severity)
-    {
-        $this->validateScriptName($scriptName);
-        $this->validateVariables($variables);
-        $this->validateMethod($method);
-        $this->validateSeverity($severity);
-        
+    public function __construct(
+        Key $key,
+        ScriptName $scriptName,
+        VariableCollection $variables,
+        Method $method,
+        Severity $severity
+    ) {
         $this->key        = $key->key();
-        $this->scriptName = $scriptName;
+        $this->scriptName = $scriptName->scriptName();
         $this->variables  = $variables;
-        $this->method     = $method;
-        $this->severity   = $severity;
-    }
-    
-    
-  
-    
-    
-    /**
-     * Validates a scriptname
-     *
-     * @param mixed $scriptName The scriptname to validate
-     *
-     * @throws InvalidArgumentException If the script name is null or not an array
-     *
-     */
-    private function validateScriptName($scriptName)
-    {
-        if ($scriptName === null || (is_array($scriptName)) === false) {
-            throw new InvalidArgumentException('Invalid $scriptName');
-        }
-    }
-    
-    
-    /**
-     * Validates the variables
-     *
-     * @param mixed $variables The variables to validate
-     *
-     * @throws InvalidArgumentException
-     *
-     */
-    private function validateVariables($variables)
-    {
-        if ($variables === null) {
-            throw new InvalidArgumentException('$variables must not be null');
-        }
-    }
-    
-    
-    /**
-     * Validates a method
-     *
-     * @param mixed $method The method to validate
-     *
-     * @throws InvalidArgumentException
-     *
-     */
-    private function validateMethod($method)
-    {
-        if ($method === null || (is_string($method)) === false) {
-            throw new InvalidArgumentException('Invalid $method \'' . $method . '\'');
-        }
-    }
-    
-    
-    /**
-     * Validates a severity level
-     *
-     * @param mixed $severity The severity to validate
-     *
-     * @throws InvalidArgumentException
-     *
-     */
-    private function validateSeverity($severity)
-    {
-        if ($severity === null || (is_string($severity)) === false) {
-            throw new InvalidArgumentException('Invalid $severity \'' . $severity . '\'');
-        }
-    }
-    
-    
-    
-    /**
-     * Getter for scriptname
-     *
-     * @return array
-     */
-    public function scriptName()
-    {
-        return $this->scriptName;
-    }
-    
-    
-    /**
-     * Getter for variables
-     *
-     * @return VariableCollection
-     */
-    public function variables()
-    {
-        return $this->variables;
-    }
-    
-    
-    /**
-     * Getter for method
-     *
-     * @return string
-     */
-    public function method()
-    {
-        return $this->method;
-    }
-    
-    
-    /**
-     * Getter for severity
-     *
-     * @return string
-     */
-    public function severity()
-    {
-        return $this->severity;
+        $this->method     = $method->method();
+        $this->severity   = $severity->severity();
     }
     
 }
