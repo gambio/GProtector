@@ -50,7 +50,7 @@ class Variable
      *
      * @param mixed $type to be validated
      *
-     * @throws InvalidArgumentException if type is null or not not equals to post or get
+     * @throws InvalidArgumentException if type is null or not equals to post or get
      */
     private function validateType($type)
     {
