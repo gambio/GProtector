@@ -20,7 +20,7 @@ class VariableCollection implements IteratorAggregate
     /**
      * @var array
      */
-    private $varilableArray = [];
+    private $variableArray = [];
     
     
     /**
@@ -51,7 +51,7 @@ class VariableCollection implements IteratorAggregate
      */
     public function add(Variable $item)
     {
-        $this->varilableArray[] = $item;
+        $this->variableArray[] = $item;
     }
     
     
@@ -60,6 +60,6 @@ class VariableCollection implements IteratorAggregate
      */
     public function getIterator()
     {
-        return new ArrayIterator($this->varilableArray);
+        return new ArrayIterator($this->variableArray);
     }
 }
