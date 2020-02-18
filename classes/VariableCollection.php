@@ -24,7 +24,7 @@ class VariableCollection implements IteratorAggregate
     
     
     /**
-     * Initialize the collection instance.
+     * Initializes the collection instance.
      *
      * @param array $items
      *
