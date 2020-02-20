@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  VariableCollection.php 2020-02-07
+  VariableCollection.php 2020-02-20
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -13,6 +13,7 @@ namespace GProtector;
 
 use \InvalidArgumentException;
 use \ArrayIterator;
+use IteratorAggregate;
 use \Traversable;
 
 class VariableCollection implements IteratorAggregate
