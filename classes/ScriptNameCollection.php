@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  VariableCollection.php 2020-02-07
+  ScriptNameCollection.php 2020-02-20
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -11,16 +11,17 @@
 
 namespace GProtector;
 
-use \InvalidArgumentException;
 use \ArrayIterator;
+use \InvalidArgumentException;
+use \IteratorAggregate;
 use \Traversable;
 
-class VariableCollection implements IteratorAggregate
+class ScriptNameCollection implements IteratorAggregate
 {
     /**
      * @var array
      */
-    private $variableArray = [];
+    private $scriptNameArray = [];
     
     
     /**
@@ -51,7 +52,7 @@ class VariableCollection implements IteratorAggregate
      */
     public function add(ScriptName $item)
     {
-        $this->variableArray[] = $item;
+        $this->scriptNameArray[] = $item;
     }
     
     
@@ -60,7 +61,7 @@ class VariableCollection implements IteratorAggregate
      */
     public function getIterator()
     {
-        return new ArrayIterator($this->variableArray);
+        return new ArrayIterator($this->scriptNameArray);
     }
     
     
@@ -69,9 +70,9 @@ class VariableCollection implements IteratorAggregate
      *
      * @return array
      */
-    public function getVariableCollection()
+    public function getScriptNameColletion()
     {
-        return $this->variableArray;
+        return $this->scriptNameArray;
     }
     
     

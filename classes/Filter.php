@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  Filter.php 2020-02-04
+  Filter.php 2020-02-20
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -18,9 +18,9 @@ class Filter
     private $key;
     
     /**
-     * @var array $scriptName
+     * @var array $scriptNames
      */
-    private $scriptName;
+    private $scriptNames;
     
     /**
      * @var array $variables
@@ -44,31 +44,77 @@ class Filter
      * GProtectorFilter constructor.
      *
      * @param Key                $key
-     * @param ScriptName         $scriptName
+     * @param ScriptName         $scriptNames
      * @param VariableCollection $variables
      * @param Method             $method
      * @param Severity           $severity
      */
     private function __construct(
         Key $key,
-        ScriptName $scriptName,
+        ScriptName $scriptNames,
         VariableCollection $variables,
         Method $method,
         Severity $severity
     ) {
-        $this->key        = $key->key();
-        $this->scriptName = $scriptName->scriptName();
-        $this->variables  = $variables->getArray();
-        $this->method     = $method->method();
-        $this->severity   = $severity->severity();
+        $this->key         = $key->key();
+        $this->scriptNames = $scriptNames->getScriptNameCollection();
+        $this->variables   = $variables->getVariableCollection();
+        $this->method      = $method->method();
+        $this->severity    = $severity->severity();
     }
     
     
     /**
+     * Getter for key
+     *
      * @return string
      */
     public function key()
     {
         return $this->key;
+    }
+    
+    
+    /**
+     * Getter for script name
+     *
+     * @return array
+     */
+    public function scriptName()
+    {
+        return $this->scriptNames;
+    }
+    
+    
+    /**
+     * Getter for variables
+     *
+     * @return array
+     */
+    public function variables()
+    {
+        return $this->variables;
+    }
+    
+    
+    /**
+     * Getter for method
+     *
+     * @return string
+     */
+    public function method()
+    {
+        return $this->method;
+    }
+    
+    
+    /**
+     * Getter for severity
+     *
+     * @return string
+     */
+    public function severity()
+    {
+        return $this->severity;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  ScriptName.php 2020-02-07
+  Variable.php 2020-02-07
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -12,56 +12,97 @@
 namespace GProtector;
 
 use \InvalidArgumentException;
+use \UnexpectedValueException;
 
 class ScriptName
 {
+    /**
+     * @var String $type
+     */
+    private $type;
     
     /**
-     * @var string $scriptName
+     * @var array $properties
      */
-    private $scriptName;
+    private $properties = [];
     
     
     /**
-     * Initializes script name instance inside this class
+     * Initializes variable instance
      *
-     * ScriptName constructor.
+     * Variable constructor.
      *
-     * @param string $scriptName
+     * @param $type
+     * @param $properties
      */
-    private function __construct($scriptName)
+    public function __construct($type, $properties)
     {
-        $this->validateScriptName($scriptName);
+        $this->validateType($type);
+        $this->validateProperty($properties);
         
-        $this->scriptName = $scriptName;
+        $this->type       = $type;
+        $this->properties = $properties;
     }
     
     
     /**
-     * Validates a script name
+     * Validates type
      *
-     * @param string $scriptName The script name to be validated
+     * @param mixed $type to be validated
      *
-     * @throws InvalidArgumentException If the script name is null or not a string
-     *
+     * @throws InvalidArgumentException if type is null or not equals to post or get
      */
-    private function validateScriptName($scriptName)
+    private function validateType($type)
     {
-        if ($scriptName === null || is_string($scriptName) === false) {
-            throw new InvalidArgumentException('Invalid $scriptName');
+        if ($type === null || (strtolower($type)) !== 'post' || (strtolower($type)) !== 'get') {
+            throw new InvalidArgumentException('Invalid $type');
         }
     }
     
     
     /**
-     * Getter for script name
+     * Validates property
      *
-     * @return string
+     * @param mixed $properties to be validated
+     *
+     * @throws InvalidArgumentException if property is null or not an array
+     *
+     * @throws  UnexpectedValueException if property is null or not a string
+     *
      */
-    public function scriptName()
+    private function validateProperty($properties)
     {
-        return $this->scriptName;
+        if ($properties === null || (is_array($properties)) === false) {
+            throw new InvalidArgumentException('Invalid $property');
+        }
+        
+        foreach ($properties as $property) {
+            
+            if ($property === null || (is_string($property)) === false) {
+                throw  new UnexpectedValueException('Invalid $property');
+            }
+        }
     }
     
     
+    /**
+     * Getter for type
+     *
+     * @return String
+     */
+    public function type()
+    {
+        return $this->type;
+    }
+    
+    
+    /**
+     * Getter for property
+     *
+     * @return array
+     */
+    public function property()
+    {
+        return $this->properties;
+    }
 }
