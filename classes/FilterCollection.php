@@ -44,7 +44,7 @@ class FilterCollection implements IteratorAggregate
     
     
     /**
-     * Add a new item.
+     * Add a new filter.
      *
      * @param Filter $filter Item which should be added to the collection
      *
