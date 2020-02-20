@@ -17,49 +17,46 @@ class ScriptName
 {
     
     /**
-     * @var array $scriptName
+     * @var string $scriptName
      */
     private $scriptName;
     
     
     /**
-     * Initializes scriptName instance inside this class
+     * Initializes script name instance inside this class
      *
      * ScriptName constructor.
      *
-     * @param string|array $scriptName
+     * @param string $scriptName
      */
     private function __construct($scriptName)
     {
         $this->validateScriptName($scriptName);
-        if (is_string($scriptName) === true) {
-            $this->scriptName = [$scriptName];
-        } else {
-            $this->scriptName = $scriptName;
-        }
+        
+        $this->scriptName = $scriptName;
     }
     
     
     /**
-     * Validates a scriptname
+     * Validates a script name
      *
-     * @param array|string $scriptName The scriptname to validate
+     * @param string $scriptName The script name to be validated
      *
-     * @throws InvalidArgumentException If the script name is null or not an array
+     * @throws InvalidArgumentException If the script name is null or not a string
      *
      */
     private function validateScriptName($scriptName)
     {
-        if ($scriptName === null || (is_array($scriptName) || is_string($scriptName) === false)) {
+        if ($scriptName === null || is_string($scriptName) === false) {
             throw new InvalidArgumentException('Invalid $scriptName');
         }
     }
     
     
     /**
-     * Getter for scriptname
+     * Getter for script name
      *
-     * @return array
+     * @return string
      */
     public function scriptName()
     {
