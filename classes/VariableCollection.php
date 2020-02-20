@@ -62,4 +62,17 @@ class VariableCollection implements IteratorAggregate
     {
         return new ArrayIterator($this->variableArray);
     }
+    
+    
+    /**
+     * Getter for variable array.
+     *
+     * @return array
+     */
+    public function getArray()
+    {
+        return $this->variableArray;
+    }
+    
+    
 }

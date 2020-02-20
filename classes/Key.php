@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  GProtectorFilter.php 2020-02-07
+  Key.php 2020-02-07
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH

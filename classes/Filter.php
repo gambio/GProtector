@@ -13,27 +13,27 @@ namespace GProtector;
 class Filter
 {
     /**
-     * @var  Key $key
+     * @var string $key
      */
     private $key;
     
     /**
-     * @var ScriptName $scriptName
+     * @var array $scriptName
      */
     private $scriptName;
     
     /**
-     * @var VariableCollection $variables
+     * @var array $variables
      */
     private $variables;
     
     /**
-     * @var Method $method
+     * @var string $method
      */
     private $method;
     
     /**
-     * @var Severity $severity
+     * @var string $severity
      */
     private $severity;
     
@@ -58,9 +58,17 @@ class Filter
     ) {
         $this->key        = $key->key();
         $this->scriptName = $scriptName->scriptName();
-        $this->variables  = $variables;
+        $this->variables  = $variables->getArray();
         $this->method     = $method->method();
         $this->severity   = $severity->severity();
     }
     
+    
+    /**
+     * @return string
+     */
+    public function key()
+    {
+        return $this->key;
+    }
 }

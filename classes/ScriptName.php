@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  GProtectorFilter.php 2020-02-07
+  ScriptName.php 2020-02-07
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -27,26 +27,30 @@ class ScriptName
      *
      * ScriptName constructor.
      *
-     * @param $scriptName
+     * @param string|array $scriptName
      */
     private function __construct($scriptName)
     {
         $this->validateScriptName($scriptName);
-        $this->scriptName = $scriptName;
+        if (is_string($scriptName) === true) {
+            $this->scriptName = [$scriptName];
+        } else {
+            $this->scriptName = $scriptName;
+        }
     }
     
     
     /**
      * Validates a scriptname
      *
-     * @param mixed $scriptName The scriptname to validate
+     * @param array|string $scriptName The scriptname to validate
      *
      * @throws InvalidArgumentException If the script name is null or not an array
      *
      */
     private function validateScriptName($scriptName)
     {
-        if ($scriptName === null || (is_array($scriptName)) === false) {
+        if ($scriptName === null || (is_array($scriptName) || is_string($scriptName) === false)) {
             throw new InvalidArgumentException('Invalid $scriptName');
         }
     }
