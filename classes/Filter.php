@@ -43,22 +43,22 @@ class Filter
      *
      * GProtectorFilter constructor.
      *
-     * @param Key                $key
-     * @param ScriptName         $scriptNames
-     * @param VariableCollection $variables
-     * @param Method             $method
-     * @param Severity           $severity
+     * @param Key                  $key
+     * @param ScriptNameCollection $scriptNames
+     * @param VariableCollection   $variables
+     * @param Method               $method
+     * @param Severity             $severity
      */
     private function __construct(
         Key $key,
-        ScriptName $scriptNames,
+        ScriptNameCollection $scriptNames,
         VariableCollection $variables,
         Method $method,
         Severity $severity
     ) {
         $this->key         = $key->key();
-        $this->scriptNames = $scriptNames->getScriptNameCollection();
-        $this->variables   = $variables->getVariableCollection();
+        $this->scriptNames = $scriptNames->getArray();
+        $this->variables   = $variables->getArray();
         $this->method      = $method->method();
         $this->severity    = $severity->severity();
     }

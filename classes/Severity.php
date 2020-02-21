@@ -45,7 +45,8 @@ class Severity
      */
     private function validateSeverity($severity)
     {
-        if ($severity === null || (is_string($severity)) === false) {
+        $validSeverities = ['error', 'warning', 'notice'];
+        if(in_array($severity, $validSeverities) === false) {
             throw new InvalidArgumentException('Invalid $severity');
         }
     }

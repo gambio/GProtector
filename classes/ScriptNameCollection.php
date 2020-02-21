@@ -50,7 +50,7 @@ class ScriptNameCollection implements IteratorAggregate
      * @param ScriptName $item Item which should be added to the collection
      *
      */
-    public function add(ScriptName $item)
+    private function add(ScriptName $item)
     {
         $this->scriptNameArray[] = $item;
     }
@@ -70,7 +70,7 @@ class ScriptNameCollection implements IteratorAggregate
      *
      * @return array
      */
-    public function getScriptNameColletion()
+    public function getArray()
     {
         return $this->scriptNameArray;
     }

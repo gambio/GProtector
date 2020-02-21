@@ -13,7 +13,7 @@ namespace GProtector;
 
 use \InvalidArgumentException;
 use \ArrayIterator;
-use IteratorAggregate;
+use \IteratorAggregate;
 use \Traversable;
 
 class VariableCollection implements IteratorAggregate
@@ -47,10 +47,10 @@ class VariableCollection implements IteratorAggregate
     /**
      * Adds a new item.
      *
-     * @param ScriptName $item Item which should be added to the collection
+     * @param Variable $item Item which should be added to the collection
      *
      */
-    public function add(ScriptName $item)
+    private function add(Variable $item)
     {
         $this->variableArray[] = $item;
     }
@@ -70,7 +70,7 @@ class VariableCollection implements IteratorAggregate
      *
      * @return array
      */
-    public function getVariableCollection()
+    public function getArray()
     {
         return $this->variableArray;
     }

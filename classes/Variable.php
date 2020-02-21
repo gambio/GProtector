@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  Variable.php 2020-02-21
+  Variable.php 2020-02-07
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -13,8 +13,7 @@ namespace GProtector;
 
 use \InvalidArgumentException;
 
-
-class ScriptName
+class Variable
 {
     /**
      * @var string $type
@@ -32,13 +31,13 @@ class ScriptName
      *
      * Variable constructor.
      *
-     * @param $type
-     * @param $properties
+     * @param string $type
+     * @param array  $properties
      */
     public function __construct($type, $properties)
     {
         $this->validateType($type);
-        $this->validateProperty($properties);
+        $this->validateProperties($properties);
         
         $this->type       = $type;
         $this->properties = $properties;
@@ -54,7 +53,8 @@ class ScriptName
      */
     private function validateType($type)
     {
-        if ($type === null || (strtolower($type)) !== 'post' || (strtolower($type)) !== 'get') {
+        $typeArray = ['POST', 'GET'];
+        if (in_array(strtoupper($type), $typeArray) === false) {
             throw new InvalidArgumentException('Invalid $type');
         }
     }
@@ -67,19 +67,16 @@ class ScriptName
      *
      * @throws InvalidArgumentException if property is null or not an array
      *
-     * @throws  InvalidArgumentException if property is null or not a string
-     *
      */
-    private function validateProperty($properties)
+    private function validateProperties($properties)
     {
         if ($properties === null || (is_array($properties)) === false) {
-            throw new InvalidArgumentException('Invalid $property');
+            throw new InvalidArgumentException('Invalid $properties');
         }
         
         foreach ($properties as $property) {
-            
             if ($property === null || (is_string($property)) === false) {
-                throw  new InvalidArgumentException('Invalid $property');
+                throw new InvalidArgumentException('Invalid $property');
             }
         }
     }
