@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  Filter.php 2020-02-20
+  Filter.php 2020-02-24
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
