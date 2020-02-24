@@ -35,7 +35,7 @@ class ScriptName
      * @param $type
      * @param $properties
      */
-    public function __construct($type, $properties)
+    private function __construct($type, $properties)
     {
         $this->validateType($type);
         $this->validateProperty($properties);
