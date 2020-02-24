@@ -76,7 +76,7 @@ class Filter
     
     
     /**
-     * Getter for script name
+     * Getter for script names
      *
      * @return array
      */
