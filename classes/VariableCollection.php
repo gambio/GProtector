@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  VariableCollection.php 2020-02-20
+  VariableCollection.php 2020-02-24
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -32,7 +32,7 @@ class VariableCollection implements IteratorAggregate
      * @throws InvalidArgumentException
      *
      */
-    public function __construct(array $items)
+    private function __construct(array $items)
     {
         foreach ($items as $item) {
             try {
