@@ -28,7 +28,7 @@ class Severity
      *
      * @param $severity
      */
-    private function __construct($severity)
+    private function __construct($severity = 'error')
     {
         $this->validateSeverity($severity);
         $this->severity = $severity;
