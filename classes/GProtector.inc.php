@@ -62,13 +62,7 @@ class GProtector
     private function addFilters(FilterCollection $filters)
     {
         foreach ($filters as $filter) {
-            $this->addFilter(
-                $filter->key(),
-                $filter->scriptName(),
-                $filter->variables(),
-                $filter->method(),
-                $filter->severity()
-            );
+            $this->addFilter($filter);
         }
     }
     
@@ -215,25 +209,13 @@ class GProtector
     }
     
     
-    private function addFilter($key, $scriptName, $variables, $function, $severity = 'error')
+    private function addFilter(Filter $filter)
     {
-        $receivedVariables = $variables;
-        
-        if (!is_array($receivedVariables)) {
-            $receivedVariables = [$receivedVariables];
-        }
-        
-        $scriptPathArray = $scriptName;
-        
-        if (!is_array($scriptPathArray)) {
-            $scriptPathArray = [$scriptName];
-        }
-        
-        $this->filterArray[$key] = [
-            'script_name_array' => $scriptPathArray,
-            'variables_array'   => $receivedVariables,
-            'function'          => $function,
-            'severity'          => $severity
+        $this->filterArray[$filter->key()] = [
+            'script_name_array' => $filter->scriptName(),
+            'variables_array'   => $filter->variables(),
+            'function'          => $filter->method(),
+            'severity'          => $filter->severity()
         ];
     }
     
