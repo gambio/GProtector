@@ -10,8 +10,6 @@
 
 namespace GProtector;
 
-// @TODO: Remove after implementation. Just for Standalone/Testing purposes.
-include_once __DIR__ . '/../config.inc.php';
 
 /**
  * Class GProtectorFilterReader
