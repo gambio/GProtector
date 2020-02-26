@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  Variable.php 2020-02-24
+  Variable.php 2020-02-26
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -81,25 +81,4 @@ class Variable
         }
     }
     
-    
-    /**
-     * Getter for type
-     *
-     * @return String
-     */
-    public function type()
-    {
-        return $this->type;
-    }
-    
-    
-    /**
-     * Getter for property
-     *
-     * @return array
-     */
-    public function property()
-    {
-        return $this->properties;
-    }
 }
