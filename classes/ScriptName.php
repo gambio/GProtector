@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  Variable.php 2020-02-26
+  Variable.php 2020-02-27
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -64,7 +64,7 @@ class ScriptName
      *
      * @param mixed $properties to be validated
      *
-     * @throws InvalidArgumentException if property is null or not an array
+     * @throws InvalidArgumentException if properties is null or not an array
      *
      * @throws  InvalidArgumentException if property is null or not a string
      *
