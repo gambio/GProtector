@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  Method.php 2020-02-07
+  Method.php 2020-02-28
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -28,7 +28,7 @@ class Method
      *
      * @param $method
      */
-    private function __construct($method)
+    public function __construct($method)
     {
         $this->validateMethod($method);
         $this->method = $method;

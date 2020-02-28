@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  Severity.php 2020-02-07
+  Severity.php 2020-02-28
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -28,7 +28,7 @@ class Severity
      *
      * @param $severity
      */
-    private function __construct($severity = 'error')
+    public function __construct($severity = 'error')
     {
         $this->validateSeverity($severity);
         $this->severity = $severity;

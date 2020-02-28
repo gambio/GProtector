@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  ScriptNameCollection.php 2020-02-24
+  ScriptNameCollection.php 2020-02-28
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -32,7 +32,7 @@ class ScriptNameCollection implements IteratorAggregate
      * @throws InvalidArgumentException
      *
      */
-    private function __construct(array $items)
+    public function __construct(array $items)
     {
         foreach ($items as $item) {
             try {

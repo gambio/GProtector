@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  Variable.php 2020-02-27
+  Variable.php 2020-02-28
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -34,7 +34,7 @@ class ScriptName
      * @param $type
      * @param $properties
      */
-    private function __construct($type, $properties)
+    public function __construct($type, $properties)
     {
         $this->validateType($type);
         $this->validateProperty($properties);
