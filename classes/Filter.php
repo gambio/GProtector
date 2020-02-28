@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  Filter.php 2020-02-24
+  Filter.php 2020-02-28
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -49,7 +49,7 @@ class Filter
      * @param Method               $method
      * @param Severity             $severity
      */
-    private function __construct(
+    public function __construct(
         Key $key,
         ScriptNameCollection $scriptNames,
         VariableCollection $variables,
