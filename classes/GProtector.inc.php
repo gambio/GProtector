@@ -19,7 +19,7 @@ class GProtector
     private $logConnectorsArray = [];
     
     /**
-     * @var GProtectorFilterReader
+     * @var FilterReader
      */
     private $filterReader;
     
@@ -72,19 +72,45 @@ class GProtector
      */
     private function readFilterFiles()
     {
-        $filterArray = $this->filterReader()->getDefaultFilterRules() + $this->filterReader()->getCustomFilterRules();
+        $rawFilters  = $this->filterReader()->getDefaultFilterRules() + $this->filterReader()->getCustomFilterRules();
+        $filterArray = [];
+        foreach ($rawFilters as $rawFilter) {
+            $key = new Key($rawFilter['key']);
+            
+            $scriptNames = [];
+            if (is_array($rawFilter['script_name'])) {
+                foreach ($rawFilter['script_name'] as $scriptName) {
+                    $scriptNames[] = new ScriptName($scriptName);
+                }
+            } else {
+                $scriptNames[] = new ScriptName($rawFilter['script_name']);
+            }
+            $scriptNameCollection = new ScriptNameCollection($scriptNames);
+            
+            $variables = [];
+            foreach ($rawFilter['variables'] as $variableName) {
+                $variables[] = new Variable($variableName['type'], $variableName['property']);
+            }
+            $variableCollection = new VariableCollection($variables);
+            $method             = new Method($rawFilter['function']);
+            $severity           = new Severity($rawFilter['severity']);
+            $filter             = new Filter(
+                $key, $scriptNameCollection, $variableCollection, $method, $severity
+            );
+            $filterArray[]      = $filter;
+        }
         
         return new FilterCollection($filterArray);
     }
     
     
     /**
-     * @return GProtectorFilterReader
+     * @return FilterReader
      */
     private function filterReader()
     {
         if (!isset($this->filterReader)) {
-            $this->filterReader = new GProtectorFilterReader();
+            $this->filterReader = new FilterReader();
         }
         
         return $this->filterReader;
@@ -102,34 +128,9 @@ class GProtector
     }
     
     
-    /*public function start()
-    {
-        $t_files_array = glob(GAMBIO_PROTECTOR_FILTER_DIR . $this->get_file_pattern());
-        
-        if(is_array($t_files_array))
-        {
-            foreach($t_files_array as $t_filepath)
-            {
-                include($t_filepath);
-            }
-            
-            $this->filter();
-        }
-        else
-        {
-            // todo
-            $this->log('no filters found', 'gprotector_error', 'warning');
-        }
-        
-        $t_ip_blocker_result = $this->searchIpInBlacklist($this->getUserIp());
-        if($t_ip_blocker_result)
-        {
-            $this->blockIp();
-        }
-        
-        return true;
-    }*/
-    
+    /**
+     *
+     */
     private function initLogConnectors()
     {
         $filesArray = glob(GAMBIO_PROTECTOR_CONNECTORS_DIR . $this->getFilePattern());
@@ -492,7 +493,7 @@ class GProtector
         $logSuccess = 1;
         
         foreach ($this->logConnectorsArray as $GProtectorLogConnector) {
-            $errorType = 'GPROTECTOR ' . strtoupper($severity);
+            $errorType  = 'GPROTECTOR ' . strtoupper($severity);
             $logSuccess &= $GProtectorLogConnector->log(
                 $receivedMessage,
                 'security',
