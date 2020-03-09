@@ -53,7 +53,7 @@ class Variable
      */
     private function validateType($type)
     {
-        $typeArray = ['POST', 'GET'];
+        $typeArray = ['POST', 'GET', 'REQUEST'];
         if (in_array(strtoupper($type), $typeArray) === false) {
             throw new InvalidArgumentException('Invalid $type');
         }
