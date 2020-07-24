@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  GProtectorFilter.php 2020-02-18
+  FilterReader.php 2020-07-24
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -10,38 +10,17 @@
 
 namespace GProtector;
 
-
 /**
  * Class GProtectorFilterReader
  */
-class GProtectorFilterReader
+class FilterReader
 {
+
     /**
      * @return mixed
      * @throws Exception
      */
-    public function getDefaultFilterRules()
-    {
-        $remoteRules = $this->getRemoteRules();
-        
-        if ($remoteRules === false) {
-            return $this->readFallbackFile();
-        }
-        
-        if (!$this->isJsonValid($remoteRules)) {
-            $this->readFallbackFile();
-        }
-        
-        return json_decode($remoteRules, true);
-        
-    }
-    
-    
-    /**
-     * @return mixed
-     * @throws Exception
-     */
-    private function readFallbackFile()
+    public function getFallbackFilterRules()
     {
         $localRules = $this->readFile(GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR .
                                       GAMBIO_PROTECTOR_LOCAL_FILERULES_FILENAME);
@@ -49,7 +28,7 @@ class GProtectorFilterReader
         if ($this->isJsonValid($localRules)) {
             return json_decode($localRules, true);
         } else {
-            $this->readFallbackFile();
+            $this->getFallbackFilterRules();
         }
     }
     
@@ -84,16 +63,6 @@ class GProtectorFilterReader
     
         return file_get_contents($path, 'r');
     }
-    
-    
-    /**
-     * @return bool|string
-     */
-    private function getRemoteRules()
-    {
-        return file_get_contents(GAMBIO_PROTECTOR_REMOTE_FILTERRULES_URL);
-    }
-    
     
     /**
      * @return array

@@ -10,6 +10,8 @@
 
 namespace GProtector;
 
+use Exception;
+
 class GProtector
 {
     private $secureToken        = '';
@@ -22,7 +24,11 @@ class GProtector
      * @var FilterReader
      */
     private $filterReader;
-    
+
+    /**
+     * @var
+     */
+    private $filterCache;
     
     public function __construct()
     {
@@ -33,13 +39,15 @@ class GProtector
         $this->initLogConnectors();
         $this->loadFunctions();
     }
-    
-    
+
+
     /**
      * This function starts the GProtector filters
+     * @throws Exception
      */
     public function start()
     {
+        $this->filterCache()->renewCacheIfNeeded();
         $filters = $this->readFilterFiles();
         $this->applyFilters($filters);
         $this->blockForbiddenIps();
@@ -65,14 +73,20 @@ class GProtector
             $this->addFilter($filter);
         }
     }
-    
-    
+
+
     /**
      * @return FilterCollection
+     * @throws Exception
      */
     private function readFilterFiles()
     {
-        $rawFilters  = $this->filterReader()->getDefaultFilterRules() + $this->filterReader()->getCustomFilterRules();
+        if (file_exists(GAMBIO_PROTECTOR_CACHE_DIR . GAMBIO_PROTECTOR_CACHE_FILERULES_FILENAME)) {
+            $rawFilters = $this->filterCache()->getCachedFilterRules() + $this->filterReader()->getCustomFilterRules();
+        } else {
+            $rawFilters = $this->filterReader()->getFallbackFilterRules() + $this->filterReader()->getCustomFilterRules();
+        }
+
         $filterArray = [];
         foreach ($rawFilters as $rawFilter) {
             $key = new Key($rawFilter['key']);
@@ -114,6 +128,18 @@ class GProtector
         }
         
         return $this->filterReader;
+    }
+
+    /**
+     * @return FilterCache
+     */
+    private function filterCache()
+    {
+        if (!isset($this->filterCache)) {
+            $this->filterCache = new FilterCache();
+        }
+
+        return $this->filterCache;
     }
     
     
