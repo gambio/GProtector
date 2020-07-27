@@ -67,23 +67,27 @@ class FilterCache {
     private function createRemoteRulesCacheFile() {
         $remoteRules = $this->getRemoteRules();
         if ($this->isJsonValid($remoteRules)) {
+            $this->deleteFile($this->cachedFilterRulesPath);
             $this->writeFile($this->cachedFilterRulesPath, $remoteRules);
+        }
+    }
+
+    /**
+     * @param $path
+     */
+    private function deleteFile($path)
+    {
+        if (file_exists($path)) {
+            unlink($path);
         }
     }
 
     /**
      * @param $filePath
      * @param $fileContent
-     * @return Exception
      */
     private function writeFile($filePath, $fileContent) {
-        if (is_writable($filePath)) {
-            $fileHandler = fopen($filePath);
-            fwrite($fileHandler, $fileContent);
-            fclose($fileHandler);
-        } else {
-            return new Exception("Can't write cache file.");
-        }
+        file_put_contents($filePath, $fileContent);
     }
 
     /**
