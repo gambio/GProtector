@@ -17,6 +17,9 @@ class FilterReader
 {
 
     /**
+     * Reads the content of the Fallback FilterRule file and if it contains valid JSON, then return that content,
+     * otherwise retry.
+     *
      * @return mixed
      * @throws Exception
      */
@@ -34,7 +37,9 @@ class FilterReader
     
     
     /**
-     * @param $jsonString
+     * returns whether a given JSON string is valid JSON.
+     *
+     * @param string $jsonString
      *
      * @return bool
      */
@@ -46,7 +51,9 @@ class FilterReader
     
     
     /**
-     * @param $path
+     * If a given file exists and is readable, return the file content.
+     *
+     * @param string $path
      *
      * @return false|string
      * @throws Exception
@@ -65,6 +72,8 @@ class FilterReader
     }
     
     /**
+     * Gets a List of Custom FilterRule files, passes these into getCustomFilesContent() and returns it.
+     *
      * @return array
      */
     public function getCustomFilterRules()
@@ -75,7 +84,10 @@ class FilterReader
     
     
     /**
-     * @param $filenames
+     * Goes through a given list of filenames, reads each file and merges it into a single List of filenames
+     * and returns that filenames List.
+     *
+     * @param array $filenames
      *
      * @return array
      */
@@ -91,6 +103,8 @@ class FilterReader
     
     
     /**
+     * Scans the FilterRile Directory for files and returns a list of Custom FilterRule files.
+     *
      * @return array
      */
     private function getCustomFilterRulesFileList()

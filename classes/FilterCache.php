@@ -16,12 +16,12 @@ namespace GProtector;
 class FilterCache {
 
     /**
-     * @var string
+     * @var string $cachedFilterRulesPath
      */
     private $cachedFilterRulesPath;
 
     /**
-     * @var
+     * @var FilterReader $filterReader
      */
     private $filterReader;
 
@@ -35,6 +35,8 @@ class FilterCache {
     }
 
     /**
+     * Checks Whether a string is a Valid JSON string.
+     *
      * @param $jsonString
      *
      * @return bool
@@ -47,6 +49,7 @@ class FilterCache {
 
 
     /**
+     * If the Cached FilterRule file does not exists or is older than 8 hours, Download and recreate the file.
      *
      */
     public function renewCacheIfNeeded() {
@@ -62,6 +65,8 @@ class FilterCache {
 
 
     /**
+     * Checks if the remote FilterRules are Valid JSON and if it is, delete the old cache file and create a new
+     * one with the received FilterRules.
      *
      */
     private function createRemoteRulesCacheFile() {
@@ -73,25 +78,31 @@ class FilterCache {
     }
 
     /**
-     * @param $path
+     * If a given file does exists, delete it.
+     *
+     * @param string $filePath
      */
-    private function deleteFile($path)
+    private function deleteFile($filePath)
     {
-        if (file_exists($path)) {
-            unlink($path);
+        if (file_exists($filePath)) {
+            unlink($filePath);
         }
     }
 
     /**
-     * @param $filePath
-     * @param $fileContent
+     * Writes a file with a given Path and Content.
+     *
+     * @param string $filePath
+     * @param string $fileContent
      */
     private function writeFile($filePath, $fileContent) {
         file_put_contents($filePath, $fileContent);
     }
 
     /**
-     * @param $path
+     * If a given file exists and is readable, return the file content.
+     *
+     * @param string $path
      *
      * @return false|string
      * @throws Exception
@@ -110,6 +121,9 @@ class FilterCache {
     }
 
     /**
+     * Reads the content of the Cached FilterRule file and if it contains valid JSON, then return that content,
+     * otherwise return the content of the Fallback FilterRules file.
+     *
      * @return mixed
      * @throws Exception
      */
@@ -127,6 +141,8 @@ class FilterCache {
     }
 
     /**
+     * Returns the remote FilterRule content via a HTTP GET Request.
+     *
      * @return bool|string
      */
     private function getRemoteRules()
