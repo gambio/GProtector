@@ -8,6 +8,8 @@
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
 
+use GProtector\FilterCache;
+use GProtector\FilterReader;
 use GProtector\GProtector;
 
 if (defined('E_DEPRECATED')) {
@@ -34,6 +36,9 @@ require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/Severity.php');
 require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/Variable.php');
 require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/VariableCollection.php');
 
-$gprotector = new GProtector();
+$reader = new FilterReader();
+$cache = new FilterCache();
+
+$gprotector = new GProtector($reader, $cache);
 $gprotector->start();
 unset($gprotector);

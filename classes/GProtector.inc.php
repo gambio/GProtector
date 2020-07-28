@@ -26,12 +26,21 @@ class GProtector
     private $reader;
 
     /**
-     * @var
+     * @var FilterCache
      */
-    private $filterCache;
-    
-    public function __construct()
+    private $cache;
+
+
+    /**
+     * GProtector constructor.
+     * @param $reader
+     * @param $cache
+     */
+    public function __construct($reader, $cache)
     {
+        $this->reader = $reader;
+        $this->cache = $cache;
+
         $this->setSecureToken();
         $this->setLogHeaderTemplate(
             "===========================================================\nIP: {IP}\nDatum: {DATETIME}\nScript: {SCRIPT}\nNachricht: {MESSAGE}\n\n"
@@ -47,7 +56,7 @@ class GProtector
      */
     public function start()
     {
-        $this->filterCache()->renew();
+        $this->filterCache->renew();
         $filters = $this->readFilterFiles();
         $this->applyFilters($filters);
         $this->blockForbiddenIps();
@@ -116,19 +125,6 @@ class GProtector
         
         return new FilterCollection($filterArray);
     }
-
-    /**
-     * @return FilterCache
-     */
-    private function filterCache()
-    {
-        if (!isset($this->filterCache)) {
-            $this->filterCache = new FilterCache();
-        }
-
-        return $this->filterCache;
-    }
-    
     
     /**
      *
