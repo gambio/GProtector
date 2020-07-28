@@ -23,7 +23,7 @@ class GProtector
     /**
      * @var FilterReader
      */
-    private $filterReader;
+    private $reader;
 
     /**
      * @var
@@ -47,7 +47,7 @@ class GProtector
      */
     public function start()
     {
-        $this->filterCache()->renewCacheIfNeeded();
+        $this->filterCache()->renew();
         $filters = $this->readFilterFiles();
         $this->applyFilters($filters);
         $this->blockForbiddenIps();
@@ -82,9 +82,9 @@ class GProtector
     private function readFilterFiles()
     {
         if (file_exists(GAMBIO_PROTECTOR_CACHE_DIR . GAMBIO_PROTECTOR_CACHE_FILERULES_FILENAME)) {
-            $rawFilters = $this->filterCache()->getCachedFilterRules() + $this->filterReader()->getCustomFilterRules();
+            $rawFilters = $this->reader->getCachedFilterRules() + $this->reader->getCustomFilterRules();
         } else {
-            $rawFilters = $this->filterReader()->getFallbackFilterRules() + $this->filterReader()->getCustomFilterRules();
+            $rawFilters = $this->reader->getFallbackFilterRules() + $this->reader->getCustomFilterRules();
         }
 
         $filterArray = [];
@@ -115,19 +115,6 @@ class GProtector
         }
         
         return new FilterCollection($filterArray);
-    }
-    
-    
-    /**
-     * @return FilterReader
-     */
-    private function filterReader()
-    {
-        if (!isset($this->filterReader)) {
-            $this->filterReader = new FilterReader();
-        }
-        
-        return $this->filterReader;
     }
 
     /**
