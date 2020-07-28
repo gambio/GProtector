@@ -52,7 +52,7 @@ class FilterCache {
      * If the Cached FilterRule file does not exists or is older than 8 hours, Download and recreate the file.
      *
      */
-    public function renewCacheIfNeeded() {
+    public function renew() {
         // Check if file exists and is older than 8 hours
         if (file_exists($this->cachedFilterRulesPath) &&
             filemtime($this->cachedFilterRulesPath) + 8*60*60 < time()) {
