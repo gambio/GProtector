@@ -26,3 +26,4 @@ define('GAMBIO_PROTECTOR_REMOTE_FILTERRULES_URL', 'http://ton.dev.gambio-server.
 define('GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR', dirname(__FILE__) . '/filter/');
 define('GAMBIO_PROTECTOR_LOCAL_FILERULES_FILENAME', 'standard.json');
 define('GAMBIO_PROTECTOR_CACHE_FILERULES_FILENAME', 'standard.json');
+define('GAMBIO_PROTECTOR_CACHE_RENEW_INTERVAL', 8*60*60); // In seconds
