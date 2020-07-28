@@ -56,7 +56,7 @@ class GProtector
      */
     public function start()
     {
-        $this->filterCache->renew();
+        $this->cache->renew();
         $filters = $this->readFilterFiles();
         $this->applyFilters($filters);
         $this->blockForbiddenIps();
