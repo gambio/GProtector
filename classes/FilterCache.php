@@ -84,7 +84,7 @@ class FilterCache
             return false;
         }
         
-        if (!strpos($headers[0], "200")) {
+        if (!strpos($headers[0], "200 OK")) {
             return false;
         }
         
