@@ -79,11 +79,9 @@ class FilterReader
     public function getCustomFilterRules()
     {
         $allFiles = scandir(GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR);
-        array_shift($allFiles);
-        array_shift($allFiles);
-        $filenames = array_diff($allFiles, [GAMBIO_PROTECTOR_LOCAL_FILERULES_FILENAME]);
+        $filenames = array_diff($allFiles, ['..', '.', GAMBIO_PROTECTOR_LOCAL_FILERULES_FILENAME]);
 
-        $filesContent = array();
+        $filesContent = [];
         foreach ($filenames as $filename) {
             $rawFileContent = file_get_contents(GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR . $filename);
             $jsonFileContent = json_decode($rawFileContent, true);
