@@ -78,20 +78,11 @@ class FilterReader
      */
     public function getCustomFilterRules()
     {
-        $customFileList = $this->getCustomFilterRulesFileList();
-        return $this->getCustomFilesContent($customFileList);
-    }
-    
-    
-    /**
-     * Goes through a given list of filenames, reads each file and merges it into a single List of filenames
-     * and returns that filenames List.
-     *
-     * @param array $filenames
-     *
-     * @return array
-     */
-    private function getCustomFilesContent($filenames) {
+        $allFiles = scandir(GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR);
+        array_shift($allFiles);
+        array_shift($allFiles);
+        $filenames = array_diff($allFiles, [GAMBIO_PROTECTOR_LOCAL_FILERULES_FILENAME]);
+
         $filesContent = array();
         foreach ($filenames as $filename) {
             $rawFileContent = file_get_contents(GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR . $filename);
@@ -99,19 +90,5 @@ class FilterReader
             $filesContent = array_merge($filesContent, $jsonFileContent);
         }
         return $filesContent;
-    }
-    
-    
-    /**
-     * Scans the FilterRile Directory for files and returns a list of Custom FilterRule files.
-     *
-     * @return array
-     */
-    private function getCustomFilterRulesFileList()
-    {
-        $allFiles = scandir(GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR);
-        array_shift($allFiles);
-        array_shift($allFiles);
-        return array_diff($allFiles, [GAMBIO_PROTECTOR_LOCAL_FILERULES_FILENAME]);
     }
 }
