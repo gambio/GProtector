@@ -26,6 +26,7 @@ require_once(dirname(__FILE__) . '/config.inc.php');
 require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/GProtectorLogConnectorInterface.inc.php');
 require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/GProtector.inc.php');
 require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/Filter.php');
+require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/FilterCache.php');
 require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/FilterCollection.php');
 require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/FilterReader.php');
 require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/Key.php');

@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  GProtector.inc.php 2019-06-07
+  GProtector.inc.php 2020-07-31
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2019 Gambio GmbH
