@@ -44,6 +44,22 @@ class FilterCollection implements IteratorAggregate
     
     
     /**
+     * This function creates a new FilterCollection
+     *
+     * @param $rawFilters
+     *
+     * @return FilterCollection
+     */
+    
+    public static function fromFilterCollectionArray($rawFilters)
+    {
+        $filterArray[] = Filter::fromFilterArray($rawFilters);
+        
+        return new FilterCollection($filterArray);
+    }
+    
+    
+    /**
      * Add a new filter.
      *
      * @param Filter $filter Item which should be added to the collection

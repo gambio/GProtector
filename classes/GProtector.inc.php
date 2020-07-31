@@ -24,23 +24,24 @@ class GProtector
      * @var FilterReader
      */
     private $reader;
-
+    
     /**
      * @var FilterCache
      */
     private $cache;
-
-
+    
+    
     /**
      * GProtector constructor.
+     *
      * @param $reader
      * @param $cache
      */
     public function __construct($reader, $cache)
     {
         $this->reader = $reader;
-        $this->cache = $cache;
-
+        $this->cache  = $cache;
+        
         $this->setSecureToken();
         $this->setLogHeaderTemplate(
             "===========================================================\nIP: {IP}\nDatum: {DATETIME}\nScript: {SCRIPT}\nNachricht: {MESSAGE}\n\n"
@@ -48,8 +49,8 @@ class GProtector
         $this->initLogConnectors();
         $this->loadFunctions();
     }
-
-
+    
+    
     /**
      * This function starts the GProtector filters
      * @throws Exception
@@ -82,8 +83,8 @@ class GProtector
             $this->addFilter($filter);
         }
     }
-
-
+    
+    
     /**
      * @return FilterCollection
      * @throws Exception
@@ -95,36 +96,10 @@ class GProtector
         } else {
             $rawFilters = $this->reader->getFallbackFilterRules() + $this->reader->getCustomFilterRules();
         }
-
-        $filterArray = [];
-        foreach ($rawFilters as $rawFilter) {
-            $key = new Key($rawFilter['key']);
-            
-            $scriptNames = [];
-            if (is_array($rawFilter['script_name'])) {
-                foreach ($rawFilter['script_name'] as $scriptName) {
-                    $scriptNames[] = new ScriptName($scriptName);
-                }
-            } else {
-                $scriptNames[] = new ScriptName($rawFilter['script_name']);
-            }
-            $scriptNameCollection = new ScriptNameCollection($scriptNames);
-            
-            $variables = [];
-            foreach ($rawFilter['variables'] as $variableName) {
-                $variables[] = new Variable($variableName['type'], $variableName['property']);
-            }
-            $variableCollection = new VariableCollection($variables);
-            $method             = new Method($rawFilter['function']);
-            $severity           = new Severity($rawFilter['severity']);
-            $filter             = new Filter(
-                $key, $scriptNameCollection, $variableCollection, $method, $severity
-            );
-            $filterArray[]      = $filter;
-        }
         
-        return new FilterCollection($filterArray);
+        return FilterCollection::fromFilterCollectionArray($rawFilters);
     }
+    
     
     /**
      *

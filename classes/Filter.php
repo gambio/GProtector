@@ -63,6 +63,49 @@ class Filter
         $this->severity    = $severity->severity();
     }
     
+    
+    /**
+     * This function creates new Filter objects
+     *
+     * @param $rawFilters
+     *
+     * @return array
+     */
+    
+    public static function fromFilterArray($rawFilters)
+    {
+        $filterArray = [];
+        foreach ($rawFilters as $rawFilter) {
+            $key = new Key($rawFilter['key']);
+            
+            $scriptNames = [];
+            if (is_array($rawFilter['script_name'])) {
+                foreach ($rawFilter['script_name'] as $scriptName) {
+                    $scriptNames[] = new ScriptName($scriptName);
+                }
+            } else {
+                $scriptNames[] = new ScriptName($rawFilter['script_name']);
+            }
+            $scriptNameCollection = new ScriptNameCollection($scriptNames);
+            
+            $variables = [];
+            foreach ($rawFilter['variables'] as $variableName) {
+                $variables[] = new Variable($variableName['type'], $variableName['property']);
+            }
+            $variableCollection = new VariableCollection($variables);
+            $method             = new Method($rawFilter['function']);
+            $severity           = new Severity($rawFilter['severity']);
+            $filter             = new Filter(
+                $key, $scriptNameCollection, $variableCollection, $method, $severity
+            );
+            
+            $filterArray[] = $filter;
+        }
+        
+        return $filterArray;
+    }
+    
+    
     /**
      * Getter for key
      *
