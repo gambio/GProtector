@@ -91,13 +91,13 @@ class GProtector
      */
     private function readFilterFiles()
     {
-        if (file_exists(GAMBIO_PROTECTOR_CACHE_DIR . GAMBIO_PROTECTOR_CACHE_FILERULES_FILENAME)) {
-            $rawFilters = $this->reader->getCachedFilterRules() + $this->reader->getCustomFilterRules();
-        } else {
-            $rawFilters = $this->reader->getFallbackFilterRules() + $this->reader->getCustomFilterRules();
-        }
+        $cacheFileExists = file_exists(GAMBIO_PROTECTOR_CACHE_DIR . GAMBIO_PROTECTOR_CACHE_FILERULES_FILENAME);
         
-        return FilterCollection::fromFilterCollectionArray($rawFilters);
+        $rawFilters = $cacheFileExists ? $this->cache->getCachedFilterRules() : $this->reader->getFallbackFilterRules();
+        $rawFilters += $this->reader->getCustomFilterRules();
+        
+        
+        return FilterCollection::fromData($rawFilters);
     }
     
     

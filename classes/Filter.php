@@ -49,7 +49,7 @@ class Filter
      * @param Method               $method
      * @param Severity             $severity
      */
-    public function __construct(
+    private function __construct(
         Key $key,
         ScriptNameCollection $scriptNames,
         VariableCollection $variables,
@@ -67,42 +67,34 @@ class Filter
     /**
      * This function creates new Filter objects
      *
-     * @param $rawFilters
+     * @param $rawFilter
      *
-     * @return array
+     * @return Filter
      */
     
-    public static function fromFilterArray($rawFilters)
+    public static function fromFilter($rawFilter)
     {
-        $filterArray = [];
-        foreach ($rawFilters as $rawFilter) {
-            $key = new Key($rawFilter['key']);
-            
-            $scriptNames = [];
-            if (is_array($rawFilter['script_name'])) {
-                foreach ($rawFilter['script_name'] as $scriptName) {
-                    $scriptNames[] = new ScriptName($scriptName);
-                }
-            } else {
-                $scriptNames[] = new ScriptName($rawFilter['script_name']);
+        $key = new Key($rawFilter['key']);
+    
+        $scriptNames = [];
+        if (is_array($rawFilter['script_name'])) {
+            foreach ($rawFilter['script_name'] as $scriptName) {
+                $scriptNames[] = new ScriptName($scriptName);
             }
-            $scriptNameCollection = new ScriptNameCollection($scriptNames);
-            
-            $variables = [];
-            foreach ($rawFilter['variables'] as $variableName) {
-                $variables[] = new Variable($variableName['type'], $variableName['property']);
-            }
-            $variableCollection = new VariableCollection($variables);
-            $method             = new Method($rawFilter['function']);
-            $severity           = new Severity($rawFilter['severity']);
-            $filter             = new Filter(
-                $key, $scriptNameCollection, $variableCollection, $method, $severity
-            );
-            
-            $filterArray[] = $filter;
+        } else {
+            $scriptNames[] = new ScriptName($rawFilter['script_name']);
         }
+        $scriptNameCollection = new ScriptNameCollection($scriptNames);
+    
+        $variables = [];
+        foreach ($rawFilter['variables'] as $variableName) {
+            $variables[] = new Variable($variableName['type'], $variableName['property']);
+        }
+        $variableCollection = new VariableCollection($variables);
+        $method             = new Method($rawFilter['function']);
+        $severity           = new Severity($rawFilter['severity']);
         
-        return $filterArray;
+        return new static($key, $scriptNameCollection, $variableCollection, $method, $severity);
     }
     
     

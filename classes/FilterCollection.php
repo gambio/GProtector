@@ -31,7 +31,7 @@ class FilterCollection implements IteratorAggregate
      * @throws InvalidArgumentException
      *
      */
-    public function __construct(array $filters)
+    private function __construct(array $filters)
     {
         foreach ($filters as $filter) {
             try {
@@ -51,11 +51,14 @@ class FilterCollection implements IteratorAggregate
      * @return FilterCollection
      */
     
-    public static function fromFilterCollectionArray($rawFilters)
+    public static function fromData($rawFilters)
     {
-        $filterArray[] = Filter::fromFilterArray($rawFilters);
-        
-        return new FilterCollection($filterArray);
+        $filterArray = [];
+        foreach ($rawFilters as $rawFilter) {
+            $filterArray[] = Filter::fromFilter($rawFilter);
+        }
+    
+        return new static($filterArray);
     }
     
     
