@@ -58,17 +58,17 @@ class GProtector
     public function start()
     {
         $this->cache->renew();
-        $filters = $this->readFilterFiles();
-        $this->applyFilters($filters);
+        $this->applyFilters();
         $this->blockForbiddenIps();
     }
     
     
     /**
-     * @param FilterCollection $filters
+     * @throws Exception
      */
-    private function applyFilters(FilterCollection $filters)
+    private function applyFilters()
     {
+        $filters = $this->readFilterFiles();
         $this->addFilters($filters);
         $this->filter();
     }

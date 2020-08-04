@@ -55,7 +55,7 @@ class FilterCollection implements IteratorAggregate
     {
         $filterArray = [];
         foreach ($rawFilters as $rawFilter) {
-            $filterArray[] = Filter::fromFilter($rawFilter);
+            $filterArray[] = Filter::fromData($rawFilter);
         }
     
         return new static($filterArray);

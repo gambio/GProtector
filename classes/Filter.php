@@ -72,7 +72,7 @@ class Filter
      * @return Filter
      */
     
-    public static function fromFilter($rawFilter)
+    public static function fromData($rawFilter)
     {
         $key = new Key($rawFilter['key']);
     
