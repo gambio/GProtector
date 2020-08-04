@@ -50,11 +50,11 @@ class Filter
      * @param Severity             $severity
      */
     private function __construct(
-        Key $key,
-        ScriptNameCollection $scriptNames,
-        VariableCollection $variables,
-        Method $method,
-        Severity $severity
+        $key,
+        $scriptNames,
+        $variables,
+        $method,
+        $severity
     ) {
         $this->key         = $key->key();
         $this->scriptNames = $scriptNames->getArray();
