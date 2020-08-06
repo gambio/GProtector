@@ -218,7 +218,7 @@ class GProtector
                         $dataArray['script_name_array']
                     )) {
                     foreach ($dataArray['script_name_array'] as $scriptPath) {
-                        if ($this->isScript($scriptPath) === true) {
+                        if ($this->isScript($scriptPath->scriptName()) === true) {
                             if (isset($dataArray['function'])) {
                                 $function       = (string)$dataArray['function'];
                                 $functionPrefix = $this->getFunctionPrefix();
