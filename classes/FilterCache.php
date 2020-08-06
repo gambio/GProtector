@@ -174,7 +174,7 @@ class FilterCache
         $cachedFilterRules = $this->readFile(GAMBIO_PROTECTOR_CACHE_DIR . GAMBIO_PROTECTOR_CACHE_FILERULES_FILENAME);
         
         if ($this->isJsonValid($cachedFilterRules)) {
-            return $cachedFilterRules;
+            return json_decode($cachedFilterRules, true);
         } else {
             return $this->filterReader->getFallbackFilterRules();
         }
