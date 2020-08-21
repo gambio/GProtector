@@ -10,6 +10,8 @@
 
 namespace GProtector;
 
+use Exception;
+
 /**
  * Class GProtectorFilterReader
  */
@@ -30,9 +32,9 @@ class FilterReader
         
         if ($this->isJsonValid($localRules)) {
             return json_decode($localRules, true);
-        } else {
-            $this->getFallbackFilterRules();
         }
+        
+        return new Exception("Fallback standard.json file is invalid.");
     }
     
     
