@@ -32,7 +32,7 @@ class ScriptNameCollection implements IteratorAggregate
      * @throws InvalidArgumentException
      *
      */
-    public function __construct($items)
+    public function __construct(array $items)
     {
         foreach ($items as $item) {
             try {
@@ -50,7 +50,7 @@ class ScriptNameCollection implements IteratorAggregate
      * @param ScriptName $item Item which should be added to the collection
      *
      */
-    private function add($item)
+    private function add(ScriptName $item)
     {
         $this->scriptNameArray[] = $item;
     }

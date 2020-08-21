@@ -31,7 +31,7 @@ class FilterCollection implements IteratorAggregate
      * @throws InvalidArgumentException
      *
      */
-    private function __construct($filters)
+    private function __construct(array $filters)
     {
         foreach ($filters as $filter) {
             try {

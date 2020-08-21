@@ -77,7 +77,7 @@ class GProtector
     /**
      * @param FilterCollection $filters
      */
-    private function addFilters($filters)
+    private function addFilters(FilterCollection $filters)
     {
         foreach ($filters as $filter) {
             $this->addFilter($filter);
@@ -194,7 +194,7 @@ class GProtector
     }
     
     
-    private function addFilter($filter)
+    private function addFilter(Filter $filter)
     {
         $this->filterArray[$filter->key()] = [
             'script_name_array' => $filter->scriptName(),

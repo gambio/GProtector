@@ -32,7 +32,7 @@ class VariableCollection implements IteratorAggregate
      * @throws InvalidArgumentException
      *
      */
-    public function __construct($items)
+    public function __construct(array $items)
     {
         foreach ($items as $item) {
             try {
@@ -50,7 +50,7 @@ class VariableCollection implements IteratorAggregate
      * @param Variable $item Item which should be added to the collection
      *
      */
-    private function add($item)
+    private function add(Variable $item)
     {
         $this->variableArray[] = $item;
     }
