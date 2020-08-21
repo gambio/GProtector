@@ -45,6 +45,23 @@ class Variable
     
     
     /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+    
+    /**
+     * @return array
+     */
+    public function getProperties()
+    {
+        return $this->properties;
+    }
+    
+    
+    /**
      * Validates type
      *
      * @param mixed $type to be validated
@@ -70,12 +87,16 @@ class Variable
      */
     private function validateProperties($properties)
     {
-        if ($properties === null || (is_array($properties)) === false) {
+        if ($properties === null) {
             throw new InvalidArgumentException('Invalid $properties');
+        }
+
+        if (is_string($properties)) {
+            return;
         }
         
         foreach ($properties as $property) {
-            if ($property === null || (is_string($property)) === false) {
+            if ($property === null || (is_array($property)) === false) {
                 throw new InvalidArgumentException('Invalid $property');
             }
         }
