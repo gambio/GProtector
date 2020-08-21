@@ -5,9 +5,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "gm_type"
-                ]
+                "property": "gm_type"
             }
         ],
         "function": "only_alphabetic",
@@ -19,21 +17,15 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "section"
-                ]
+                "property": "section"
             },
             {
                 "type": "GET",
-                "property": [
-                    "selectArticles"
-                ]
+                "property": "selectArticles"
             },
             {
                 "type": "GET",
-                "property": [
-                    "selectCategoryArticles"
-                ]
+                "property": "selectCategoryArticles"
             }
         ],
         "function": "only_alphabetic",
@@ -45,9 +37,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "shop_offline"
-                ]
+                "property": "shop_offline"
             }
         ],
         "function": "only_alphabetic",
@@ -59,21 +49,15 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "expert"
-                ]
+                "property": "expert"
             },
             {
                 "type": "GET",
-                "property": [
-                    "MLDEBUG"
-                ]
+                "property": "MLDEBUG"
             },
             {
                 "type": "GET",
-                "property": [
-                    "update"
-                ]
+                "property": "update"
             }
         ],
         "function": "only_alphabetic",
@@ -85,9 +69,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "type"
-                ]
+                "property": "type"
             }
         ],
         "function": "only_alphabetic",
@@ -102,9 +84,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "currency"
-                ]
+                "property": "currency"
             }
         ],
         "function": "only_alphabetic",
@@ -116,9 +96,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "option_order_by"
-                ]
+                "property": "option_order_by"
             }
         ],
         "function": "only_alphanumeric",
@@ -140,9 +118,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "language"
-                ]
+                "property": "language"
             }
         ],
         "function": "only_alphanumeric",
@@ -154,9 +130,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "sorting"
-                ]
+                "property": "sorting"
             }
         ],
         "function": "only_alphanumeric",
@@ -219,9 +193,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "action"
-                ]
+                "property": "action"
             }
         ],
         "function": "only_alphanumeric",
@@ -233,15 +205,11 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "cPath"
-                ]
+                "property": "cPath"
             },
             {
                 "type": "GET",
-                "property": [
-                    "sorting"
-                ]
+                "property": "sorting"
             }
         ],
         "function": "only_alphanumeric",
@@ -253,9 +221,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "gm_logo"
-                ]
+                "property": "gm_logo"
             }
         ],
         "function": "only_alphanumeric",
@@ -267,9 +233,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "view"
-                ]
+                "property": "view"
             }
         ],
         "function": "only_alphanumeric",
@@ -281,9 +245,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "saction"
-                ]
+                "property": "saction"
             }
         ],
         "function": "only_alphanumeric",
@@ -295,9 +257,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "edit_action"
-                ]
+                "property": "edit_action"
             }
         ],
         "function": "only_alphanumeric",
@@ -314,15 +274,11 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "module"
-                ]
+                "property": "module"
             },
             {
                 "type": "GET",
-                "property": [
-                    "set"
-                ]
+                "property": "set"
             }
         ],
         "function": "only_alphanumeric",
@@ -334,21 +290,15 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "clientLicence"
-                ]
+                "property": "clientLicence"
             },
             {
                 "type": "GET",
-                "property": [
-                    "options"
-                ]
+                "property": "options"
             },
             {
                 "type": "POST",
-                "property": [
-                    "options"
-                ]
+                "property": "options"
             }
         ],
         "function": "only_alphanumeric",
@@ -360,9 +310,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "do"
-                ]
+                "property": "do"
             }
         ],
         "function": "only_alphanumeric",
@@ -378,9 +326,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "content"
-                ]
+                "property": "content"
             }
         ],
         "function": "only_alphanumeric",
@@ -392,9 +338,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "special"
-                ]
+                "property": "special"
             }
         ],
         "function": "only_alphanumeric",
@@ -409,9 +353,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "module"
-                ]
+                "property": "module"
             }
         ],
         "function": "only_alphanumeric",
@@ -423,9 +365,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "payment"
-                ]
+                "property": "payment"
             }
         ],
         "function": "only_alphanumeric",
@@ -437,9 +377,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "campaign"
-                ]
+                "property": "campaign"
             }
         ],
         "function": "only_alphanumeric",
@@ -451,9 +389,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "cPath"
-                ]
+                "property": "cPath"
             }
         ],
         "function": "only_alphanumeric",
@@ -468,9 +404,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "page"
-                ]
+                "property": "page"
             }
         ],
         "function": "only_alphanumeric",
@@ -482,9 +416,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "selected_box"
-                ]
+                "property": "selected_box"
             }
         ],
         "function": "only_alphanumeric",
@@ -520,9 +452,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "oID"
-                ]
+                "property": "oID"
             }
         ],
         "function": "only_alphanumeric",
@@ -534,9 +464,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "ptd_rand"
-                ]
+                "property": "ptd_rand"
             }
         ],
         "function": "only_alphanumeric",
@@ -548,9 +476,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "featureMode"
-                ]
+                "property": "featureMode"
             }
         ],
         "function": "recursive_integer_value",
@@ -562,9 +488,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "gm_delete"
-                ]
+                "property": "gm_delete"
             }
         ],
         "function": "recursive_integer_value",
@@ -579,9 +503,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "properties_values_ids"
-                ]
+                "property": "properties_values_ids"
             }
         ],
         "function": "recursive_integer_value",
@@ -593,9 +515,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "file"
-                ]
+                "property": "file"
             }
         ],
         "function": "basename",
@@ -607,9 +527,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "select_file"
-                ]
+                "property": "select_file"
             }
         ],
         "function": "basename",
@@ -621,15 +539,11 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "file"
-                ]
+                "property": "file"
             },
             {
                 "type": "GET",
-                "property": [
-                    "hidden_file"
-                ]
+                "property": "hidden_file"
             }
         ],
         "function": "basename",
@@ -641,9 +555,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "select_file"
-                ]
+                "property": "select_file"
             }
         ],
         "function": "basename",
@@ -655,9 +567,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "image"
-                ]
+                "property": "image"
             }
         ],
         "function": "basename",
@@ -669,15 +579,11 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "email_to"
-                ]
+                "property": "email_to"
             },
             {
                 "type": "GET",
-                "property": [
-                    "mail_sent_to"
-                ]
+                "property": "mail_sent_to"
             }
         ],
         "function": "htmlentities",
@@ -689,15 +595,11 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "mail_sent_to"
-                ]
+                "property": "mail_sent_to"
             },
             {
                 "type": "GET",
-                "property": [
-                    "customer"
-                ]
+                "property": "customer"
             }
         ],
         "function": "htmlentities",
@@ -709,9 +611,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "gm_result"
-                ]
+                "property": "gm_result"
             }
         ],
         "function": "htmlentities",
@@ -723,45 +623,31 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "GM_OPENSEARCH_CONTACT"
-                ]
+                "property": "GM_OPENSEARCH_CONTACT"
             },
             {
                 "type": "POST",
-                "property": [
-                    "GM_OPENSEARCH_DESCRIPTION"
-                ]
+                "property": "GM_OPENSEARCH_DESCRIPTION"
             },
             {
                 "type": "POST",
-                "property": [
-                    "GM_OPENSEARCH_LINK"
-                ]
+                "property": "GM_OPENSEARCH_LINK"
             },
             {
                 "type": "POST",
-                "property": [
-                    "GM_OPENSEARCH_LONGNAME"
-                ]
+                "property": "GM_OPENSEARCH_LONGNAME"
             },
             {
                 "type": "POST",
-                "property": [
-                    "GM_OPENSEARCH_SHORTNAME"
-                ]
+                "property": "GM_OPENSEARCH_SHORTNAME"
             },
             {
                 "type": "POST",
-                "property": [
-                    "GM_OPENSEARCH_TAGS"
-                ]
+                "property": "GM_OPENSEARCH_TAGS"
             },
             {
                 "type": "POST",
-                "property": [
-                    "GM_OPENSEARCH_TEXT"
-                ]
+                "property": "GM_OPENSEARCH_TEXT"
             }
         ],
         "function": "htmlentities",
@@ -773,15 +659,11 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "GM_RECAPTCHA_PUBLIC_KEY"
-                ]
+                "property": "GM_RECAPTCHA_PUBLIC_KEY"
             },
             {
                 "type": "POST",
-                "property": [
-                    "GM_RECAPTCHA_PRIVATE_KEY"
-                ]
+                "property": "GM_RECAPTCHA_PRIVATE_KEY"
             }
         ],
         "function": "htmlentities",
@@ -793,69 +675,47 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "mobile_css_border_color"
-                ]
+                "property": "mobile_css_border_color"
             },
             {
                 "type": "POST",
-                "property": [
-                    "mobile_css_border_color_dark"
-                ]
+                "property": "mobile_css_border_color_dark"
             },
             {
                 "type": "POST",
-                "property": [
-                    "mobile_css_button_blue_bg_1"
-                ]
+                "property": "mobile_css_button_blue_bg_1"
             },
             {
                 "type": "POST",
-                "property": [
-                    "mobile_css_button_blue_bg_2"
-                ]
+                "property": "mobile_css_button_blue_bg_2"
             },
             {
                 "type": "POST",
-                "property": [
-                    "mobile_css_button_blue_color"
-                ]
+                "property": "mobile_css_button_blue_color"
             },
             {
                 "type": "POST",
-                "property": [
-                    "mobile_css_checkout_bg"
-                ]
+                "property": "mobile_css_checkout_bg"
             },
             {
                 "type": "POST",
-                "property": [
-                    "mobile_css_checkout_sum_bg"
-                ]
+                "property": "mobile_css_checkout_sum_bg"
             },
             {
                 "type": "POST",
-                "property": [
-                    "mobile_css_content_bg"
-                ]
+                "property": "mobile_css_content_bg"
             },
             {
                 "type": "POST",
-                "property": [
-                    "mobile_css_content_color_dark"
-                ]
+                "property": "mobile_css_content_color_dark"
             },
             {
                 "type": "POST",
-                "property": [
-                    "mobile_css_content_color_light"
-                ]
+                "property": "mobile_css_content_color_light"
             },
             {
                 "type": "POST",
-                "property": [
-                    "mobile_css_content_color_medium"
-                ]
+                "property": "mobile_css_content_color_medium"
             }
         ],
         "function": "htmlentities",
@@ -867,15 +727,11 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "id"
-                ]
+                "property": "id"
             },
             {
                 "type": "GET",
-                "property": [
-                    "lang"
-                ]
+                "property": "lang"
             }
         ],
         "function": "convert_to_integer",
@@ -891,9 +747,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "bID"
-                ]
+                "property": "bID"
             }
         ],
         "function": "convert_to_integer",
@@ -932,9 +786,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "page"
-                ]
+                "property": "page"
             }
         ],
         "function": "convert_to_integer",
@@ -946,45 +798,31 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "products_id"
-                ]
+                "property": "products_id"
             },
             {
                 "type": "POST",
-                "property": [
-                    "parent_id"
-                ]
+                "property": "parent_id"
             },
             {
                 "type": "POST",
-                "property": [
-                    "categories_id"
-                ]
+                "property": "categories_id"
             },
             {
                 "type": "GET",
-                "property": [
-                    "pID"
-                ]
+                "property": "pID"
             },
             {
                 "type": "POST",
-                "property": [
-                    "gm_gprint_delete_assignment"
-                ]
+                "property": "gm_gprint_delete_assignment"
             },
             {
                 "type": "GET",
-                "property": [
-                    "flag"
-                ]
+                "property": "flag"
             },
             {
                 "type": "POST",
-                "property": [
-                    "show_sub_products"
-                ]
+                "property": "show_sub_products"
             }
         ],
         "function": "convert_to_integer",
@@ -1007,9 +845,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "cID"
-                ]
+                "property": "cID"
             }
         ],
         "function": "convert_to_integer",
@@ -1021,27 +857,19 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "sID"
-                ]
+                "property": "sID"
             },
             {
                 "type": "GET",
-                "property": [
-                    "spage"
-                ]
+                "property": "spage"
             },
             {
                 "type": "GET",
-                "property": [
-                    "zID"
-                ]
+                "property": "zID"
             },
             {
                 "type": "GET",
-                "property": [
-                    "zpage"
-                ]
+                "property": "zpage"
             }
         ],
         "function": "convert_to_integer",
@@ -1053,27 +881,19 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "categories_id"
-                ]
+                "property": "categories_id"
             },
             {
                 "type": "GET",
-                "property": [
-                    "categories_id"
-                ]
+                "property": "categories_id"
             },
             {
                 "type": "GET",
-                "property": [
-                    "id"
-                ]
+                "property": "id"
             },
             {
                 "type": "GET",
-                "property": [
-                    "languages_id"
-                ]
+                "property": "languages_id"
             }
         ],
         "function": "convert_to_integer",
@@ -1089,9 +909,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "lang_id"
-                ]
+                "property": "lang_id"
             }
         ],
         "function": "convert_to_integer",
@@ -1103,33 +921,23 @@
         "variables": [
             {
                 "type": "REQUEST",
-                "property": [
-                    "lang_all"
-                ]
+                "property": "lang_all"
             },
             {
                 "type": "GET",
-                "property": [
-                    "newPIC"
-                ]
+                "property": "newPIC"
             },
             {
                 "type": "GET",
-                "property": [
-                    "newTHUMB"
-                ]
+                "property": "newTHUMB"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "slider_set_id"
-                ]
+                "property": "slider_set_id"
             },
             {
                 "type": "POST",
-                "property": [
-                    "sliderWidth"
-                ]
+                "property": "sliderWidth"
             }
         ],
         "function": "convert_to_integer",
@@ -1146,9 +954,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "oID"
-                ]
+                "property": "oID"
             }
         ],
         "function": "convert_to_integer",
@@ -1160,27 +966,19 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "option_id"
-                ]
+                "property": "option_id"
             },
             {
                 "type": "GET",
-                "property": [
-                    "option_page"
-                ]
+                "property": "option_page"
             },
             {
                 "type": "POST",
-                "property": [
-                    "value_id"
-                ]
+                "property": "value_id"
             },
             {
                 "type": "GET",
-                "property": [
-                    "value_page"
-                ]
+                "property": "value_page"
             }
         ],
         "function": "convert_to_integer",
@@ -1195,9 +993,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "tID"
-                ]
+                "property": "tID"
             }
         ],
         "function": "convert_to_integer",
@@ -1209,15 +1005,11 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "topseller"
-                ]
+                "property": "topseller"
             },
             {
                 "type": "GET",
-                "property": [
-                    "selectall"
-                ]
+                "property": "selectall"
             }
         ],
         "function": "convert_to_integer",
@@ -1229,9 +1021,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "status"
-                ]
+                "property": "status"
             }
         ],
         "function": "convert_to_integer",
@@ -1243,9 +1033,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "cID"
-                ]
+                "property": "cID"
             }
         ],
         "function": "convert_to_integer",
@@ -1257,9 +1045,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "lID"
-                ]
+                "property": "lID"
             }
         ],
         "function": "convert_to_integer",
@@ -1271,9 +1057,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "update"
-                ]
+                "property": "update"
             }
         ],
         "function": "convert_to_integer",
@@ -1285,15 +1069,11 @@
         "variables": [
             {
                 "type": "REQUEST",
-                "property": [
-                    "feature_id"
-                ]
+                "property": "feature_id"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "lang_all"
-                ]
+                "property": "lang_all"
             }
         ],
         "function": "convert_to_integer",
@@ -1305,15 +1085,11 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "month"
-                ]
+                "property": "month"
             },
             {
                 "type": "GET",
-                "property": [
-                    "year"
-                ]
+                "property": "year"
             }
         ],
         "function": "convert_to_integer",
@@ -1325,9 +1101,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "gID"
-                ]
+                "property": "gID"
             }
         ],
         "function": "convert_to_integer",
@@ -1339,15 +1113,11 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "coID"
-                ]
+                "property": "coID"
             },
             {
                 "type": "POST",
-                "property": [
-                    "coID"
-                ]
+                "property": "coID"
             }
         ],
         "function": "convert_to_integer",
@@ -1359,39 +1129,27 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "GM_LOGIN_TRYOUT"
-                ]
+                "property": "GM_LOGIN_TRYOUT"
             },
             {
                 "type": "POST",
-                "property": [
-                    "GM_LOGIN_TIMELINE"
-                ]
+                "property": "GM_LOGIN_TIMELINE"
             },
             {
                 "type": "POST",
-                "property": [
-                    "GM_LOGIN_TIMEOUT"
-                ]
+                "property": "GM_LOGIN_TIMEOUT"
             },
             {
                 "type": "POST",
-                "property": [
-                    "GM_SEARCH_TIMELINE"
-                ]
+                "property": "GM_SEARCH_TIMELINE"
             },
             {
                 "type": "POST",
-                "property": [
-                    "GM_SEARCH_TIMEOUT"
-                ]
+                "property": "GM_SEARCH_TIMEOUT"
             },
             {
                 "type": "POST",
-                "property": [
-                    "GM_SEARCH_TRYOUT"
-                ]
+                "property": "GM_SEARCH_TRYOUT"
             }
         ],
         "function": "convert_to_integer",
@@ -1403,75 +1161,51 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "detail"
-                ]
+                "property": "detail"
             },
             {
                 "type": "GET",
-                "property": [
-                    "endD"
-                ]
+                "property": "endD"
             },
             {
                 "type": "GET",
-                "property": [
-                    "endM"
-                ]
+                "property": "endM"
             },
             {
                 "type": "GET",
-                "property": [
-                    "endY"
-                ]
+                "property": "endY"
             },
             {
                 "type": "GET",
-                "property": [
-                    "export"
-                ]
+                "property": "export"
             },
             {
                 "type": "GET",
-                "property": [
-                    "max"
-                ]
+                "property": "max"
             },
             {
                 "type": "GET",
-                "property": [
-                    "report"
-                ]
+                "property": "report"
             },
             {
                 "type": "GET",
-                "property": [
-                    "sort"
-                ]
+                "property": "sort"
             },
             {
                 "type": "GET",
-                "property": [
-                    "startD"
-                ]
+                "property": "startD"
             },
             {
                 "type": "GET",
-                "property": [
-                    "startM"
-                ]
+                "property": "startM"
             },
             {
                 "type": "GET",
-                "property": [
-                    "startY"
-                ]
+                "property": "startY"
             },
             {
                 "type": "GET",
-                "property": [
-                    "status"
-                ]
+                "property": "status"
             }
         ],
         "function": "convert_to_integer",
@@ -1483,57 +1217,39 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "endD"
-                ]
+                "property": "endD"
             },
             {
                 "type": "GET",
-                "property": [
-                    "endM"
-                ]
+                "property": "endM"
             },
             {
                 "type": "GET",
-                "property": [
-                    "endY"
-                ]
+                "property": "endY"
             },
             {
                 "type": "GET",
-                "property": [
-                    "export"
-                ]
+                "property": "export"
             },
             {
                 "type": "GET",
-                "property": [
-                    "report"
-                ]
+                "property": "report"
             },
             {
                 "type": "GET",
-                "property": [
-                    "startD"
-                ]
+                "property": "startD"
             },
             {
                 "type": "GET",
-                "property": [
-                    "startM"
-                ]
+                "property": "startM"
             },
             {
                 "type": "GET",
-                "property": [
-                    "startY"
-                ]
+                "property": "startY"
             },
             {
                 "type": "GET",
-                "property": [
-                    "status"
-                ]
+                "property": "status"
             }
         ],
         "function": "convert_to_integer",
@@ -1545,9 +1261,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "sID"
-                ]
+                "property": "sID"
             }
         ],
         "function": "convert_to_integer",
@@ -1559,9 +1273,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "ID"
-                ]
+                "property": "ID"
             }
         ],
         "function": "convert_to_integer",
@@ -1573,9 +1285,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "products_id"
-                ]
+                "property": "products_id"
             }
         ],
         "function": "convert_to_integer",
@@ -1587,21 +1297,15 @@
         "variables": [
             {
                 "type": "REQUEST",
-                "property": [
-                    "lang_all"
-                ]
+                "property": "lang_all"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "quanitity_unit_id"
-                ]
+                "property": "quanitity_unit_id"
             },
             {
                 "type": "GET",
-                "property": [
-                    "quanitity_unit_id"
-                ]
+                "property": "quanitity_unit_id"
             }
         ],
         "function": "convert_to_integer",
@@ -1616,9 +1320,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "entry_country_id"
-                ]
+                "property": "entry_country_id"
             }
         ],
         "function": "convert_to_integer",
@@ -1630,9 +1332,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "default_address_id"
-                ]
+                "property": "default_address_id"
             }
         ],
         "function": "convert_to_integer",
@@ -1644,9 +1344,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "gm_delete_categories"
-                ]
+                "property": "gm_delete_categories"
             }
         ],
         "function": "convert_to_integer",
@@ -1661,9 +1359,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "mID"
-                ]
+                "property": "mID"
             }
         ],
         "function": "convert_to_integer",
@@ -1675,9 +1371,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "status"
-                ]
+                "property": "status"
             }
         ],
         "function": "convert_to_integer",
@@ -1689,9 +1383,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "GM_EBAY_COUNT"
-                ]
+                "property": "GM_EBAY_COUNT"
             }
         ],
         "function": "convert_to_integer",
@@ -1703,9 +1395,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "cid"
-                ]
+                "property": "cid"
             }
         ],
         "function": "convert_to_integer",
@@ -1717,9 +1407,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "lang_id"
-                ]
+                "property": "lang_id"
             }
         ],
         "function": "convert_to_integer",
@@ -1731,15 +1419,11 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "current_product_id"
-                ]
+                "property": "current_product_id"
             },
             {
                 "type": "POST",
-                "property": [
-                    "copy_product_id"
-                ]
+                "property": "copy_product_id"
             }
         ],
         "function": "convert_to_integer",
@@ -1751,9 +1435,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "category"
-                ]
+                "property": "category"
             }
         ],
         "function": "convert_to_integer",
@@ -1765,9 +1447,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "oID"
-                ]
+                "property": "oID"
             }
         ],
         "function": "convert_to_integer",
@@ -1802,9 +1482,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "ptd_order_id"
-                ]
+                "property": "ptd_order_id"
             }
         ],
         "function": "convert_to_integer",
@@ -1816,15 +1494,11 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "product_id"
-                ]
+                "property": "product_id"
             },
             {
                 "type": "GET",
-                "property": [
-                    "atttributesId"
-                ]
+                "property": "atttributesId"
             }
         ],
         "function": "convert_to_integer",
@@ -1836,39 +1510,27 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "page"
-                ]
+                "property": "page"
             },
             {
                 "type": "GET",
-                "property": [
-                    "rID"
-                ]
+                "property": "rID"
             },
             {
                 "type": "POST",
-                "property": [
-                    "reviews_rating"
-                ]
+                "property": "reviews_rating"
             },
             {
                 "type": "POST",
-                "property": [
-                    "reviews_id"
-                ]
+                "property": "reviews_id"
             },
             {
                 "type": "POST",
-                "property": [
-                    "products_id"
-                ]
+                "property": "products_id"
             },
             {
                 "type": "POST",
-                "property": [
-                    "reviews_rating"
-                ]
+                "property": "reviews_rating"
             }
         ],
         "function": "convert_to_integer",
@@ -1880,21 +1542,15 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "properties_id"
-                ]
+                "property": "properties_id"
             },
             {
                 "type": "POST",
-                "property": [
-                    "properties_id"
-                ]
+                "property": "properties_id"
             },
             {
                 "type": "POST",
-                "property": [
-                    "properties_values_id"
-                ]
+                "property": "properties_values_id"
             }
         ],
         "function": "convert_to_integer",
@@ -1909,9 +1565,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "inc_subcat"
-                ]
+                "property": "inc_subcat"
             }
         ],
         "function": "convert_to_integer",
@@ -1928,15 +1582,11 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "categories_id"
-                ]
+                "property": "categories_id"
             },
             {
                 "type": "GET",
-                "property": [
-                    "filter_categories_id"
-                ]
+                "property": "filter_categories_id"
             }
         ],
         "function": "convert_to_integer",
@@ -1950,9 +1600,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "coID"
-                ]
+                "property": "coID"
             }
         ],
         "function": "convert_to_integer",
@@ -1964,15 +1612,11 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "gm_gmotion_standard_zoom_from"
-                ]
+                "property": "gm_gmotion_standard_zoom_from"
             },
             {
                 "type": "POST",
-                "property": [
-                    "gm_gmotion_standard_zoom_to"
-                ]
+                "property": "gm_gmotion_standard_zoom_to"
             }
         ],
         "function": "only_numeric",
@@ -1984,9 +1628,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "status"
-                ]
+                "property": "status"
             }
         ],
         "function": "only_numeric",
@@ -1998,15 +1640,11 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "cboMonth"
-                ]
+                "property": "cboMonth"
             },
             {
                 "type": "GET",
-                "property": [
-                    "cboYear"
-                ]
+                "property": "cboYear"
             }
         ],
         "function": "only_numeric",
@@ -2040,27 +1678,19 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "filter_price_max"
-                ]
+                "property": "filter_price_max"
             },
             {
                 "type": "GET",
-                "property": [
-                    "filter_price_min"
-                ]
+                "property": "filter_price_min"
             },
             {
                 "type": "GET",
-                "property": [
-                    "pfrom"
-                ]
+                "property": "pfrom"
             },
             {
                 "type": "GET",
-                "property": [
-                    "pto"
-                ]
+                "property": "pto"
             }
         ],
         "function": "only_numeric",
@@ -2072,9 +1702,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "specials_price"
-                ]
+                "property": "specials_price"
             }
         ],
         "function": "filter_price",
@@ -2086,15 +1714,11 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "option_name"
-                ]
+                "property": "option_name"
             },
             {
                 "type": "POST",
-                "property": [
-                    "value_name"
-                ]
+                "property": "value_name"
             }
         ],
         "function": "filter_text",
@@ -2106,9 +1730,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "surfaces_group_name"
-                ]
+                "property": "surfaces_group_name"
             }
         ],
         "function": "filter_text",
@@ -2120,9 +1742,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "unitNew"
-                ]
+                "property": "unitNew"
             }
         ],
         "function": "filter_text",
@@ -2134,45 +1754,31 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "manual_categories_index"
-                ]
+                "property": "manual_categories_index"
             },
             {
                 "type": "GET",
-                "property": [
-                    "manual_categories_index"
-                ]
+                "property": "manual_categories_index"
             },
             {
                 "type": "GET",
-                "property": [
-                    "manual_data_cache"
-                ]
+                "property": "manual_data_cache"
             },
             {
                 "type": "GET",
-                "property": [
-                    "manual_feature_index"
-                ]
+                "property": "manual_feature_index"
             },
             {
                 "type": "GET",
-                "property": [
-                    "manual_output"
-                ]
+                "property": "manual_output"
             },
             {
                 "type": "GET",
-                "property": [
-                    "manual_products_properties_index"
-                ]
+                "property": "manual_products_properties_index"
             },
             {
                 "type": "GET",
-                "property": [
-                    "manual_submenu"
-                ]
+                "property": "manual_submenu"
             }
         ],
         "function": "filter_text",
@@ -2184,9 +1790,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "search"
-                ]
+                "property": "search"
             }
         ],
         "function": "filter_text",
@@ -2198,9 +1802,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "search"
-                ]
+                "property": "search"
             },
             {
                 "type": "POST",
@@ -2243,15 +1845,11 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "sliderName"
-                ]
+                "property": "sliderName"
             },
             {
                 "type": "POST",
-                "property": [
-                    "sliderNew"
-                ]
+                "property": "sliderNew"
             }
         ],
         "function": "filter_text",
@@ -2263,39 +1861,27 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "customers_status_min_order"
-                ]
+                "property": "customers_status_min_order"
             },
             {
                 "type": "POST",
-                "property": [
-                    "customers_status_max_order"
-                ]
+                "property": "customers_status_max_order"
             },
             {
                 "type": "POST",
-                "property": [
-                    "customers_status_discount"
-                ]
+                "property": "customers_status_discount"
             },
             {
                 "type": "POST",
-                "property": [
-                    "customers_status_ot_discount"
-                ]
+                "property": "customers_status_ot_discount"
             },
             {
                 "type": "POST",
-                "property": [
-                    "customers_status_payment_unallowed"
-                ]
+                "property": "customers_status_payment_unallowed"
             },
             {
                 "type": "POST",
-                "property": [
-                    "customers_status_shipping_unallowed"
-                ]
+                "property": "customers_status_shipping_unallowed"
             }
         ],
         "function": "filter_text",
@@ -2307,9 +1893,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "status"
-                ]
+                "property": "status"
             }
         ],
         "function": "only_safe_characters",
@@ -2321,15 +1905,11 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "products_sorting"
-                ]
+                "property": "products_sorting"
             },
             {
                 "type": "POST",
-                "property": [
-                    "products_sorting2"
-                ]
+                "property": "products_sorting2"
             }
         ],
         "function": "only_safe_characters",
@@ -2341,9 +1921,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "customers_email_address"
-                ]
+                "property": "customers_email_address"
             }
         ],
         "function": "only_safe_characters",
@@ -2355,9 +1933,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "module"
-                ]
+                "property": "module"
             }
         ],
         "function": "only_safe_characters",
@@ -2369,15 +1945,11 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "charset"
-                ]
+                "property": "charset"
             },
             {
                 "type": "POST",
-                "property": [
-                    "directory"
-                ]
+                "property": "directory"
             }
         ],
         "function": "only_safe_characters",
@@ -2389,15 +1961,11 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "file"
-                ]
+                "property": "file"
             },
             {
                 "type": "GET",
-                "property": [
-                    "hidden_file"
-                ]
+                "property": "hidden_file"
             }
         ],
         "function": "only_safe_characters",
@@ -2409,9 +1977,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "option_order_by"
-                ]
+                "property": "option_order_by"
             }
         ],
         "function": "only_safe_characters",
@@ -2423,81 +1989,55 @@
         "variables": [
             {
                 "type": "REQUEST",
-                "property": [
-                    "accesskey"
-                ]
+                "property": "accesskey"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "button_background"
-                ]
+                "property": "button_background"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "button_color"
-                ]
+                "property": "button_color"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "button_size"
-                ]
+                "property": "button_size"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "customers_status"
-                ]
+                "property": "customers_status"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "marketplace_id"
-                ]
+                "property": "marketplace_id"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "merchant_id"
-                ]
+                "property": "merchant_id"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "mode"
-                ]
+                "property": "mode"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "os_cancel"
-                ]
+                "property": "os_cancel"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "os_new"
-                ]
+                "property": "os_new"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "os_ready"
-                ]
+                "property": "os_ready"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "os_shipped"
-                ]
+                "property": "os_shipped"
             },
             {
                 "type": "REQUEST",
-                "property": [
-                    "secretkey"
-                ]
+                "property": "secretkey"
             }
         ],
         "function": "only_safe_characters",
@@ -2538,27 +2078,19 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "user"
-                ]
+                "property": "user"
             },
             {
                 "type": "GET",
-                "property": [
-                    "password"
-                ]
+                "property": "password"
             },
             {
                 "type": "POST",
-                "property": [
-                    "user"
-                ]
+                "property": "user"
             },
             {
                 "type": "POST",
-                "property": [
-                    "password"
-                ]
+                "property": "password"
             }
         ],
         "function": "only_safe_characters",
@@ -2570,9 +2102,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "access"
-                ]
+                "property": "access"
             }
         ],
         "function": "recursive_only_alphanumeric",
@@ -2584,9 +2114,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "orders_status"
-                ]
+                "property": "orders_status"
             }
         ],
         "function": "recursive_only_alphanumeric",
@@ -2598,9 +2126,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "unitName"
-                ]
+                "property": "unitName"
             }
         ],
         "function": "recursive_filter_text",
@@ -2612,27 +2138,19 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "matrix"
-                ]
+                "property": "matrix"
             },
             {
                 "type": "GET",
-                "property": [
-                    "text"
-                ]
+                "property": "text"
             },
             {
                 "type": "GET",
-                "property": [
-                    "x"
-                ]
+                "property": "x"
             },
             {
                 "type": "GET",
-                "property": [
-                    "y"
-                ]
+                "property": "y"
             }
         ],
         "function": "recursive_filter_text",
@@ -2644,9 +2162,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "configuration"
-                ]
+                "property": "configuration"
             }
         ],
         "function": "recursive_only_safe_characters",
@@ -2658,9 +2174,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "featAdminName"
-                ]
+                "property": "featAdminName"
             }
         ],
         "function": "recursive_htmlspecialchars",
@@ -2672,9 +2186,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "featName"
-                ]
+                "property": "featName"
             }
         ],
         "function": "recursive_htmlspecialchars",
@@ -2686,9 +2198,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "featNew"
-                ]
+                "property": "featNew"
             }
         ],
         "function": "recursive_htmlspecialchars",
@@ -2700,9 +2210,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "featValueNew"
-                ]
+                "property": "featValueNew"
             }
         ],
         "function": "recursive_htmlspecialchars",
@@ -2714,9 +2222,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "values_name"
-                ]
+                "property": "values_name"
             }
         ],
         "function": "recursive_htmlspecialchars",
@@ -2730,33 +2236,23 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "customers_name"
-                ]
+                "property": "customers_name"
             },
             {
                 "type": "POST",
-                "property": [
-                    "products_name"
-                ]
+                "property": "products_name"
             },
             {
                 "type": "POST",
-                "property": [
-                    "products_image"
-                ]
+                "property": "products_image"
             },
             {
                 "type": "POST",
-                "property": [
-                    "last_modified"
-                ]
+                "property": "last_modified"
             },
             {
                 "type": "POST",
-                "property": [
-                    "date_added"
-                ]
+                "property": "date_added"
             }
         ],
         "function": "htmlspecialchars",
@@ -2770,9 +2266,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "value_model"
-                ]
+                "property": "value_model"
             }
         ],
         "function": "htmlspecialchars",
@@ -2787,9 +2281,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "keywords"
-                ]
+                "property": "keywords"
             }
         ],
         "function": "htmlspecialchars",
@@ -2806,9 +2298,7 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "filter_url"
-                ]
+                "property": "filter_url"
             }
         ],
         "function": "htmlspecialchars",
@@ -2820,9 +2310,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "coupon_code"
-                ]
+                "property": "coupon_code"
             }
         ],
         "function": "htmlspecialchars",
@@ -2834,45 +2322,31 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "gender"
-                ]
+                "property": "gender"
             },
             {
                 "type": "POST",
-                "property": [
-                    "firstname"
-                ]
+                "property": "firstname"
             },
             {
                 "type": "POST",
-                "property": [
-                    "lastname"
-                ]
+                "property": "lastname"
             },
             {
                 "type": "POST",
-                "property": [
-                    "email_address"
-                ]
+                "property": "email_address"
             },
             {
                 "type": "POST",
-                "property": [
-                    "telephone"
-                ]
+                "property": "telephone"
             },
             {
                 "type": "POST",
-                "property": [
-                    "fax"
-                ]
+                "property": "fax"
             },
             {
                 "type": "POST",
-                "property": [
-                    "vat"
-                ]
+                "property": "vat"
             }
         ],
         "function": "filter_tags",
@@ -2884,63 +2358,43 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "gender"
-                ]
+                "property": "gender"
             },
             {
                 "type": "POST",
-                "property": [
-                    "firstname"
-                ]
+                "property": "firstname"
             },
             {
                 "type": "POST",
-                "property": [
-                    "lastname"
-                ]
+                "property": "lastname"
             },
             {
                 "type": "POST",
-                "property": [
-                    "company"
-                ]
+                "property": "company"
             },
             {
                 "type": "POST",
-                "property": [
-                    "street_address"
-                ]
+                "property": "street_address"
             },
             {
                 "type": "POST",
-                "property": [
-                    "house_number"
-                ]
+                "property": "house_number"
             },
             {
                 "type": "POST",
-                "property": [
-                    "postcode"
-                ]
+                "property": "postcode"
             },
             {
                 "type": "POST",
-                "property": [
-                    "city"
-                ]
+                "property": "city"
             },
             {
                 "type": "POST",
-                "property": [
-                    "country"
-                ]
+                "property": "country"
             },
             {
                 "type": "POST",
-                "property": [
-                    "b2b_status"
-                ]
+                "property": "b2b_status"
             }
         ],
         "function": "filter_tags",
@@ -2952,9 +2406,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "review"
-                ]
+                "property": "review"
             }
         ],
         "function": "filter_tags",
@@ -2966,75 +2418,51 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "gender"
-                ]
+                "property": "gender"
             },
             {
                 "type": "POST",
-                "property": [
-                    "firstname"
-                ]
+                "property": "firstname"
             },
             {
                 "type": "POST",
-                "property": [
-                    "lastname"
-                ]
+                "property": "lastname"
             },
             {
                 "type": "POST",
-                "property": [
-                    "company"
-                ]
+                "property": "company"
             },
             {
                 "type": "POST",
-                "property": [
-                    "street_address"
-                ]
+                "property": "street_address"
             },
             {
                 "type": "POST",
-                "property": [
-                    "house_number"
-                ]
+                "property": "house_number"
             },
             {
                 "type": "POST",
-                "property": [
-                    "postcode"
-                ]
+                "property": "postcode"
             },
             {
                 "type": "POST",
-                "property": [
-                    "city"
-                ]
+                "property": "city"
             },
             {
                 "type": "POST",
-                "property": [
-                    "state"
-                ]
+                "property": "state"
             },
             {
                 "type": "POST",
-                "property": [
-                    "country"
-                ]
+                "property": "country"
             },
             {
                 "type": "POST",
-                "property": [
-                    "suburb"
-                ]
+                "property": "suburb"
             },
             {
                 "type": "POST",
-                "property": [
-                    "additional_address_info"
-                ]
+                "property": "additional_address_info"
             }
         ],
         "function": "filter_tags",
@@ -3046,75 +2474,51 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "gender"
-                ]
+                "property": "gender"
             },
             {
                 "type": "POST",
-                "property": [
-                    "firstname"
-                ]
+                "property": "firstname"
             },
             {
                 "type": "POST",
-                "property": [
-                    "lastname"
-                ]
+                "property": "lastname"
             },
             {
                 "type": "POST",
-                "property": [
-                    "company"
-                ]
+                "property": "company"
             },
             {
                 "type": "POST",
-                "property": [
-                    "street_address"
-                ]
+                "property": "street_address"
             },
             {
                 "type": "POST",
-                "property": [
-                    "house_number"
-                ]
+                "property": "house_number"
             },
             {
                 "type": "POST",
-                "property": [
-                    "postcode"
-                ]
+                "property": "postcode"
             },
             {
                 "type": "POST",
-                "property": [
-                    "city"
-                ]
+                "property": "city"
             },
             {
                 "type": "POST",
-                "property": [
-                    "state"
-                ]
+                "property": "state"
             },
             {
                 "type": "POST",
-                "property": [
-                    "country"
-                ]
+                "property": "country"
             },
             {
                 "type": "POST",
-                "property": [
-                    "suburb"
-                ]
+                "property": "suburb"
             },
             {
                 "type": "POST",
-                "property": [
-                    "additional_address_info"
-                ]
+                "property": "additional_address_info"
             }
         ],
         "function": "filter_tags",
@@ -3126,9 +2530,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "products_model"
-                ]
+                "property": "products_model"
             }
         ],
         "function": "filter_tags",
@@ -3140,9 +2542,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "banners_title"
-                ]
+                "property": "banners_title"
             }
         ],
         "function": "filter_tags",
@@ -3154,15 +2554,11 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "cont_title"
-                ]
+                "property": "cont_title"
             },
             {
                 "type": "POST",
-                "property": [
-                    "cont_heading"
-                ]
+                "property": "cont_heading"
             }
         ],
         "function": "filter_tags",
@@ -3174,15 +2570,11 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "title"
-                ]
+                "property": "title"
             },
             {
                 "type": "POST",
-                "property": [
-                    "cc"
-                ]
+                "property": "cc"
             }
         ],
         "function": "strip_tags",
@@ -3194,9 +2586,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "withdrawal_data"
-                ]
+                "property": "withdrawal_data"
             }
         ],
         "function": "recursive_filter_tags",
@@ -3208,9 +2598,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "products_vpe_name"
-                ]
+                "property": "products_vpe_name"
             }
         ],
         "function": "recursive_filter_tags",
@@ -3222,9 +2610,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "customers_status_name"
-                ]
+                "property": "customers_status_name"
             }
         ],
         "function": "recursive_filter_tags",
@@ -3236,9 +2622,7 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "orders_status_name"
-                ]
+                "property": "orders_status_name"
             }
         ],
         "function": "recursive_filter_tags",
@@ -3254,93 +2638,63 @@
         "variables": [
             {
                 "type": "POST",
-                "property": [
-                    "firstname"
-                ]
+                "property": "firstname"
             },
             {
                 "type": "POST",
-                "property": [
-                    "lastname"
-                ]
+                "property": "lastname"
             },
             {
                 "type": "POST",
-                "property": [
-                    "email_address"
-                ]
+                "property": "email_address"
             },
             {
                 "type": "POST",
-                "property": [
-                    "email_address_confirm"
-                ]
+                "property": "email_address_confirm"
             },
             {
                 "type": "POST",
-                "property": [
-                    "vat"
-                ]
+                "property": "vat"
             },
             {
                 "type": "POST",
-                "property": [
-                    "street_address"
-                ]
+                "property": "street_address"
             },
             {
                 "type": "POST",
-                "property": [
-                    "house_number"
-                ]
+                "property": "house_number"
             },
             {
                 "type": "POST",
-                "property": [
-                    "additional_address_info"
-                ]
+                "property": "additional_address_info"
             },
             {
                 "type": "POST",
-                "property": [
-                    "suburb"
-                ]
+                "property": "suburb"
             },
             {
                 "type": "POST",
-                "property": [
-                    "postcode"
-                ]
+                "property": "postcode"
             },
             {
                 "type": "POST",
-                "property": [
-                    "city"
-                ]
+                "property": "city"
             },
             {
                 "type": "POST",
-                "property": [
-                    "state"
-                ]
+                "property": "state"
             },
             {
                 "type": "POST",
-                "property": [
-                    "country"
-                ]
+                "property": "country"
             },
             {
                 "type": "POST",
-                "property": [
-                    "telephone"
-                ]
+                "property": "telephone"
             },
             {
                 "type": "POST",
-                "property": [
-                    "fax"
-                ]
+                "property": "fax"
             }
         ],
         "function": "block_all_urls_in_registration_form",
@@ -3358,15 +2712,11 @@
         "variables": [
             {
                 "type": "GET",
-                "property": [
-                    "filter_fv_id"
-                ]
+                "property": "filter_fv_id"
             },
             {
                 "type": "GET",
-                "property": [
-                    "value_conjunction"
-                ]
+                "property": "value_conjunction"
             }
         ],
         "function": "filter_ids",
