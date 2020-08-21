@@ -8,301 +8,351 @@
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
 
-function gprotectorConvertToInteger($variable)
+function gprotector_convert_to_integer($p_variable)
 {
-    return (string)(int)$variable;
+    return (string)(int)$p_variable;
 }
 
-function gprotectorOnlyAlphabetic($variable)
+function gprotector_only_alphabetic($p_variable)
 {
-    return preg_replace('/[^a-zA-Z]/', '', (string)$variable);
+    return preg_replace('/[^a-zA-Z]/', '', (string)$p_variable);
 }
 
-function gprotectorOnlyAlphanumeric($variable)
+function gprotector_only_alphanumeric($p_variable)
 {
-    return preg_replace('/[^a-zA-Z0-9\s_-]/', '', (string)$variable);
+    return preg_replace('/[^a-zA-Z0-9\s_-]/', '', (string)$p_variable);
 }
 
-function gprotectorOnlySafeCharacters($variable)
+function gprotector_only_safe_characters($p_variable)
 {
-    return preg_replace('/[^a-zA-Z0-9_.,*\s@-]/', '', (string)$variable);
+    return preg_replace('/[^a-zA-Z0-9_.,*\s@-]/', '', (string)$p_variable);
 }
 
-function gprotectorHtmlentities($variable)
+function gprotector_htmlentities($p_variable)
 {
-    $flags = ENT_COMPAT;
-    if (defined('ENT_HTML401')) {
-        $flags = ENT_COMPAT | ENT_HTML401;
+    $t_flags = ENT_COMPAT;
+    if(defined('ENT_HTML401'))
+    {
+        $t_flags = ENT_COMPAT | ENT_HTML401;
     }
     
-    $encoding = 'ISO-8859-15';
-    if (preg_match('//u', $variable)) {
-        $encoding = 'UTF-8';
+    $t_encoding = 'ISO-8859-15';
+    if(preg_match('//u', $p_variable))
+    {
+        $t_encoding = 'UTF-8';
     }
     
-    return htmlentities((string)$variable, $flags, $encoding);
+    return htmlentities((string)$p_variable, $t_flags, $t_encoding);
 }
 
-function gprotectorHtmlspecialchars($variable)
+function gprotector_htmlspecialchars($p_variable)
 {
-    $flags = ENT_COMPAT;
-    if (defined('ENT_HTML401')) {
-        $flags = ENT_COMPAT | ENT_HTML401;
+    $t_flags = ENT_COMPAT;
+    if(defined('ENT_HTML401'))
+    {
+        $t_flags = ENT_COMPAT | ENT_HTML401;
     }
     
-    $encoding = 'ISO-8859-15';
-    if (preg_match('//u', $variable)) {
-        $encoding = 'UTF-8';
+    $t_encoding = 'ISO-8859-15';
+    if(preg_match('//u', $p_variable))
+    {
+        $t_encoding = 'UTF-8';
     }
     
-    return htmlspecialchars((string)$variable, $flags, $encoding);
+    return htmlspecialchars((string)$p_variable, $t_flags, $t_encoding);
 }
 
-function gprotectorFilterPrice($variable)
+function gprotector_filter_price($p_variable)
 {
-    $price = trim((string)$variable);
-    if (substr($price, -1) == '%') {
-        $number = substr($price, 0, -1);
-        $number = (double)$number;
-        $price  = $number . '%';
-    } else {
-        $price = (string)(double)$price;
+    $t_price = trim((string)$p_variable);
+    if(substr($t_price, -1) == '%')
+    {
+        $t_number = substr($t_price, 0, -1);
+        $t_number = (double)$t_number;
+        $t_price = $t_number . '%';
+    }
+    else
+    {
+        $t_price = (string)(double)$t_price;
     }
     
-    return $price;
+    return $t_price;
 }
 
-function gprotectorFilterText($variable)
+function gprotector_filter_text($p_variable)
 {
-    $variableArray       = [];
-    $stringVariableArray = [];
+    $t_variable_array = array();
+    $c_variable_array = array();
     
-    if (!is_array($variable)) {
-        $variableArray[] = $variable;
-    } else {
-        $variableArray = $variable;
+    if(!is_array($p_variable))
+    {
+        $t_variable_array[] = $p_variable;
+    }
+    else
+    {
+        $t_variable_array = $p_variable;
     }
     
-    $forbiddenArray   = [];
-    $forbiddenArray[] = 'onclick';
-    $forbiddenArray[] = 'ondblclick';
-    $forbiddenArray[] = 'onmousedown';
-    $forbiddenArray[] = 'onmousemove';
-    $forbiddenArray[] = 'onmouseover';
-    $forbiddenArray[] = 'onmouseout';
-    $forbiddenArray[] = 'onmouseup';
-    $forbiddenArray[] = 'onkeydown';
-    $forbiddenArray[] = 'onkeypress';
-    $forbiddenArray[] = 'onkeyup';
-    $forbiddenArray[] = 'onabort';
-    $forbiddenArray[] = 'onerror';
-    $forbiddenArray[] = 'onload';
-    $forbiddenArray[] = 'onresize';
-    $forbiddenArray[] = 'onscroll';
-    $forbiddenArray[] = 'onunload';
-    $forbiddenArray[] = 'onblur';
-    $forbiddenArray[] = 'onchange';
-    $forbiddenArray[] = 'onfocus';
-    $forbiddenArray[] = 'onreset';
-    $forbiddenArray[] = 'onselect';
-    $forbiddenArray[] = 'onsubmit';
-    $forbiddenArray[] = 'src';
-    $forbiddenArray[] = '"';
-    $forbiddenArray[] = '<';
+    $t_forbidden_array = array();
+    $t_forbidden_array[] = 'onclick';
+    $t_forbidden_array[] = 'ondblclick';
+    $t_forbidden_array[] = 'onmousedown';
+    $t_forbidden_array[] = 'onmousemove';
+    $t_forbidden_array[] = 'onmouseover';
+    $t_forbidden_array[] = 'onmouseout';
+    $t_forbidden_array[] = 'onmouseup';
+    $t_forbidden_array[] = 'onkeydown';
+    $t_forbidden_array[] = 'onkeypress';
+    $t_forbidden_array[] = 'onkeyup';
+    $t_forbidden_array[] = 'onabort';
+    $t_forbidden_array[] = 'onerror';
+    $t_forbidden_array[] = 'onload';
+    $t_forbidden_array[] = 'onresize';
+    $t_forbidden_array[] = 'onscroll';
+    $t_forbidden_array[] = 'onunload';
+    $t_forbidden_array[] = 'onblur';
+    $t_forbidden_array[] = 'onchange';
+    $t_forbidden_array[] = 'onfocus';
+    $t_forbidden_array[] = 'onreset';
+    $t_forbidden_array[] = 'onselect';
+    $t_forbidden_array[] = 'onsubmit';
+    $t_forbidden_array[] = 'src';
+    $t_forbidden_array[] = '"';
+    $t_forbidden_array[] = '<';
     
-    $patternArray   = [];
-    $patternArray[] = '/onclick\s*=/i';
-    $patternArray[] = '/ondblclick\s*=/i';
-    $patternArray[] = '/onmousedown\s*=/i';
-    $patternArray[] = '/onmousemove\s*=/i';
-    $patternArray[] = '/onmouseover\s*=/i';
-    $patternArray[] = '/onmouseout\s*=/i';
-    $patternArray[] = '/onmouseup\s*=/i';
-    $patternArray[] = '/onkeydown\s*=/i';
-    $patternArray[] = '/onkeypress\s*=/i';
-    $patternArray[] = '/onkeyup\s*=/i';
-    $patternArray[] = '/onabort\s*=/i';
-    $patternArray[] = '/onerror\s*=/i';
-    $patternArray[] = '/onload\s*=/i';
-    $patternArray[] = '/onresize\s*=/i';
-    $patternArray[] = '/onscroll\s*=/i';
-    $patternArray[] = '/onunload\s*=/i';
-    $patternArray[] = '/onblur\s*=/i';
-    $patternArray[] = '/onchange\s*=/i';
-    $patternArray[] = '/onfocus\s*=/i';
-    $patternArray[] = '/onreset\s*=/i';
-    $patternArray[] = '/onselect\s*=/i';
-    $patternArray[] = '/onsubmit\s*=/i';
-    $patternArray[] = '/src\s*=/i';
-    $patternArray[] = '/".*</';
+    $t_pattern_array = array();
+    $t_pattern_array[] = '/onclick\s*=/i';
+    $t_pattern_array[] = '/ondblclick\s*=/i';
+    $t_pattern_array[] = '/onmousedown\s*=/i';
+    $t_pattern_array[] = '/onmousemove\s*=/i';
+    $t_pattern_array[] = '/onmouseover\s*=/i';
+    $t_pattern_array[] = '/onmouseout\s*=/i';
+    $t_pattern_array[] = '/onmouseup\s*=/i';
+    $t_pattern_array[] = '/onkeydown\s*=/i';
+    $t_pattern_array[] = '/onkeypress\s*=/i';
+    $t_pattern_array[] = '/onkeyup\s*=/i';
+    $t_pattern_array[] = '/onabort\s*=/i';
+    $t_pattern_array[] = '/onerror\s*=/i';
+    $t_pattern_array[] = '/onload\s*=/i';
+    $t_pattern_array[] = '/onresize\s*=/i';
+    $t_pattern_array[] = '/onscroll\s*=/i';
+    $t_pattern_array[] = '/onunload\s*=/i';
+    $t_pattern_array[] = '/onblur\s*=/i';
+    $t_pattern_array[] = '/onchange\s*=/i';
+    $t_pattern_array[] = '/onfocus\s*=/i';
+    $t_pattern_array[] = '/onreset\s*=/i';
+    $t_pattern_array[] = '/onselect\s*=/i';
+    $t_pattern_array[] = '/onsubmit\s*=/i';
+    $t_pattern_array[] = '/src\s*=/i';
+    $t_pattern_array[] = '/".*</';
     
-    foreach ($variableArray as $key => $value) {
-        $stringValue               = (string)$value;
-        $stringVariableArray[$key] = $stringValue;
+    foreach($t_variable_array as $t_key => $t_value)
+    {
+        $c_value = (string)$t_value;
+        $c_variable_array[$t_key] = $c_value;
         
-        foreach ($patternArray as $pattern) {
-            if (preg_match($pattern, $stringValue)) {
-                $stringValue               = str_replace($forbiddenArray, '', $stringValue);
-                $searchArray               = ['&', '"', "'", '<', '>'];
-                $replaceArray              = ['&amp;', '&quot;', "&#039;", '&lt;', '&gt;'];
-                $stringVariableArray[$key] = str_replace(
-                    $searchArray,
-                    $replaceArray,
-                    str_replace($searchArray, $replaceArray, $stringValue)
-                );
+        foreach($t_pattern_array as $t_pattern)
+        {
+            if(preg_match($t_pattern, $c_value))
+            {
+                $c_value = str_replace($t_forbidden_array, '', $c_value);
+                $t_search_array = array('&', '"', "'", '<', '>');
+                $t_replace_array = array('&amp;', '&quot;', "&#039;", '&lt;', '&gt;');
+                $c_variable_array[$t_key] = str_replace($t_search_array, $t_replace_array, str_replace($t_search_array, $t_replace_array, $c_value));
             }
         }
     }
     
-    if (!is_array($variable)) {
-        $returnVariable = array_pop($stringVariableArray);
-    } else {
-        $returnVariable = $stringVariableArray;
+    if(!is_array($p_variable))
+    {
+        $t_return_variable = array_pop($c_variable_array);
+    }
+    else
+    {
+        $t_return_variable = $c_variable_array;
     }
     
-    return $returnVariable;
+    return $t_return_variable;
 }
 
-function gprotector_only_numeric($variable)
+function gprotector_only_numeric($p_variable)
 {
-    return preg_replace('/[^0-9.,-]/', '', (string)$variable);
+    return preg_replace('/[^0-9.,-]/', '', (string)$p_variable);
 }
 
-function gprotector_only_hex_code($variable)
+function gprotector_only_hex_code($p_variable)
 {
-    return preg_replace('/[^a-fA-F0-9#]/', '', (string)$variable);
+    return preg_replace('/[^a-fA-F0-9#]/', '', (string)$p_variable);
 }
 
-function gprotectorRecursiveIntegerValue($variable)
+function gprotector_recursive_integer_value($p_variable)
 {
-    if (is_array($variable)) {
-        $arrayVariable = [];
+    if(is_array($p_variable))
+    {
+        $c_variable = array();
         
-        foreach ($variable as $key => $value) {
-            $arrayVariable[$key] = '';
-            if ($value !== '') {
-                $arrayVariable[$key] = gprotectorRecursiveIntegerValue($value);
+        foreach($p_variable as $t_key => $t_value)
+        {
+            $c_variable[$t_key] = '';
+            if($t_value !== '')
+            {
+                $c_variable[$t_key] = gprotector_recursive_integer_value($t_value);
             }
         }
-    } else {
-        $arrayVariable = gprotectorConvertToInteger($variable);
+    }
+    else
+    {
+        $c_variable = gprotector_convert_to_integer($p_variable);
     }
     
-    return $arrayVariable;
+    return $c_variable;
 }
 
-function gprotectorRecursiveOnlyAlphanumeric($variable)
+
+function gprotector_recursive_only_alphanumeric($p_variable)
 {
-    if (is_array($variable)) {
-        $arrayVariable = [];
+    if(is_array($p_variable))
+    {
+        $c_variable = array();
         
-        foreach ($variable as $key => $value) {
-            $arrayVariable[$key] = gprotectorRecursiveOnlyAlphanumeric($value);
+        foreach($p_variable as $t_key => $t_value)
+        {
+            $c_variable[$t_key] = gprotector_recursive_only_alphanumeric($t_value);
         }
-    } else {
-        $arrayVariable = gprotectorOnlyAlphanumeric($variable);
+    }
+    else
+    {
+        $c_variable = gprotector_only_alphanumeric($p_variable);
     }
     
-    return $arrayVariable;
+    return $c_variable;
 }
 
-function gprotectorRecursiveFilterText($variable)
+
+function gprotector_recursive_filter_text($p_variable)
 {
-    if (is_array($variable)) {
-        $arrayVariable = [];
+    if(is_array($p_variable))
+    {
+        $c_variable = array();
         
-        foreach ($variable as $key => $value) {
-            $arrayVariable[$key] = gprotectorRecursiveFilterText($value);
+        foreach($p_variable as $t_key => $t_value)
+        {
+            $c_variable[$t_key] = gprotector_recursive_filter_text($t_value);
         }
-    } else {
-        $arrayVariable = gprotectorFilterText($variable);
+    }
+    else
+    {
+        $c_variable = gprotector_filter_text($p_variable);
     }
     
-    return $arrayVariable;
+    return $c_variable;
 }
 
-function gprotectorRecursiveOnlySafeCharacters($variable)
+
+function gprotector_recursive_only_safe_characters($p_variable)
 {
-    if (is_array($variable)) {
-        $arrayVariable = [];
+    if(is_array($p_variable))
+    {
+        $c_variable = array();
         
-        foreach ($variable as $key => $value) {
-            $arrayVariable[$key] = gprotectorRecursiveOnlySafeCharacters($value);
+        foreach($p_variable as $t_key => $t_value)
+        {
+            $c_variable[$t_key] = gprotector_recursive_only_safe_characters($t_value);
         }
-    } else {
-        $arrayVariable = gprotectorOnlySafeCharacters($variable);
+    }
+    else
+    {
+        $c_variable = gprotector_only_safe_characters($p_variable);
     }
     
-    return $arrayVariable;
+    return $c_variable;
 }
 
-function gprotectorRecursiveHtmlspecialchars($variable)
+
+function gprotector_recursive_htmlspecialchars($p_variable)
 {
-    if (is_array($variable)) {
-        $arrayVariable = [];
+    if(is_array($p_variable))
+    {
+        $c_variable = array();
         
-        foreach ($variable as $key => $value) {
-            $arrayVariable[$key] = gprotectorRecursiveHtmlspecialchars($value);
+        foreach($p_variable as $t_key => $t_value)
+        {
+            $c_variable[$t_key] = gprotector_recursive_htmlspecialchars($t_value);
         }
-    } else {
-        $arrayVariable = gprotectorHtmlspecialchars($variable);
+    }
+    else
+    {
+        $c_variable = gprotector_htmlspecialchars($p_variable);
     }
     
-    return $arrayVariable;
+    return $c_variable;
 }
 
-function gprotectorBasename($variable)
+
+function gprotector_basename($p_variable)
 {
-    $stringVariable = '';
+    $c_variable = '';
     
-    if (is_string($variable)) {
-        $stringVariable = basename($variable);
+    if(is_string($p_variable))
+    {
+        $c_variable = basename($p_variable);
     }
     
-    return $stringVariable;
+    return $c_variable;
 }
 
-function gprotectorFilterTags($variable)
+
+function gprotector_filter_tags($p_variable)
 {
-    $stringVariable = '';
+    $c_variable = '';
     
-    if (is_string($variable)) {
-        $stringVariable = str_replace(['<', '>'], '', $variable);
+    if(is_string($p_variable))
+    {
+        $c_variable = str_replace(array('<', '>'), '', $p_variable);
     }
     
-    return $stringVariable;
+    return $c_variable;
 }
 
-function gprotectorStripTags($variable)
+
+function gprotector_strip_tags($p_variable)
 {
-    $stringVariable = '';
+    $c_variable = '';
     
-    if (is_string($variable)) {
-        $stringVariable = strip_tags($variable);
+    if(is_string($p_variable))
+    {
+        $c_variable = strip_tags($p_variable);
     }
     
-    return $stringVariable;
+    return $c_variable;
 }
 
-function gprotectorRecursiveFilterTags($variable)
+
+function gprotector_recursive_filter_tags($p_variable)
 {
-    if (is_array($variable)) {
-        $arrayVariable = [];
+    if(is_array($p_variable))
+    {
+        $c_variable = array();
         
-        foreach ($variable as $key => $value) {
-            $arrayVariable[$key] = gprotectorRecursiveFilterTags($value);
+        foreach($p_variable as $t_key => $t_value)
+        {
+            $c_variable[$t_key] = gprotector_recursive_filter_tags($t_value);
         }
-    } else {
-        $arrayVariable = str_replace(['<', '>'], '', $variable);
+    }
+    else
+    {
+        $c_variable = str_replace(array('<', '>'), '', $p_variable);
     }
     
-    return $arrayVariable;
+    return $c_variable;
 }
 
-function gprotectorBlockAllUrlsInRegistrationForm($variable)
+
+function gprotector_block_all_urls_in_registration_form($p_variable)
 {
-    if ((!isset($_GET['do']) || $_GET['do'] === 'CreateRegistree/Proceed' || $_GET['do'] === 'CreateGuest/Proceed')
-        && (strpos($variable, 'http://') !== false || strpos($variable, 'https://') !== false)) {
+    if((!isset($_GET['do']) || $_GET['do'] === 'CreateRegistree/Proceed' || $_GET['do'] === 'CreateGuest/Proceed')
+       && (strpos($p_variable, 'http://') !== false || strpos($p_variable, 'https://') !== false))
+    {
         $_POST["firstname"]               = '';
         $_POST["lastname"]                = '';
         $_POST["email_address"]           = '';
@@ -322,24 +372,30 @@ function gprotectorBlockAllUrlsInRegistrationForm($variable)
         return '';
     }
     
-    return $variable;
+    return $p_variable;
 }
 
-function gprotectorFilterIds($variable)
+
+function gprotector_filter_ids($p_variable)
 {
-    if (is_array($variable)) {
-        $arrayVariable = [];
+    if(is_array($p_variable))
+    {
+        $c_variable = array();
         
-        foreach ($variable as $key => $value) {
-            $intKey                 = gprotectorConvertToInteger($key);
-            $arrayVariable[$intKey] = '';
-            if ($value !== '') {
-                $arrayVariable[$intKey] = gprotectorRecursiveIntegerValue($value);
+        foreach($p_variable as $t_key => $t_value)
+        {
+            $c_key = gprotector_convert_to_integer($t_key);
+            $c_variable[$c_key] = '';
+            if($t_value !== '')
+            {
+                $c_variable[$c_key] = gprotector_recursive_integer_value($t_value);
             }
         }
-    } else {
-        $arrayVariable = preg_replace('/[^0-9&:\|]/', '', (string)$variable);
+    }
+    else
+    {
+        $c_variable = preg_replace('/[^0-9&:\|]/', '', (string)$p_variable);
     }
     
-    return $arrayVariable;
+    return $c_variable;
 }
