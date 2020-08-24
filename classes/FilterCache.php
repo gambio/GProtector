@@ -188,7 +188,7 @@ class FilterCache
      */
     private function getRemoteRules()
     {
-        return file_get_contents(GAMBIO_PROTECTOR_REMOTE_FILTERRULES_URL);
+        return @file_get_contents(GAMBIO_PROTECTOR_REMOTE_FILTERRULES_URL);
     }
     
 }

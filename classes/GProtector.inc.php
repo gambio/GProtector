@@ -117,7 +117,7 @@ class GProtector
      */
     private function initLogConnectors()
     {
-        $filesArray = glob(GAMBIO_PROTECTOR_CONNECTORS_DIR . $this->getFilePattern());
+        $filesArray = glob(GAMBIO_PROTECTOR_CONNECTORS_DIR . '*.php');
         
         if (is_array($filesArray)) {
             foreach ($filesArray as $file) {
@@ -217,11 +217,8 @@ class GProtector
                     && is_array(
                         $dataArray['script_name_array']
                     )) {
-                    /**
-                     * @var array $scriptPath
-                     */
                     foreach ($dataArray['script_name_array'] as $scriptPath) {
-                        if ($this->isScript($scriptPath) === true) {
+                        if ($this->isScript($scriptPath->scriptName()) === true) {
                             if (isset($dataArray['function'])) {
                                 $function       = (string)$dataArray['function'];
                                 $functionPrefix = $this->getFunctionPrefix();
@@ -233,63 +230,95 @@ class GProtector
                                             $dataArray['variables_array']
                                         )) {
                                         /**
-                                         * @var Variable $variable
+                                         * @var Variable $variablesArray
                                          */
-                                        foreach ($dataArray['variables_array'] as $variable) {
-                                            $variableReferences = [];
-    
-                                            $isSubcategory = $variable->isSubcategory();
+                                        foreach ($dataArray['variables_array'] as $variablesArray) {
+                                            $variables = [];
                                             
-                                            $type = $variable->type();
-                                            $properties = $variable->properties();
-                                            $subCategory = $variable->subCategory();
-                                            
-                                            if ($isSubcategory) {
-                                                foreach ($properties as $property) {
-                                                    $variableReferences[] = ${"_${type}[${$subCategory}][${property}]"};
+                                            if ($variablesArray->isSubCategory()) {
+                                                foreach ($variablesArray->properties() as $property) {
+                                                    $variables[] = '_' . $variablesArray->type() . '["' . $variablesArray->subCategory() . '"]' . '["' . $property . '"]';
                                                 }
-                                                
+                                                return;
                                             } else {
-                                                $variableReferences[] = ${"_${type}[${properties}]"};
+                                                $variables[] = '_' . $variablesArray->type() . '["' . $variablesArray->properties() . '"]';
                                             }
                                             
-                                            foreach ($variableReferences as $variableReference) {
-                                                if (isset($valueReference) && $valueReference !== '') {
-                                                    $variableCopy   = $valueReference;
-                                                    $valueReference = call_user_func($function, $valueReference);
-                                                    if ($variableCopy != $valueReference) {
-                                                        $this->log(
-                                                            'Die Regel "' . $filterName
-                                                            . '" hat einen unerwarteten Variablenwert erkannt und erfolgreich gefiltert.',
-                                                            'security',
-                                                            $dataArray['severity']
-                                                        );
-                                                        if (is_array($variableCopy) || is_object($variableCopy)) {
+                                            
+                                            foreach ($variables as $variable) {
+                                                $variableString = (string)$variable;
+                                                
+                                                $arrayBracketPos    = (int)strpos($variableString, '[');
+                                                $variableNameEndPos = strlen($variableString);
+                                                
+                                                if ($arrayBracketPos > 0) {
+                                                    $variableNameEndPos = $arrayBracketPos;
+                                                }
+                                                
+                                                if ($variableNameEndPos > 0) {
+                                                    $variableName = substr($variableString, 0, $variableNameEndPos);
+                                                    
+                                                    global ${$variableName};
+                                                    
+                                                    $variableReference =& ${$variableName};
+                                                    
+                                                    preg_match_all(
+                                                        '/\[("|\')?([^"\'\]]+)("|\')?]/',
+                                                        $variableString,
+                                                        $matchesArray
+                                                    );
+                                                    
+                                                    if (isset($matchesArray[2]) && !empty($matchesArray[2])) {
+                                                        foreach ($matchesArray[2] as $key) {
+                                                            if (!isset($valueReference)
+                                                                && isset($variableReference[$key])) {
+                                                                $valueReference =& $variableReference[$key];
+                                                            } elseif (isset($valueReference) && is_array($valueReference)) {
+                                                                $valueReference =& $valueReference[$key];
+                                                            }
+                                                        }
+                                                    } else {
+                                                        $valueReference = $variableReference;
+                                                    }
+                                                    
+                                                    if (isset($valueReference) && $valueReference !== '') {
+                                                        // run filter
+                                                        $variableCopy   = $valueReference;
+                                                        $valueReference = call_user_func($function, $valueReference);
+                                                        if ($variableCopy != $valueReference) {
                                                             $this->log(
-                                                                "unerwarteter Variablenwert\r\nFilterregel: "
-                                                                . $filterName
-                                                                . "\r\nVariable: $$variableString\rnvorher: " . print_r(
-                                                                    $variableCopy,
-                                                                    true
-                                                                ) . "\r\nnachher: " . print_r($valueReference, true),
-                                                                'security_debug',
+                                                                'Die Regel "' . $filterName
+                                                                . '" hat einen unerwarteten Variablenwert erkannt und erfolgreich gefiltert.',
+                                                                'security',
                                                                 $dataArray['severity']
                                                             );
-                                                        } else {
-                                                            $this->log(
-                                                                "unerwarteter Variablenwert\r\nFilterregel: "
-                                                                . $filterName
-                                                                . "\r\nVariable: $$variableString\r\nvorher: "
-                                                                . $variableCopy . "\r\nnachher: " . $valueReference,
-                                                                'security_debug',
-                                                                $dataArray['severity']
-                                                            );
+                                                            if (is_array($variableCopy) || is_object($variableCopy)) {
+                                                                $this->log(
+                                                                    "unerwarteter Variablenwert\r\nFilterregel: "
+                                                                    . $filterName
+                                                                    . "\r\nVariable: $$variableString\rnvorher: " . print_r(
+                                                                        $variableCopy,
+                                                                        true
+                                                                    ) . "\r\nnachher: " . print_r($valueReference, true),
+                                                                    'security_debug',
+                                                                    $dataArray['severity']
+                                                                );
+                                                            } else {
+                                                                $this->log(
+                                                                    "unerwarteter Variablenwert\r\nFilterregel: "
+                                                                    . $filterName
+                                                                    . "\r\nVariable: $$variableString\r\nvorher: "
+                                                                    . $variableCopy . "\r\nnachher: " . $valueReference,
+                                                                    'security_debug',
+                                                                    $dataArray['severity']
+                                                                );
+                                                            }
                                                         }
                                                     }
-                                                }
-    
-                                                if (isset($valueReference)) {
-                                                    unset($valueReference);
+                                                    
+                                                    if (isset($valueReference)) {
+                                                        unset($valueReference);
+                                                    }
                                                 }
                                             }
                                         }
@@ -327,7 +356,7 @@ class GProtector
     
     private function loadFunctions()
     {
-        $filesArray = glob(GAMBIO_PROTECTOR_FUNCTIONS_DIR . $this->getFilePattern());
+        $filesArray = glob(GAMBIO_PROTECTOR_FUNCTIONS_DIR . '*.php');
         
         if (is_array($filesArray)) {
             foreach ($filesArray as $filepath) {

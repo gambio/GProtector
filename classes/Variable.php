@@ -46,7 +46,7 @@ class Variable
             throw new InvalidArgumentException('Invalid type');
         }
         
-        if (!is_string($properties) || !is_array($properties)) {
+        if (!is_string($properties) && !is_array($properties)) {
             throw new InvalidArgumentException('Invalid properties');
         }
         
