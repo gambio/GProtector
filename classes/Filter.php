@@ -88,7 +88,8 @@ class Filter
     
         $variables = [];
         foreach ($rawFilter['variables'] as $variableName) {
-            $variables[] = new Variable($variableName['type'], $variableName['property']);
+            $isSubcategory = isset($variableName['subcategory']) && is_array($variableName['property']);
+            $variables[] = new Variable($variableName['type'], $variableName['property'], $isSubcategory ? $variableName['subcategory'] : null);
         }
         $variableCollection = new VariableCollection($variables);
         $method             = new Method($rawFilter['function']);

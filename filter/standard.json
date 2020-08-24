@@ -428,19 +428,18 @@
         "variables": [
             {
                 "type": "POST",
-                "property": {
-                    "intraship": [
-                        "ekp",
-                        "zone_1_product",
-                        "zone_2_product",
-                        "zone_3_product",
-                        "zone_4_product",
-                        "zone_1_partner_id",
-                        "zone_2_partner_id",
-                        "zone_3_partner_id",
-                        "zone_4_partner_id"
-                    ]
-                }
+                "subcategory": "intraship",
+                "property": [
+                    "ekp",
+                    "zone_1_product",
+                    "zone_2_product",
+                    "zone_3_product",
+                    "zone_4_product",
+                    "zone_1_partner_id",
+                    "zone_2_partner_id",
+                    "zone_3_partner_id",
+                    "zone_4_partner_id"
+                ]
             }
         ],
         "function": "only_alphanumeric",
@@ -1459,18 +1458,17 @@
         "variables": [
             {
                 "type": "POST",
-                "property": {
-                    "intraship": [
-                        "active",
-                        "debug",
-                        "send_email",
-                        "send_announcement",
-                        "bpi_use_premium",
-                        "use_postfinder",
-                        "status_id_storno",
-                        "status_id_sent"
-                    ]
-                }
+                "subcategory": "intraship",
+                "property": [
+                    "active",
+                    "debug",
+                    "send_email",
+                    "send_announcement",
+                    "bpi_use_premium",
+                    "use_postfinder",
+                    "status_id_storno",
+                    "status_id_sent"
+                ]
             }
         ],
         "function": "convert_to_integer",
@@ -1656,12 +1654,11 @@
         "variables": [
             {
                 "type": "POST",
-                "property": {
-                    "intraship": [
-                        "cod_account_number",
-                        "cod_bank_number"
-                    ]
-                }
+                "subcategory": "intraship",
+                "property": [
+                    "cod_account_number",
+                    "cod_bank_number"
+                ]
             }
         ],
         "function": "only_numeric",
@@ -1806,12 +1803,11 @@
             },
             {
                 "type": "POST",
-                "property": {
-                    "conf": [
-                        "general.passphrase",
-                        "general.firstactivation"
-                    ]
-                }
+                "subcategory": "conf",
+                "property": [
+                    "general.passphrase",
+                    "general.firstactivation"
+                ]
             }
         ],
         "function": "filter_text",
@@ -1823,17 +1819,16 @@
         "variables": [
             {
                 "type": "POST",
-                "property": {
-                    "intraship": [
-                        "password",
-                        "shipper_name",
-                        "shipper_contact",
-                        "shipper_city",
-                        "shipper_street",
-                        "cod_account_holder",
-                        "cod_bank_name"
-                    ]
-                }
+                "subcategory": "intraship",
+                "property": [
+                    "password",
+                    "shipper_name",
+                    "shipper_contact",
+                    "shipper_city",
+                    "shipper_street",
+                    "cod_account_holder",
+                    "cod_bank_name"
+                ]
             }
         ],
         "function": "filter_text",
@@ -2049,21 +2044,20 @@
         "variables": [
             {
                 "type": "POST",
-                "property": {
-                    "intraship": [
-                        "user",
-                        "intraship_zone_1_countries",
-                        "intraship_zone_2_countries",
-                        "intraship_zone_3_countries",
-                        "intraship_zone_4_countries",
-                        "shipper_house",
-                        "shipper_postcode",
-                        "shipper_email",
-                        "shipper_phone",
-                        "cod_iban",
-                        "cod_bic"
-                    ]
-                }
+                "subcategory": "intraship",
+                "property": [
+                    "user",
+                    "intraship_zone_1_countries",
+                    "intraship_zone_2_countries",
+                    "intraship_zone_3_countries",
+                    "intraship_zone_4_countries",
+                    "shipper_house",
+                    "shipper_postcode",
+                    "shipper_email",
+                    "shipper_phone",
+                    "cod_iban",
+                    "cod_bic"
+                ]
             }
         ],
         "function": "only_safe_characters",

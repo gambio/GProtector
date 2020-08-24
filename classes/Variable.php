@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------
-  Variable.php 2020-02-28
+  Variable.php 2020-08-24
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -21,9 +21,14 @@ class Variable
     private $type;
     
     /**
-     * @var array $properties
+     * @var array|string $properties
      */
-    private $properties = [];
+    private $properties;
+    
+    /**
+     * @var null|string $subCategory
+     */
+    private $subCategory;
     
     
     /**
@@ -31,75 +36,59 @@ class Variable
      *
      * Variable constructor.
      *
-     * @param string $type
-     * @param array  $properties
+     * @param string       $type
+     * @param array|string $properties
+     * @param null|string  $subCategory
      */
-    public function __construct($type, $properties)
+    public function __construct($type, $properties, $subCategory = null)
     {
-        $this->validateType($type);
-        $this->validateProperties($properties);
+        if (!in_array(strtoupper($type), ['POST', 'GET', 'REQUEST'])) {
+            throw new InvalidArgumentException('Invalid type');
+        }
         
-        $this->type       = $type;
-        $this->properties = $properties;
+        if (!is_string($properties) || !is_array($properties)) {
+            throw new InvalidArgumentException('Invalid properties');
+        }
+        
+        if ($subCategory !== null && !is_string($subCategory)) {
+            throw new InvalidArgumentException('Invalid sub category name');
+        }
+        
+        $this->type        = $type;
+        $this->properties  = $properties;
+        $this->subCategory = $subCategory;
     }
     
     
     /**
      * @return string
      */
-    public function getType()
+    public function type()
     {
         return $this->type;
     }
     
+    
     /**
      * @return array
      */
-    public function getProperties()
+    public function properties()
     {
         return $this->properties;
     }
     
     
     /**
-     * Validates type
-     *
-     * @param mixed $type to be validated
-     *
-     * @throws InvalidArgumentException if type is null or not equals to post or get
+     * @return string|null
      */
-    private function validateType($type)
+    public function subCategory()
     {
-        $typeArray = ['POST', 'GET', 'REQUEST'];
-        if (in_array(strtoupper($type), $typeArray) === false) {
-            throw new InvalidArgumentException('Invalid $type');
-        }
+        return $this->subCategory;
     }
     
     
-    /**
-     * Validates property
-     *
-     * @param mixed $properties to be validated
-     *
-     * @throws InvalidArgumentException if property is null or not an array
-     *
-     */
-    private function validateProperties($properties)
+    public function isSubcategory()
     {
-        if ($properties === null) {
-            throw new InvalidArgumentException('Invalid $properties');
-        }
-
-        if (is_string($properties)) {
-            return;
-        }
-        
-        foreach ($properties as $property) {
-            if ($property === null || (is_array($property)) === false) {
-                throw new InvalidArgumentException('Invalid $property');
-            }
-        }
+        return $this->subCategory !== null && is_array($this->properties);
     }
-    
 }
