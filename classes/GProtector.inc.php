@@ -217,8 +217,11 @@ class GProtector
                     && is_array(
                         $dataArray['script_name_array']
                     )) {
+                    /**
+                     * @var array $scriptPath
+                     */
                     foreach ($dataArray['script_name_array'] as $scriptPath) {
-                        if ($this->isScript($scriptPath->scriptName()) === true) {
+                        if ($this->isScript($scriptPath) === true) {
                             if (isset($dataArray['function'])) {
                                 $function       = (string)$dataArray['function'];
                                 $functionPrefix = $this->getFunctionPrefix();
@@ -229,44 +232,29 @@ class GProtector
                                         && is_array(
                                             $dataArray['variables_array']
                                         )) {
+                                        /**
+                                         * @var Variable $variable
+                                         */
                                         foreach ($dataArray['variables_array'] as $variable) {
-                                            $variableString = (string)$variable;
+                                            $variableReferences = [];
+    
+                                            $isSubcategory = $variable->isSubcategory();
                                             
-                                            $arrayBracketPos    = (int)strpos($variableString, '[');
-                                            $variableNameEndPos = strlen($variableString);
+                                            $type = $variable->type();
+                                            $properties = $variable->properties();
+                                            $subCategory = $variable->subCategory();
                                             
-                                            if ($arrayBracketPos > 0) {
-                                                $variableNameEndPos = $arrayBracketPos;
-                                            }
-                                            
-                                            if ($variableNameEndPos > 0) {
-                                                $variableName = substr($variableString, 0, $variableNameEndPos);
-                                                
-                                                global ${$variableName};
-                                                
-                                                $variableReference =& ${$variableName};
-                                                
-                                                preg_match_all(
-                                                    '/\[("|\')?([^"\'\]]+)("|\')?]/',
-                                                    $variableString,
-                                                    $matchesArray
-                                                );
-                                                
-                                                if (isset($matchesArray[2]) && !empty($matchesArray[2])) {
-                                                    foreach ($matchesArray[2] as $key) {
-                                                        if (!isset($valueReference)
-                                                            && isset($variableReference[$key])) {
-                                                            $valueReference =& $variableReference[$key];
-                                                        } elseif (isset($valueReference) && is_array($valueReference)) {
-                                                            $valueReference =& $valueReference[$key];
-                                                        }
-                                                    }
-                                                } else {
-                                                    $valueReference = $variableReference;
+                                            if ($isSubcategory) {
+                                                foreach ($properties as $property) {
+                                                    $variableReferences[] = ${"_${type}[${$subCategory}][${property}]"};
                                                 }
                                                 
+                                            } else {
+                                                $variableReferences[] = ${"_${type}[${properties}]"};
+                                            }
+                                            
+                                            foreach ($variableReferences as $variableReference) {
                                                 if (isset($valueReference) && $valueReference !== '') {
-                                                    // run filter
                                                     $variableCopy   = $valueReference;
                                                     $valueReference = call_user_func($function, $valueReference);
                                                     if ($variableCopy != $valueReference) {
@@ -299,7 +287,7 @@ class GProtector
                                                         }
                                                     }
                                                 }
-                                                
+    
                                                 if (isset($valueReference)) {
                                                     unset($valueReference);
                                                 }
