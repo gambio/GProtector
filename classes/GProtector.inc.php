@@ -239,7 +239,6 @@ class GProtector
                                                 foreach ($variablesArray->properties() as $property) {
                                                     $variables[] = '_' . $variablesArray->type() . '["' . $variablesArray->subCategory() . '"]' . '["' . $property . '"]';
                                                 }
-                                                return;
                                             } else {
                                                 $variables[] = '_' . $variablesArray->type() . '["' . $variablesArray->properties() . '"]';
                                             }
