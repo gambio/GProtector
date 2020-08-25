@@ -22,6 +22,10 @@ if (defined('E_DEPRECATED')) {
     );
 }
 
+if (!class_exists('\Composer\Autoload\ClassLoader', false)) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+}
+
 require_once(dirname(__FILE__) . '/config.inc.php');
 require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/GProtectorLogConnectorInterface.inc.php');
 require_once(GAMBIO_PROTECTOR_CLASSES_DIR . '/GProtector.inc.php');
