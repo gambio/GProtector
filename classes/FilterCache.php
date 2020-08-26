@@ -188,7 +188,21 @@ class FilterCache
      */
     private function getRemoteRules()
     {
-        return @file_get_contents(GAMBIO_PROTECTOR_REMOTE_FILTERRULES_URL);
+        $connection = curl_init();
+        $timeout = 5;
+        
+        curl_setopt($connection, CURLOPT_URL, GAMBIO_PROTECTOR_REMOTE_FILTERRULES_URL);
+        curl_setopt($connection, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($connection, CURLOPT_TIMEOUT, $timeout);
+        curl_setopt($connection, CURLOPT_CONNECTTIMEOUT, $timeout);
+        curl_setopt($connection, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($connection, CURLOPT_MAXFILESIZE, 2000000);
+        
+        $content = curl_exec($connection);
+        
+        curl_close($connection);
+        
+        return $content;
     }
     
 }
