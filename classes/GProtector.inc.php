@@ -1,9 +1,9 @@
 <?php
 /* --------------------------------------------------------------
-  GProtector.inc.php 2020-07-31
+  GProtector.inc.php 2020-09-03
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2019 Gambio GmbH
+  Copyright (c) 2020 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
@@ -128,28 +128,33 @@ class GProtector
     
     
     /**
-     * Return the visitor's IP address
+     * Return the visitor's IP addresses
      *
-     * @return string Visitor's IP address
+     * @return array Visitor's IP addresses
      */
     private function getUserIp()
     {
-        if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && !empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        } elseif (isset($_SERVER['HTTP_CLIENT_IP']) && !empty($_SERVER['HTTP_CLIENT_IP'])) {
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
-        } else {
-            $ip = $_SERVER['REMOTE_ADDR'];
+        $headersToCheck = [
+            'HTTP_X_FORWARDED_FOR',
+            'HTTP_CLIENT_IP',
+            'REMOTE_ADDR'
+        ];
+    
+        $ipList = [];
+        foreach ($headersToCheck as $headerName) {
+            if (!empty($_SERVER[$headerName])) {
+                $ipList[] = $_SERVER[$headerName];
+            }
         }
         
-        return $ip;
+        return $ipList;
     }
     
     
     /**
      * Search the given IP in blacklist and returns true if it is in the blacklist.
      *
-     * @param string $userIp User IP to check
+     * @param array $userIp User IPs to check
      *
      * @return bool OK:false | blocked IP: true
      *
@@ -164,9 +169,8 @@ class GProtector
                     $blockedIp = trim($blockedIp);
                     
                     if (!empty($blockedIp)) {
-                        if (strpos(trim($userIp), trim($blockedIp)) === 0) {
+                        if (in_array($blockedIp, $userIp)) {
                             fclose($fileHandle);
-                            
                             return true;
                         }
                     }
@@ -657,7 +661,7 @@ class GProtector
         $receivedLogFilename    = (string)$logFilename;
         $receivedMessageDetails = (string)$messageDetails;
         
-        $receivedTemplate = $this->substitute($receivedTemplate, '{IP}', $this->getUserIp());
+        $receivedTemplate = $this->substitute($receivedTemplate, '{IP}', implode(',', $this->getUserIp()));
         $receivedTemplate = $this->substitute($receivedTemplate, '{DATETIME}', date('Y-m-d H:i:s'));
         $receivedTemplate = $this->substitute($receivedTemplate, '{MESSAGE}', $receivedMessage);
         $receivedTemplate = $this->substitute($receivedTemplate, '{SCRIPT}', $this->getRunningScriptPath());
