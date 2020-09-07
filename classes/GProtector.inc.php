@@ -143,11 +143,13 @@ class GProtector
         $ipList = [];
         foreach ($headersToCheck as $headerName) {
             if (!empty($_SERVER[$headerName])) {
-                $ipList[] = $_SERVER[$headerName];
+                // Removes the white space after the comma
+                $currentHeader = preg_replace('/,\s/', ',', $_SERVER[$headerName]);
+                $ipList[] = explode(',', $currentHeader);
             }
         }
         
-        return $ipList;
+        return array_merge(...$ipList);
     }
     
     
