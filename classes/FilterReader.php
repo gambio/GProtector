@@ -85,6 +85,9 @@ class FilterReader
 
         $filesContent = [];
         foreach ($filenames as $filename) {
+            if (substr($filename, -5) !== '.json') {
+                continue;
+            }
             $rawFileContent = file_get_contents(GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR . $filename);
             $jsonFileContent = json_decode($rawFileContent, true);
             $filesContent = array_merge($filesContent, $jsonFileContent);
