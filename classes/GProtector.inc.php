@@ -121,7 +121,7 @@ class GProtector
         
         if (is_array($filesArray)) {
             foreach ($filesArray as $file) {
-                include_once($file);
+                include_once $file;
             }
         }
     }
@@ -365,7 +365,7 @@ class GProtector
         
         if (is_array($filesArray)) {
             foreach ($filesArray as $filepath) {
-                include_once($filepath);
+                include_once $filepath;
             }
             
             return true;
@@ -375,20 +375,6 @@ class GProtector
         }
         
         return false;
-    }
-    
-    
-    private function getFilePattern()
-    {
-        $filePattern = '*.json';
-        if (defined('GAMBIO_PROTECTOR_FILE_PATTERN')) {
-            $pattern = trim((string)GAMBIO_PROTECTOR_FILE_PATTERN);
-            if ($pattern != '') {
-                $filePattern = $pattern;
-            }
-        }
-        
-        return $filePattern;
     }
     
     
@@ -701,7 +687,7 @@ class GProtector
     
     private function getIpBlacklistPath()
     {
-        $dir = dirname(__FILE__) . '/';
+        $dir = __DIR__ . '/';
         
         if (defined('GAMBIO_PROTECTOR_DIR') && is_string(GAMBIO_PROTECTOR_DIR) && @is_dir(GAMBIO_PROTECTOR_DIR)) {
             $dir = GAMBIO_PROTECTOR_DIR;
