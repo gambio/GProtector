@@ -36,6 +36,17 @@ class Severity
     
     
     /**
+     * Getter for severity
+     *
+     * @return string
+     */
+    public function severity()
+    {
+        return $this->severity;
+    }
+    
+    
+    /**
      * Validates severity
      *
      * @param mixed $severity severity to be validated
@@ -49,16 +60,5 @@ class Severity
         if(in_array($severity, $validSeverities) === false) {
             throw new InvalidArgumentException('Invalid $severity');
         }
-    }
-    
-    
-    /**
-     * Getter for severity
-     *
-     * @return string
-     */
-    public function severity()
-    {
-        return $this->severity;
     }
 }

@@ -45,18 +45,6 @@ class VariableCollection implements IteratorAggregate
     
     
     /**
-     * Adds a new item.
-     *
-     * @param Variable $item Item which should be added to the collection
-     *
-     */
-    private function add(Variable $item)
-    {
-        $this->variableArray[] = $item;
-    }
-    
-    
-    /**
      * @return ArrayIterator|Traversable
      */
     public function getIterator()
@@ -73,6 +61,18 @@ class VariableCollection implements IteratorAggregate
     public function getArray()
     {
         return $this->variableArray;
+    }
+    
+    
+    /**
+     * Adds a new item.
+     *
+     * @param Variable $item Item which should be added to the collection
+     *
+     */
+    private function add(Variable $item)
+    {
+        $this->variableArray[] = $item;
     }
     
     

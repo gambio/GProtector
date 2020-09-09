@@ -38,6 +38,17 @@ class ScriptName
     
     
     /**
+     * Getter for script name
+     *
+     * @return string
+     */
+    public function scriptName()
+    {
+        return $this->scriptName;
+    }
+    
+    
+    /**
      * Validates a script name
      *
      * @param string $scriptName The script name to be validated
@@ -51,17 +62,5 @@ class ScriptName
             throw new InvalidArgumentException('Invalid $scriptName');
         }
     }
-    
-    
-    /**
-     * Getter for script name
-     *
-     * @return string
-     */
-    public function scriptName()
-    {
-        return $this->scriptName;
-    }
-    
     
 }

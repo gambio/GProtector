@@ -10,8 +10,6 @@
 
 namespace GProtector;
 
-use Exception;
-
 /**
  * Class GProtectorFilterReader
  */
@@ -23,7 +21,7 @@ class FilterReader
      * otherwise retry.
      *
      * @return mixed
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public function getFallbackFilterRules()
     {
@@ -34,7 +32,30 @@ class FilterReader
             return json_decode($localRules, true);
         }
         
-        return new Exception("Fallback standard.json file is invalid.");
+        return new InvalidArgumentException("Fallback standard.json file is invalid.");
+    }
+    
+    
+    /**
+     * Gets a List of Custom FilterRule files, passes these into getCustomFilesContent() and returns it.
+     *
+     * @return array
+     */
+    public function getCustomFilterRules()
+    {
+        $allFiles = scandir(GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR);
+        $filenames = array_diff($allFiles, ['..', '.', GAMBIO_PROTECTOR_LOCAL_FILERULES_FILENAME]);
+        
+        $filesContent = [];
+        foreach ($filenames as $filename) {
+            if (substr($filename, -5) !== '.json') {
+                continue;
+            }
+            $rawFileContent = file_get_contents(GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR . $filename);
+            $jsonFileContent = json_decode($rawFileContent, true);
+            $filesContent = array_merge($filesContent, $jsonFileContent);
+        }
+        return $filesContent;
     }
     
     
@@ -58,40 +79,18 @@ class FilterReader
      * @param string $path
      *
      * @return false|string
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     private function readFile($path)
     {
         if (!file_exists($path)) {
-            throw new Exception('Filter Rules file not found');
+            throw new InvalidArgumentException('Filter Rules file not found');
         }
     
         if (!is_readable($path)) {
-            throw new Exception('Filter Rules file not readable');
+            throw new InvalidArgumentException('Filter Rules file not readable');
         }
     
         return file_get_contents($path, 'r');
-    }
-    
-    /**
-     * Gets a List of Custom FilterRule files, passes these into getCustomFilesContent() and returns it.
-     *
-     * @return array
-     */
-    public function getCustomFilterRules()
-    {
-        $allFiles = scandir(GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR);
-        $filenames = array_diff($allFiles, ['..', '.', GAMBIO_PROTECTOR_LOCAL_FILERULES_FILENAME]);
-
-        $filesContent = [];
-        foreach ($filenames as $filename) {
-            if (substr($filename, -5) !== '.json') {
-                continue;
-            }
-            $rawFileContent = file_get_contents(GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR . $filename);
-            $jsonFileContent = json_decode($rawFileContent, true);
-            $filesContent = array_merge($filesContent, $jsonFileContent);
-        }
-        return $filesContent;
     }
 }

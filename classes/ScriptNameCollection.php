@@ -45,18 +45,6 @@ class ScriptNameCollection implements IteratorAggregate
     
     
     /**
-     * Adds a new item.
-     *
-     * @param ScriptName $item Item which should be added to the collection
-     *
-     */
-    private function add(ScriptName $item)
-    {
-        $this->scriptNameArray[] = $item;
-    }
-    
-    
-    /**
      * @return ArrayIterator|Traversable
      */
     public function getIterator()
@@ -73,6 +61,18 @@ class ScriptNameCollection implements IteratorAggregate
     public function getArray()
     {
         return $this->scriptNameArray;
+    }
+    
+    
+    /**
+     * Adds a new item.
+     *
+     * @param ScriptName $item Item which should be added to the collection
+     *
+     */
+    private function add(ScriptName $item)
+    {
+        $this->scriptNameArray[] = $item;
     }
     
     

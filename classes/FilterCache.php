@@ -10,6 +10,7 @@
 
 namespace GProtector;
 
+
 /**
  * Class FilterCache
  */
@@ -37,17 +38,22 @@ class FilterCache
     
     
     /**
-     * Checks Whether a string is a Valid JSON string.
+     * Reads the content of the Cached FilterRule file and if it contains valid JSON, then return that content,
+     * otherwise return the content of the Fallback FilterRules file.
      *
-     * @param $jsonString
-     *
-     * @return bool
+     * @return mixed
+     * @throws InvalidArgumentException
      */
-    private function isJsonValid($jsonString)
+    public function getCachedFilterRules()
     {
-        json_decode($jsonString);
         
-        return json_last_error() === JSON_ERROR_NONE;
+        $cachedFilterRules = $this->readFile(GAMBIO_PROTECTOR_CACHE_DIR . GAMBIO_PROTECTOR_CACHE_FILERULES_FILENAME);
+        
+        if ($this->isJsonValid($cachedFilterRules)) {
+            return json_decode($cachedFilterRules, true);
+        } else {
+            return $this->filterReader->getFallbackFilterRules();
+        }
     }
     
     
@@ -69,6 +75,21 @@ class FilterCache
         } else {
             touch($this->cachedFilterRulesPath, time());
         }
+    }
+    
+    
+    /**
+     * Checks Whether a string is a Valid JSON string.
+     *
+     * @param $jsonString
+     *
+     * @return bool
+     */
+    private function isJsonValid($jsonString)
+    {
+        json_decode($jsonString);
+        
+        return json_last_error() === JSON_ERROR_NONE;
     }
     
     
@@ -145,39 +166,19 @@ class FilterCache
      * @param string $path
      *
      * @return false|string
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     private function readFile($path)
     {
         if (!file_exists($path)) {
-            throw new Exception('Filter Rules file not found');
+            throw new InvalidArgumentException('Filter Rules file not found');
         }
         
         if (!is_readable($path)) {
-            throw new Exception('Filter Rules file not readable');
+            throw new InvalidArgumentException('Filter Rules file not readable');
         }
         
         return file_get_contents($path, 'r');
-    }
-    
-    
-    /**
-     * Reads the content of the Cached FilterRule file and if it contains valid JSON, then return that content,
-     * otherwise return the content of the Fallback FilterRules file.
-     *
-     * @return mixed
-     * @throws Exception
-     */
-    public function getCachedFilterRules()
-    {
-        
-        $cachedFilterRules = $this->readFile(GAMBIO_PROTECTOR_CACHE_DIR . GAMBIO_PROTECTOR_CACHE_FILERULES_FILENAME);
-        
-        if ($this->isJsonValid($cachedFilterRules)) {
-            return json_decode($cachedFilterRules, true);
-        } else {
-            return $this->filterReader->getFallbackFilterRules();
-        }
     }
     
     

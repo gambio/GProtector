@@ -36,6 +36,18 @@ class Key
     
     
     /**
+     * Getter for key
+     *
+     * @return string
+     */
+    
+    public function key()
+    {
+        return $this->key;
+    }
+    
+    
+    /**
      * Validates key.
      *
      * @param mixed $key The key to be validated
@@ -49,17 +61,4 @@ class Key
             throw new InvalidArgumentException('Invalid $key');
         }
     }
-    
-    
-    /**
-     * Getter for key
-     *
-     * @return string
-     */
-    
-    public function key()
-    {
-        return $this->key;
-    }
-    
 }

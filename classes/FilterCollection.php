@@ -63,6 +63,15 @@ class FilterCollection implements IteratorAggregate
     
     
     /**
+     * @return ArrayIterator|Traversable
+     */
+    public function getIterator()
+    {
+        return new ArrayIterator($this->filterArray);
+    }
+    
+    
+    /**
      * Add a new filter.
      *
      * @param Filter $filter Item which should be added to the collection
@@ -71,14 +80,5 @@ class FilterCollection implements IteratorAggregate
     private function add(Filter $filter)
     {
         $this->filterArray[] = $filter;
-    }
-    
-    
-    /**
-     * @return ArrayIterator|Traversable
-     */
-    public function getIterator()
-    {
-        return new ArrayIterator($this->filterArray);
     }
 }

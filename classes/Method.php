@@ -36,6 +36,17 @@ class Method
     
     
     /**
+     * Getter for method
+     *
+     * @return string
+     */
+    public function method()
+    {
+        return $this->method;
+    }
+    
+    
+    /**
      * Validates a method
      *
      * @param mixed $method The method to validate
@@ -49,17 +60,5 @@ class Method
             throw new InvalidArgumentException('Invalid $method');
         }
     }
-    
-    
-    /**
-     * Getter for method
-     *
-     * @return string
-     */
-    public function method()
-    {
-        return $this->method;
-    }
-    
     
 }
