@@ -35,11 +35,7 @@ class VariableCollection implements IteratorAggregate
     public function __construct(array $items)
     {
         foreach ($items as $item) {
-            try {
-                $this->add($item);
-            } catch (InvalidArgumentException $e) {
-                throw $e;
-            }
+            $this->add($item);
         }
     }
     
