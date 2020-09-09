@@ -151,7 +151,7 @@ class GProtector
                 
                 // Removes the white space after the comma
                 $currentHeader = preg_replace('/,\s/', ',', $remoteHeader);
-                $ipList[] = explode(',', implode(',', $currentHeader));
+                $ipList = array_merge($ipList, explode(',', $currentHeader));
             }
         }
     
