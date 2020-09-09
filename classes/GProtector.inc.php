@@ -94,7 +94,7 @@ class GProtector
         $cacheFileExists = file_exists(GAMBIO_PROTECTOR_CACHE_DIR . GAMBIO_PROTECTOR_CACHE_FILERULES_FILENAME);
         
         $rawFilters = $cacheFileExists ? $this->cache->getCachedFilterRules() : $this->reader->getFallbackFilterRules();
-        $rawFilters += $this->reader->getCustomFilterRules();
+        $rawFilters = array_merge($rawFilters, $this->reader->getCustomFilterRules());
         
         
         return FilterCollection::fromData($rawFilters);
