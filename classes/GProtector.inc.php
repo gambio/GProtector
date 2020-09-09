@@ -145,6 +145,11 @@ class GProtector
             if (!empty($_SERVER[$headerName])) {
                 // Removes the white space after the comma
                 $currentHeader = preg_replace('/,\s/', ',', $_SERVER[$headerName]);
+    
+                if (!is_array($currentHeader)) {
+                    continue;
+                }
+    
                 $ipList[] = explode(',', implode(',', $currentHeader));
             }
         }
