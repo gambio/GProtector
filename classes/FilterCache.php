@@ -198,6 +198,7 @@ class FilterCache
         curl_setopt($connection, CURLOPT_CONNECTTIMEOUT, $timeout);
         curl_setopt($connection, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($connection, CURLOPT_MAXFILESIZE, 2000000);
+        curl_setopt($connection, CURLOPT_MAXREDIRS, 10);
         
         $content = curl_exec($connection);
         
