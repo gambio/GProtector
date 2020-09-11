@@ -914,5 +914,6 @@ $this->add_filter('URL anti cross-site scripting',
                   ],
                   [
                       '_GET["repair"]',
+                      '_GET["input"]'
                   ],
                   'recursive_htmlspecialchars');
