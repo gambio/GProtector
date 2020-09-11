@@ -1,9 +1,9 @@
 <?php
 /* --------------------------------------------------------------
-  GProtector.inc.php 2019-06-07
+  GProtector.inc.php 2020-09-11
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2019 Gambio GmbH
+  Copyright (c) 2020 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
@@ -71,31 +71,42 @@ class GProtector
 	/**
 	 * Return the visitor's IP address
 	 * 
-	 * @return string Visitor's IP address
+	 * @return array Visitor's IP address
 	 */
 	private function get_user_ip()
 	{
-		if(isset($_SERVER['HTTP_X_FORWARDED_FOR']) && !empty($_SERVER['HTTP_X_FORWARDED_FOR']))
-		{
-			$t_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		}
-		elseif(isset($_SERVER['HTTP_CLIENT_IP']) && !empty($_SERVER['HTTP_CLIENT_IP']))
-		{
-			$t_ip = $_SERVER['HTTP_CLIENT_IP'];
-		}
-		else
-		{
-			$t_ip = $_SERVER['REMOTE_ADDR'];
-		}
-		
-		return $t_ip;
-	}
+        $headersToCheck = [
+            'HTTP_X_FORWARDED_FOR',
+            'HTTP_CLIENT_IP',
+            'REMOTE_ADDR'
+        ];
+        
+        $ipList = [];
+        foreach ($headersToCheck as $headerName)
+        {
+            $remoteHeader = $_SERVER[$headerName];
+            if (!empty($remoteHeader))
+            {
+                if (strpos($remoteHeader, ",") === false)
+                {
+                    $ipList[] = $remoteHeader;
+                    continue;
+                }
+                
+                // Removes the white space after the comma
+                $currentHeader = preg_replace('/,\s/', ',', $remoteHeader);
+                $ipList = array_merge($ipList, explode(',', $currentHeader));
+            }
+        }
+        
+        return $ipList;
+    }
 	
 		
 	/**
 	 * Search the given IP in blacklist and returns true if it is in the blacklist. 
 	 * 
-	 * @param string $p_user_ip User IP to check
+	 * @param array $p_user_ip User IPs to check
 	 * @return bool OK:false | blocked IP: true
 	 * 
 	 */
@@ -113,12 +124,12 @@ class GProtector
 					
 					if(!empty($t_blocked_ip))
 					{
-						if(strpos(trim($p_user_ip), trim($t_blocked_ip)) === 0)
-						{
-							fclose($t_file_handle);
-							return true;
-						}
-					}
+                        if (in_array($t_blocked_ip, $p_user_ip))
+                        {
+                            fclose($t_file_handle);
+                            return true;
+                        }
+                    }
 				}
 				fclose($t_file_handle);
 				return false;
@@ -605,7 +616,7 @@ class GProtector
 		$c_log_filename = (string)$p_log_filename;
 		$c_message_details = (string)$p_message_details;
 		
-		$c_template = $this->substitute($c_template, '{IP}', $this->get_user_ip());
+		$c_template = $this->substitute($c_template, '{IP}', implode(',', $this->get_user_ip()));
 		$c_template = $this->substitute($c_template, '{DATETIME}', date('Y-m-d H:i:s'));
 		$c_template = $this->substitute($c_template, '{MESSAGE}', $c_message);
 		$c_template = $this->substitute($c_template, '{SCRIPT}', $this->get_running_script_path());
