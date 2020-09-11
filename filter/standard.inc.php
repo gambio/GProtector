@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  standard.inc.php 2019-10-24
+  standard.inc.php 2020-09-11
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2019 Gambio GmbH
@@ -901,3 +901,18 @@ $this->add_filter('Filter-Ids Filter 1',
                       '_GET["value_conjunction"]'
                   ],
                   'filter_ids');
+$this->add_filter('URL anti cross-site scripting',
+                  [
+                      'login_admin.php',
+                      'login.php',
+                      'index.php',
+                      'shop.php',
+                      'create_account.php',
+                      'create_guest_account.php',
+                      'product_info.php',
+                      'shopping_cart.php'
+                  ],
+                  [
+                      '_GET["repair"]',
+                  ],
+                  'recursive_htmlspecialchars');
