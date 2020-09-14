@@ -66,40 +66,31 @@ class GProtector
 			}
 		}
 	}
-	
-	
-	/**
-	 * Return the visitor's IP address
-	 * 
-	 * @return array Visitor's IP address
-	 */
-	private function get_user_ip()
-	{
+    
+    
+    /**
+     * Return the visitor's IP addresses
+     *
+     * @return array Visitor's IP addresses
+     */
+    private function get_user_ip()
+    {
         $headersToCheck = [
             'HTTP_X_FORWARDED_FOR',
             'HTTP_CLIENT_IP',
             'REMOTE_ADDR'
         ];
-        
+    
         $ipList = [];
-        foreach ($headersToCheck as $headerName)
-        {
-            $remoteHeader = $_SERVER[$headerName];
-            if (!empty($remoteHeader))
-            {
-                if (strpos($remoteHeader, ",") === false)
-                {
-                    $ipList[] = $remoteHeader;
-                    continue;
-                }
-                
+        foreach ($headersToCheck as $headerName) {
+            if (!empty($_SERVER[$headerName])) {
                 // Removes the white space after the comma
-                $currentHeader = preg_replace('/,\s/', ',', $remoteHeader);
-                $ipList = array_merge($ipList, explode(',', $currentHeader));
+                $currentHeader = preg_replace('/,\s/', ',', $_SERVER[$headerName]);
+                $ipList[] = explode(',', $currentHeader);
             }
         }
-        
-        return $ipList;
+    
+        return array_merge(...$ipList);
     }
 	
 		
