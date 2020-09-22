@@ -441,7 +441,7 @@ class GProtector
     {
         $filesArray = glob(GAMBIO_PROTECTOR_TOKEN_DIR . $this->getTokenPrefix() . '*');
         
-        if (is_array($filesArray)) {
+        if (is_array($filesArray) && count($filesArray)) {
             foreach ($filesArray as $filepath) {
                 $tokenFilename = basename($filepath);
                 $token         = str_replace($this->getTokenPrefix(), '', $tokenFilename);
