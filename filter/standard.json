@@ -2211,18 +2211,6 @@
         "severity": "error"
     },
     {
-        "key": "Rekursiv-htmlspecialchars-Filter 5",
-        "script_name": "admin\/request_port.php",
-        "variables": [
-            {
-                "type": "POST",
-                "property": "values_name"
-            }
-        ],
-        "function": "recursive_htmlspecialchars",
-        "severity": "error"
-    },
-    {
         "key": "htmlspecialchars-Filter 1",
         "script_name": [
             "admin\/reviews.php"
