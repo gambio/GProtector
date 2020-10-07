@@ -75,63 +75,71 @@ class GProtector
      */
     private function get_user_ip()
     {
-        $headersToCheck = [
-            'HTTP_X_FORWARDED_FOR',
-            'HTTP_CLIENT_IP',
-            'REMOTE_ADDR'
-        ];
-    
-        $ipList = [];
-        foreach ($headersToCheck as $headerName) {
-            if (!empty($_SERVER[$headerName])) {
-                // Removes the white space after the comma
-                $currentHeader = preg_replace('/,\s/', ',', $_SERVER[$headerName]);
-                $ipList[] = explode(',', $currentHeader);
+	    $headersToCheck = [
+		    'HTTP_X_FORWARDED_FOR',
+		    'HTTP_CLIENT_IP',
+		    'REMOTE_ADDR'
+	    ];
+	
+	    $ipList = [];
+	    foreach ($headersToCheck as $headerName) {
+		    $remoteHeader = $_SERVER[$headerName];
+		    if (!empty($remoteHeader)) {
+			    if (strpos($remoteHeader, ",") === false) {
+				    $ipList[] = $remoteHeader;
+				    continue;
+			    }
+			
+			    // Removes the white space after the comma
+			    $currentHeader = preg_replace('/,\s/', ',', $remoteHeader);
+			    $ipList = array_merge($ipList, explode(',', $currentHeader));
+		    }
+	    }
+	
+	    return $ipList;
+    }
+
+
+    /**
+     * Search the given IP in blacklist and returns true if it is in the blacklist.
+     *
+     * @param array $userIpList User IPs to check
+     *
+     * @return bool OK:false | blocked IP: true
+     *
+     */
+    private function search_ip_in_blacklist($userIpList)
+    {
+        if (!file_exists($this->get_ip_blacklist_path())) {
+            return false;
+        }
+
+        if (!is_readable($this->get_ip_blacklist_path())) {
+            $this->log('Can not read IP-blacklist', 'gprotector_error', 'error');
+            return false;
+        }
+
+        $fileHandle = fopen($this->get_ip_blacklist_path(), 'r');
+        while (!feof($fileHandle)) {
+            $blockedIp = fgets($fileHandle);
+            $blockedIp = trim($blockedIp);
+
+            if ($blockedIp === '') {
+                continue;
+            }
+
+            foreach ($userIpList as $userIp) {
+                if (strpos(trim($userIp), $blockedIp) === 0) {
+                    fclose($fileHandle);
+
+                    return true;
+                }
             }
         }
-    
-        return array_merge(...$ipList);
-    }
-	
-		
-	/**
-	 * Search the given IP in blacklist and returns true if it is in the blacklist. 
-	 * 
-	 * @param array $p_user_ip User IPs to check
-	 * @return bool OK:false | blocked IP: true
-	 * 
-	 */
-	private function search_ip_in_blacklist($p_user_ip)
-	{
-		if(file_exists($this->get_ip_blacklist_path()))
-		{
-			if(is_readable($this->get_ip_blacklist_path()))
-			{
-				$t_file_handle = fopen($this->get_ip_blacklist_path(), 'r');
-				while(!feof($t_file_handle))
-				{
-					$t_blocked_ip = fgets($t_file_handle);
-					$t_blocked_ip = trim($t_blocked_ip);
-					
-					if(!empty($t_blocked_ip))
-					{
-                        if (in_array($t_blocked_ip, $p_user_ip))
-                        {
-                            fclose($t_file_handle);
-                            return true;
-                        }
-                    }
-				}
-				fclose($t_file_handle);
-				return false;
+        fclose($fileHandle);
 
-			}
-			else
-			{
-				$this->log('Can not read IP-blacklist', 'gprotector_error', 'error');
-			}
-		}
-	}
+        return false;
+    }
 	
 	
 	/**
