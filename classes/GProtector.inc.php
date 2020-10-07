@@ -162,36 +162,41 @@ class GProtector
     /**
      * Search the given IP in blacklist and returns true if it is in the blacklist.
      *
-     * @param array $userIp User IPs to check
+     * @param array $userIpList User IPs to check
      *
      * @return bool OK:false | blocked IP: true
      *
      */
-    private function searchIpInBlacklist($userIp)
+    private function searchIpInBlacklist($userIpList)
     {
-        if (file_exists($this->getIpBlacklistPath())) {
-            if (is_readable($this->getIpBlacklistPath())) {
-                $fileHandle = fopen($this->getIpBlacklistPath(), 'r');
-                while (!feof($fileHandle)) {
-                    $blockedIp = fgets($fileHandle);
-                    $blockedIp = trim($blockedIp);
-                    
-                    if (!empty($blockedIp)) {
-                        if (in_array($blockedIp, $userIp)) {
-                            fclose($fileHandle);
-                            return true;
-                        }
-                    }
-                }
-                fclose($fileHandle);
-                
-                return false;
-            } else {
-                $this->log('Can not read IP-blacklist', 'gprotector_error', 'error');
-            }
-        }
-        
-        return false;
+	    if (!file_exists($this->getIpBlacklistPath())) {
+		    return false;
+	    }
+	
+	    if (!is_readable($this->getIpBlacklistPath())) {
+		    $this->log('Can not read IP-blacklist', 'gprotector_error', 'error');
+		    return false;
+	    }
+	
+	    $fileHandle = fopen($this->getIpBlacklistPath(), 'r');
+	    while (!feof($fileHandle)) {
+		    $blockedIp = fgets($fileHandle);
+		    $blockedIp = trim($blockedIp);
+		
+		    if ($blockedIp === '') {
+			    continue;
+		    }
+		
+		    foreach ($userIpList as $userIp) {
+			    if (strpos(trim($userIp), $blockedIp) === 0) {
+				    fclose($fileHandle);
+				    return true;
+			    }
+		    }
+	    }
+	    fclose($fileHandle);
+	
+	    return false;
     }
     
     
