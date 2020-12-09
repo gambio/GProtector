@@ -85,6 +85,10 @@
             {
                 "type": "GET",
                 "property": "currency"
+            },
+            {
+                "type": "GET",
+                "property": "language"
             }
         ],
         "function": "only_alphabetic",
