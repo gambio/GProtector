@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  FilterCache.php 2020-07-24
+  FilterCache.php 2020-12-09
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2020 Gambio GmbH
@@ -100,22 +100,35 @@ class FilterCache
      */
     private function isCacheOlderThanRemoteFile()
     {
-        $headers = get_headers(GAMBIO_PROTECTOR_REMOTE_FILTERRULES_URL, 1);
-        if ($headers === false) {
+        $connection = curl_init();
+        $timeout    = 5;
+
+        curl_setopt($connection, CURLOPT_URL, GAMBIO_PROTECTOR_REMOTE_FILTERRULES_URL);
+        curl_setopt($connection, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($connection, CURLOPT_HEADER, true);
+        curl_setopt($connection, CURLOPT_FILETIME, true);
+        curl_setopt($connection, CURLOPT_NOBODY, true);
+        curl_setopt($connection, CURLOPT_TIMEOUT, $timeout);
+        curl_setopt($connection, CURLOPT_CONNECTTIMEOUT, $timeout);
+        curl_setopt($connection, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($connection, CURLOPT_MAXREDIRS, 10);
+
+        curl_exec($connection); // needed for curl_errno check
+        $headers = curl_getinfo($connection);
+
+        if (curl_errno($connection) || !isset($headers['http_code']) || $headers['http_code'] !== 200) {
             return false;
         }
-        
-        if (!strpos($headers[0], "200 OK")) {
-            return false;
-        }
-        
+
+        curl_close($connection);
+
         $cacheFileAge  = filectime($this->cachedFilterRulesPath);
-        $remoteFileAge = strtotime($headers["Last-Modified"]);
-        
+        $remoteFileAge = $headers['filetime'];
+
         if ($remoteFileAge > $cacheFileAge) {
             return true;
         }
-        
+
         return false;
     }
     
