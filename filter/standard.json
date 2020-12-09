@@ -85,6 +85,10 @@
             {
                 "type": "GET",
                 "property": "currency"
+            },
+            {
+                "type": "GET",
+                "property": "language"
             }
         ],
         "function": "only_alphabetic",
@@ -1593,7 +1597,8 @@
     {
         "key": "Integer-Filter 48",
         "script_name": [
-            "request_port.php"
+            "request_port.php",
+            "popup_content.php"
         ],
         "variables": [
             {
