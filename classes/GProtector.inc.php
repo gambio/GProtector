@@ -1,9 +1,9 @@
 <?php
 /* --------------------------------------------------------------
-  GProtector.inc.php 2020-09-03
+  GProtector.inc.php 2021-01-11
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2020 Gambio GmbH
+  Copyright (c) 2021 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
@@ -142,15 +142,14 @@ class GProtector
     
         $ipList = [];
         foreach ($headersToCheck as $headerName) {
-            $remoteHeader = $_SERVER[$headerName];
-            if (!empty($remoteHeader)) {
-                if (strpos($remoteHeader, ",") === false) {
-                    $ipList[] = $remoteHeader;
+            if (!empty($_SERVER[$headerName])) {
+                if (strpos($_SERVER[$headerName], ",") === false) {
+                    $ipList[] = $_SERVER[$headerName];
                     continue;
                 }
                 
                 // Removes the white space after the comma
-                $currentHeader = preg_replace('/,\s/', ',', $remoteHeader);
+                $currentHeader = preg_replace('/,\s/', ',', $_SERVER[$headerName]);
                 $ipList = array_merge($ipList, explode(',', $currentHeader));
             }
         }
