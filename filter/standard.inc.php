@@ -1,9 +1,9 @@
 <?php
 /* --------------------------------------------------------------
-  standard.inc.php 2020-09-11
+  standard.inc.php 2021-03-10
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2019 Gambio GmbH
+  Copyright (c) 2021 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
@@ -620,6 +620,59 @@ $this->add_filter('Text-Filter 9',
                       '_POST["customers_status_shipping_unallowed"]'
                   ],
                   'filter_text');
+$this->add_filter('Text-Filter 10',
+                  [
+                      'account.php',
+                      'account_edit.php',
+                      'account_history.php',
+                      'account_history_info.php',
+                      'account_password.php',
+                      'address_book.php',
+                      'address_book_process.php',
+                      'advanced_search.php',
+                      'advanced_search_result.php',
+                      'checkout_confirmation.php',
+                      'checkout_ipayment.php',
+                      'checkout_payment.php',
+                      'checkout_payment_address.php',
+                      'checkout_payone_cr.php',
+                      'checkout_payone_addresscheck.php',
+                      'checkout_process.php',
+                      'checkout_shipping.php',
+                      'checkout_shipping_address.php',
+                      'checkout_success.php',
+                      'create_account.php',
+                      'create_guest_account.php',
+                      'gm_account_delete.php',
+                      'gm_price_offer.php',
+                      'gv_send.php',
+                      'index.php',
+                      'login.php',
+                      'logoff.php',
+                      'password_double_opt.php',
+                      'newsletter.php',
+                      'popup_content.php',
+                      'popup_coupon_help.php',
+                      'popup_image.php',
+                      'popup_search_help.php',
+                      'print_order.php',
+                      'product_info.php',
+                      'print_product_info.php',
+                      'product_reviews.php',
+                      'product_reviews_write.php',
+                      'product_reviews_info.php',
+                      'products_new.php',
+                      'request_port.php',
+                      'shop.php',
+                      'shop_content.php',
+                      'skrill_iframe.php',
+                      'shopping_cart.php',
+                      'specials.php',
+                      'wish_list.php',
+                      'withdrawal.php'
+                  ],
+                  '_GET["do"]',
+                  'filter_text');
 
 $this->add_filter('Zeichen-Filter 1', 'admin/coupon_admin.php', '_GET["status"]', 'only_safe_characters');
 $this->add_filter('Zeichen-Filter 2',
@@ -691,6 +744,10 @@ $this->add_filter('Zeichen-Filter 10',
                       '_POST["user"]',
                       '_POST["password"]'
                   ],
+                  'only_safe_characters');
+$this->add_filter('Zeichen-Filter 11',
+                  'index.php',
+                  '_GET["cat"]',
                   'only_safe_characters');
 
 $this->add_filter('Rekursiv-Alphanumerisch-Filter 1',

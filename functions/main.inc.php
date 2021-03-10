@@ -1,9 +1,9 @@
 <?php
 /* --------------------------------------------------------------
-  main.inc.php 2019-06-07
+  main.inc.php 2021-03-09
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2019 Gambio GmbH
+  Copyright (c) 2021 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
@@ -155,7 +155,7 @@ function gprotector_filter_text($p_variable)
 		{
 			if(preg_match($t_pattern, $c_value))
 			{
-				$c_value = str_replace($t_forbidden_array, '', $c_value);
+				$c_value = str_ireplace($t_forbidden_array, '', $c_value);
 				$t_search_array = array('&', '"', "'", '<', '>');
 				$t_replace_array = array('&amp;', '&quot;', "&#039;", '&lt;', '&gt;');
 				$c_variable_array[$t_key] = str_replace($t_search_array, $t_replace_array, str_replace($t_search_array, $t_replace_array, $c_value));
