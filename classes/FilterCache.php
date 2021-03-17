@@ -79,12 +79,6 @@ class FilterCache
      */
     public function renew()
     {
-        if (!file_exists($this->cachedFilterRulesPath)) {
-            $this->createRemoteRulesCacheFile();
-
-            return;
-        }
-
         if ($this->getLastUpdateCheckUnixTime() === null
             || $this->getLastUpdateCheckUnixTime() + GAMBIO_PROTECTOR_CACHE_RENEW_INTERVAL < time()) {
             if ($this->isCacheOlderThanRemoteFile()) {
@@ -175,7 +169,10 @@ class FilterCache
         curl_exec($connection); // needed for curl_errno check
         $headers = curl_getinfo($connection);
 
-        if (curl_errno($connection) || !isset($headers['http_code']) || $headers['http_code'] !== 200) {
+        if (!isset($headers['http_code'], $headers['content_type'])
+            || $headers['http_code'] !== 200
+            || $headers['content_type'] !== 'application/json'
+            || curl_errno($connection)) {
             return false;
         }
 
@@ -296,7 +293,10 @@ class FilterCache
 
         $headers = curl_getinfo($connection);
 
-        if (curl_errno($connection) || !isset($headers['http_code']) || $headers['http_code'] !== 200) {
+        if (!isset($headers['http_code'], $headers['content_type'])
+            || $headers['http_code'] !== 200
+            || $headers['content_type'] !== 'application/json'
+            || curl_errno($connection)) {
             return false;
         }
 
