@@ -1,9 +1,9 @@
 <?php
 /* --------------------------------------------------------------
-  start.inc.php 2019-06-07
+  start.inc.php 2021-03-17
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2019 Gambio GmbH
+  Copyright (c) 2021 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
@@ -28,6 +28,7 @@ require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/FilterCache.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/FilterCollection.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/FilterReader.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/Key.php';
+require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/MetaData.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/Method.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/ScriptName.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/ScriptNameCollection.php';

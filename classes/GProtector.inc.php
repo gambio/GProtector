@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  GProtector.inc.php 2021-01-11
+  GProtector.inc.php 2021-03-16
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2021 Gambio GmbH
@@ -338,11 +338,9 @@ class GProtector
                                             }
                                         }
                                     } else {
-                                        // todo
                                         $this->log('filter variables are missing', 'gprotector_error', 'error');
                                     }
                                 } else {
-                                    // todo
                                     $this->log(
                                         'filter function "' . $function . '" does not exist',
                                         'gprotector_error',
@@ -350,18 +348,15 @@ class GProtector
                                     );
                                 }
                             } else {
-                                // todo
                                 $this->log('filter function is not set', 'gprotector_error', 'error');
                             }
                         }
                     }
                 } else {
-                    // todo
                     $this->log('filter data is missing', 'gprotector_error', 'error');
                 }
             }
         } else {
-            // todo
             $this->log('v_filter_array is not set', 'gprotector_error', 'error');
         }
         
@@ -380,7 +375,6 @@ class GProtector
             
             return true;
         } else {
-            // todo
             $this->log('No functions found', 'gprotector_error', 'warning');
         }
         
@@ -403,7 +397,6 @@ class GProtector
         }
         
         if ($scriptPath === false) {
-            // todo
             $this->log('script name could not be determined', 'gprotector_error', 'warning');
         }
         
