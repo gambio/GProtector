@@ -1610,6 +1610,24 @@
         "severity": "error"
     },
     {
+        "key": "Integer-Filter 49",
+        "script_name": [
+            "shop.php"
+        ],
+        "variables": [
+            {
+                "type": "GET",
+                "property": "products_id"
+            },
+            {
+                "type": "POST",
+                "property": "products_id"
+            }
+        ],
+        "function": "convert_to_integer",
+        "severity": "error"
+    },
+    {
         "key": "Nummerisch-Filter 1",
         "script_name": "admin\/gm_gmotion.php",
         "variables": [
