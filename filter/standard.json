@@ -1618,6 +1618,10 @@
             {
                 "type": "GET",
                 "property": "products_id"
+            },
+            {
+                "type": "POST",
+                "property": "products_id"
             }
         ],
         "function": "convert_to_integer",
