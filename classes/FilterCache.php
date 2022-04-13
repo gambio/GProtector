@@ -320,6 +320,10 @@ class FilterCache
             } else {
                 $this->metaData = unserialize(file_get_contents($this->metaDataPath));
             }
+
+            if (!is_object($this->metaData) || !$this->metaData instanceof MetaData) {
+                $this->metaData = null;
+            }
         }
     }
 
