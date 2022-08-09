@@ -1,20 +1,19 @@
 <?php
-
 /* --------------------------------------------------------------
-  VariableCollection.php 2020-02-28
+  VariableCollection.php 2022-08-09
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2020 Gambio GmbH
+  Copyright (c) 2022 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
 
 namespace GProtector;
 
-use \InvalidArgumentException;
-use \ArrayIterator;
-use \IteratorAggregate;
-use \Traversable;
+use InvalidArgumentException;
+use ArrayIterator;
+use IteratorAggregate;
+use Traversable;
 
 class VariableCollection implements IteratorAggregate
 {
@@ -43,6 +42,7 @@ class VariableCollection implements IteratorAggregate
     /**
      * @return ArrayIterator|Traversable
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new ArrayIterator($this->variableArray);
