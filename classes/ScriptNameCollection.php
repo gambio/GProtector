@@ -1,20 +1,19 @@
 <?php
-
 /* --------------------------------------------------------------
-  ScriptNameCollection.php 2020-02-28
+  ScriptNameCollection.php 2022-08-09
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2020 Gambio GmbH
+  Copyright (c) 2022 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
 
 namespace GProtector;
 
-use \ArrayIterator;
-use \InvalidArgumentException;
-use \IteratorAggregate;
-use \Traversable;
+use ArrayIterator;
+use InvalidArgumentException;
+use IteratorAggregate;
+use Traversable;
 
 class ScriptNameCollection implements IteratorAggregate
 {
@@ -47,6 +46,7 @@ class ScriptNameCollection implements IteratorAggregate
     /**
      * @return ArrayIterator|Traversable
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new ArrayIterator($this->scriptNameArray);

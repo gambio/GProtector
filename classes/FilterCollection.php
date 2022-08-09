@@ -1,19 +1,19 @@
 <?php
 /* --------------------------------------------------------------
-  FilterCollection.php 2020-07-31
+  FilterCollection.php 2022-08-09
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2020 Gambio GmbH
+  Copyright (c) 2022 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
 
 namespace GProtector;
 
-use \InvalidArgumentException;
-use \IteratorAggregate;
-use \ArrayIterator;
-use \Traversable;
+use InvalidArgumentException;
+use IteratorAggregate;
+use ArrayIterator;
+use Traversable;
 
 class FilterCollection implements IteratorAggregate
 {
@@ -65,6 +65,7 @@ class FilterCollection implements IteratorAggregate
     /**
      * @return ArrayIterator|Traversable
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new ArrayIterator($this->filterArray);
