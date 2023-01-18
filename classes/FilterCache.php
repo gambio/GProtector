@@ -1,9 +1,9 @@
 <?php
 /* --------------------------------------------------------------
-  FilterCache.php 2021-03-17
+  FilterCache.php 2023-01-18
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2021 Gambio GmbH
+  Copyright (c) 2023 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
@@ -227,8 +227,12 @@ class FilterCache
      */
     private function writeCacheFile($fileContent)
     {
+        if (!is_writable(dirname($this->cachedFilterRulesPath))) {
+            return false;
+        }
+        
         $this->deleteFile($this->cachedFilterRulesPath);
-
+        
         return file_put_contents($this->cachedFilterRulesPath, $fileContent);
     }
 
@@ -242,6 +246,10 @@ class FilterCache
      */
     private function writeMetaDataFile($fileContent)
     {
+        if (!is_writable(dirname($this->metaDataPath))) {
+            return false;
+        }
+        
         $this->deleteFile($this->metaDataPath);
 
         return file_put_contents($this->metaDataPath, $fileContent);
