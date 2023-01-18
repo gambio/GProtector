@@ -1,9 +1,9 @@
 <?php
 /* --------------------------------------------------------------
-  GProtector.inc.php 2021-03-16
+  GProtector.inc.php 2022-12-12
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2021 Gambio GmbH
+  Copyright (c) 2022 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
@@ -273,9 +273,9 @@ class GProtector
                                                 if ($variableNameEndPos > 0) {
                                                     $variableName = substr($variableString, 0, $variableNameEndPos);
                                                     
-                                                    global ${$variableName};
+                                                    global $$variableName;
                                                     
-                                                    $variableReference =& ${$variableName};
+                                                    $variableReference =& $$variableName;
                                                     
                                                     preg_match_all(
                                                         '/\[("|\')?([^"\'\]]+)("|\')?]/',
