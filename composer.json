@@ -1,7 +1,6 @@
 {
 	"name": "gambio/gprotector",
 	"description": "Protection against possible Cross-Site Scripting (XSS) attacks.",
-	"version": "2.2.1",
 	"license": "GPL-2.0",
 	"require": {
 		"php": ">=5.6",
