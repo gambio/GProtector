@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  FilterCache.php 2023-01-18
+  FilterCache.php 2023-01-27
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2023 Gambio GmbH
@@ -206,14 +206,15 @@ class FilterCache
 
 
     /**
-     * If a given file does exist, delete it.
+     * If a given file exists, delete it.
      *
      * @param string $filePath
      */
     private function deleteFile($filePath)
     {
+        clearstatcache(true);
         if (file_exists($filePath)) {
-            unlink($filePath);
+            @unlink($filePath);
         }
     }
 
