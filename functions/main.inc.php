@@ -1,9 +1,9 @@
 <?php
 /* --------------------------------------------------------------
-  main.inc.php 2021-03-09
+  main.inc.php 2023-02-20
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2021 Gambio GmbH
+  Copyright (c) 2023 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
@@ -351,7 +351,7 @@ function gprotector_recursive_filter_tags($p_variable)
 function gprotector_block_all_urls_in_registration_form($p_variable)
 {
     if((!isset($_GET['do']) || $_GET['do'] === 'CreateRegistree/Proceed' || $_GET['do'] === 'CreateGuest/Proceed')
-       && (strpos($p_variable, 'http://') !== false || strpos($p_variable, 'https://') !== false))
+       && preg_match('/^(?:https?:\/\/.*|www\..*)/i', $p_variable))
     {
         $_POST["firstname"]               = '';
         $_POST["lastname"]                = '';
