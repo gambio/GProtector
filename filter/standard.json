@@ -2706,14 +2706,6 @@
             },
             {
                 "type": "POST",
-                "property": "email_address"
-            },
-            {
-                "type": "POST",
-                "property": "email_address_confirm"
-            },
-            {
-                "type": "POST",
                 "property": "vat"
             },
             {
