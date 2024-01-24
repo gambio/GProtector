@@ -501,12 +501,17 @@
         "key": "Rekursiv-Integer-Filter 3",
         "script_name": [
             "product_info.php",
-            "request_port.php"
+            "request_port.php",
+            "shop.php"
         ],
         "variables": [
             {
                 "type": "POST",
                 "property": "properties_values_ids"
+            },
+            {
+                "type": "GET",
+                "property": "modifiers"
             }
         ],
         "function": "recursive_integer_value",
