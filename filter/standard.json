@@ -512,6 +512,10 @@
             {
                 "type": "GET",
                 "property": "modifiers"
+            },
+            {
+                "type": "GET",
+                "property": "previousModifiers"
             }
         ],
         "function": "recursive_integer_value",
