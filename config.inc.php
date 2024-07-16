@@ -1,9 +1,9 @@
 <?php
 /* --------------------------------------------------------------
-  config.inc.php 2019-06-07
+  config.inc.php 2024-07-16
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2019 Gambio GmbH
+  Copyright (c) 2024 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
@@ -22,7 +22,7 @@ define('GAMBIO_PROTECTOR_TOKEN_FILE_PREFIX', 'gprotector_token_');
 define('GAMBIO_PROTECTOR_FILE_PATTERN', '*.json');
 define('GAMBIO_PROTECTOR_GZIP_LOG', true);
 define('GAMBIO_PROTECTOR_LOG_MAX_FILESIZE', 1); // megabytes
-define('GAMBIO_PROTECTOR_REMOTE_FILTERRULES_URL', 'https://protect.gambio-server.net/standard.json');
+define('GAMBIO_PROTECTOR_REMOTE_FILTERRULES_URL', 'https://raw.githubusercontent.com/gambio/GProtector/master/filter/standard.json');
 define('GAMBIO_PROTECTOR_LOCAL_FILERULES_DIR', __DIR__ . '/filter/');
 define('GAMBIO_PROTECTOR_LOCAL_FILERULES_FILENAME', 'standard.json');
 define('GAMBIO_PROTECTOR_CACHE_FILERULES_FILENAME', 'standard.json');
