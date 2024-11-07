@@ -1577,6 +1577,10 @@
             {
                 "type": "GET",
                 "property": "inc_subcat"
+            },
+            {
+                "type": "GET",
+                "property": "id"
             }
         ],
         "function": "convert_to_integer",
