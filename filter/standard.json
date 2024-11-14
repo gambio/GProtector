@@ -516,6 +516,10 @@
             {
                 "type": "GET",
                 "property": "previousModifiers"
+            },
+            {
+                "type": "GET",
+                "property": "id"
             }
         ],
         "function": "recursive_integer_value",
@@ -1577,10 +1581,6 @@
             {
                 "type": "GET",
                 "property": "inc_subcat"
-            },
-            {
-                "type": "GET",
-                "property": "id"
             }
         ],
         "function": "convert_to_integer",
