@@ -522,6 +522,20 @@
         "severity": "error"
     },
     {
+        "key": "Rekursiv-Integer-Filter 4",
+        "script_name": [
+            "shop.php"
+        ],
+        "variables": [
+            {
+                "type": "GET",
+                "property": "id"
+            }
+        ],
+        "function": "recursive_integer_value",
+        "severity": "error"
+    },
+    {
         "key": "Dateinamen-Filter 1",
         "script_name": "admin\/backup.php",
         "variables": [
