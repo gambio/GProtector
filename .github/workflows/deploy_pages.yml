@@ -1,54 +1,50 @@
-name: 'build:cumulative'
+name: 'deploy to github pages'
 
 on:
     push:
         branches:
-            - pagestest_master
+            - deploy_pages
     workflow_dispatch:
-
-env:
-    WORKING_DIRECTORY: ${{ github.run_id }}-${{ github.run_attempt }}
+        inputs:
+            RELEASE_TAG:
+                description: 'The version to deploy to github pages.'
+                required: false
+                type: string
 
 permissions:
-    contents: write
+    contents: read
+    pages: write
+    id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+    group: "pages"
+    cancel-in-progress: false
 
 jobs:
-    determine_versions:
-        runs-on: [ self-hosted, docker ]
-        container: ghcr.io/gambio/gambu:self-hosted-runner-php-8.0
-        defaults:
-            run:
-                shell: bash
-                working-directory: ${{ env.WORKING_DIRECTORY }}
+    deploy:
+        if: inputs.RELEASE_TAG != ''
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
         steps:
-            - name: setup selfhosted github.workspace
-              run: mkdir -p "${{ env.WORKING_DIRECTORY }}"
-              working-directory: ${{ github.workspace }}
-
             - name: Checkout
               uses: actions/checkout@v4
+              with:
+                  ref: ${{ inputs.RELEASE_TAG }}
 
-            - name: setup git, fetch branches, merge branches, copy filter, commit, push
+            - name: build page
               run: |
-                  SRCBRANCH="pagestest_master"
-                  DSTBRANCH="github_pages"
-                  
-                  git config user.name "Gambio Machine User"
-                  git config user.email "dev_github@gambio.net"
-                  git fetch --all
-                  git checkout "$DSTBRANCH"
-                  git merge "$SRCBRANCH"
                   mkdir -p docs
                   cp filter/standard.json docs/standard.json
-                  git add docs/standard.json
-                  git commit -m "update filter for github pages"
-                  echo "ls -la filter"
-                  ls -la filter
-                  echo "ls -la docs"
-                  ls -la docs
-#                  git push origin "$DSTBRANCH"
 
-            - name: cleanup
-              if: ${{ always() }}
-              run: if [ -d "${{ env.WORKING_DIRECTORY }}" ]; then rm -rf "${{ env.WORKING_DIRECTORY }}"; fi
-              working-directory: ${{ github.workspace }}
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: 'docs'
+
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
