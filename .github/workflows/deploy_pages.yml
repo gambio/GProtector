@@ -1,0 +1,54 @@
+name: 'build:cumulative'
+
+on:
+    push:
+        branches:
+            - pagestest_master
+    workflow_dispatch:
+
+env:
+    WORKING_DIRECTORY: ${{ github.run_id }}-${{ github.run_attempt }}
+
+permissions:
+    contents: write
+
+jobs:
+    determine_versions:
+        runs-on: [ self-hosted, docker ]
+        container: ghcr.io/gambio/gambu:self-hosted-runner-php-8.0
+        defaults:
+            run:
+                shell: bash
+                working-directory: ${{ env.WORKING_DIRECTORY }}
+        steps:
+            - name: setup selfhosted github.workspace
+              run: mkdir -p "${{ env.WORKING_DIRECTORY }}"
+              working-directory: ${{ github.workspace }}
+
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: setup git, fetch branches, merge branches, copy filter, commit, push
+              run: |
+                  SRCBRANCH="pagestest_master"
+                  DSTBRANCH="github_pages"
+                  
+                  git config user.name "Gambio Machine User"
+                  git config user.email "dev_github@gambio.net"
+                  git fetch --all
+                  git checkout "$DSTBRANCH"
+                  git merge "$SRCBRANCH"
+                  mkdir -p docs
+                  cp filter/standard.json docs/standard.json
+                  git add docs/standard.json
+                  git commit -m "update filter for github pages"
+                  echo "ls -la filter"
+                  ls -la filter
+                  echo "ls -la docs"
+                  ls -la docs
+#                  git push origin "$DSTBRANCH"
+
+            - name: cleanup
+              if: ${{ always() }}
+              run: if [ -d "${{ env.WORKING_DIRECTORY }}" ]; then rm -rf "${{ env.WORKING_DIRECTORY }}"; fi
+              working-directory: ${{ github.workspace }}
