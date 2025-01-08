@@ -3,7 +3,7 @@ name: 'deploy to github pages'
 on:
     push:
         branches:
-            - deploy_pages
+            - github_pages
     workflow_dispatch:
         inputs:
             RELEASE_TAG:
