@@ -1,9 +1,6 @@
 name: 'trigger gprotect deploy'
 
 on:
-    push:
-        branches:
-            - github-pages
     release:
         types: [ published ]
     workflow_dispatch:
