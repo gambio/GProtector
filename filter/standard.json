@@ -474,6 +474,18 @@
         "severity": "error"
     },
     {
+        "key": "Alphanumerisch-Filter 25",
+        "script_name": "advanced_search_result.php",
+        "variables": [
+            {
+                "type": "GET",
+                "property": "keywords"
+            }
+        ],
+        "function": "only_alphanumeric",
+        "severity": "error"
+    },
+    {
         "key": "Rekursiv-Integer-Filter 1",
         "script_name": "admin\/gm_feature_control.php",
         "variables": [
