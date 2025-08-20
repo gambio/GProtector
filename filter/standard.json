@@ -482,7 +482,7 @@
                 "property": "keywords"
             }
         ],
-        "function": "gprotector_only_alphanumeric",
+        "function": "only_alphanumeric",
         "severity": "error"
     },
     {
