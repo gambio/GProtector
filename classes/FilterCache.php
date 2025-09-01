@@ -171,7 +171,7 @@ class FilterCache
 
         if (!isset($headers['http_code'], $headers['content_type'])
             || $headers['http_code'] !== 200
-            || str_starts_with($headers['content_type'], 'application/json')
+            || !str_starts_with($headers['content_type'], 'application/json')
             || curl_errno($connection)) {
             return false;
         }
