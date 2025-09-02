@@ -1,9 +1,9 @@
 <?php
 /* --------------------------------------------------------------
-  FilterCache.php 2023-01-27
+  FilterCache.php 2025-09-02
   Gambio GmbH
   http://www.gambio.de
-  Copyright (c) 2023 Gambio GmbH
+  Copyright (c) 2025 Gambio GmbH
   Released under the GNU General Public License (Version 2)
   [http://www.gnu.org/licenses/gpl-2.0.html]
   --------------------------------------------------------------*/
@@ -171,7 +171,7 @@ class FilterCache
 
         if (!isset($headers['http_code'], $headers['content_type'])
             || $headers['http_code'] !== 200
-            || $headers['content_type'] !== 'application/json'
+            || !str_starts_with($headers['content_type'], 'application/json')
             || curl_errno($connection)) {
             return false;
         }
@@ -304,7 +304,7 @@ class FilterCache
 
         if (!isset($headers['http_code'], $headers['content_type'])
             || $headers['http_code'] !== 200
-            || $headers['content_type'] !== 'application/json'
+            || !str_starts_with($headers['content_type'], 'application/json')
             || curl_errno($connection)) {
             return false;
         }
