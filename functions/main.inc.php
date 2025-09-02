@@ -20,7 +20,12 @@ function gprotector_only_alphabetic($p_variable)
 
 function gprotector_only_alphanumeric($p_variable)
 {
-    return preg_replace('/[^a-zA-Z0-9\s_-]/', '', (string)$p_variable);
+    return preg_replace('/[^a-zA-Z0-9äöüÄÖÜß\s_-]/', '', (string)$p_variable);
+}
+
+function gprotector_sql_alphanumeric($p_variable)
+{
+    return preg_replace('/[^a-zA-Z0-9()\s_-]/', '', (string)$p_variable);
 }
 
 function gprotector_only_safe_characters($p_variable)
