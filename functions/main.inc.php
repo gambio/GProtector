@@ -356,7 +356,7 @@ function gprotector_recursive_filter_tags($p_variable)
 function gprotector_block_all_urls_in_registration_form($p_variable)
 {
     if((!isset($_GET['do']) || $_GET['do'] === 'CreateRegistree/Proceed' || $_GET['do'] === 'CreateGuest/Proceed')
-       && preg_match('/^(?:https?:\/\/.*|www\..*)/i', $p_variable))
+       && preg_match('/^(?:https?:\/\/.*|www\..*|.*\.|.*\/)/i', $p_variable))
     {
         $_POST["firstname"]               = '';
         $_POST["lastname"]                = '';
