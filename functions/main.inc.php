@@ -355,28 +355,56 @@ function gprotector_recursive_filter_tags($p_variable)
 
 function gprotector_block_all_urls_in_registration_form($p_variable)
 {
-    if((!isset($_GET['do']) || $_GET['do'] === 'CreateRegistree/Proceed' || $_GET['do'] === 'CreateGuest/Proceed')
-       && preg_match('/^(?:https?:\/\/.*|www\..*|.*\.|.*\/)/i', $p_variable))
+    // Only apply during registration / guest checkout.
+    if (!isset($_GET['do']) || $_GET['do'] === 'CreateRegistree/Proceed' || $_GET['do'] === 'CreateGuest/Proceed')
     {
-        $_POST["firstname"]               = '';
-        $_POST["lastname"]                = '';
-        $_POST["email_address"]           = '';
-        $_POST["email_address_confirm"]   = '';
-        $_POST["vat"]                     = '';
-        $_POST["street_address"]          = '';
-        $_POST["house_number"]            = '';
-        $_POST["additional_address_info"] = '';
-        $_POST["suburb"]                  = '';
-        $_POST["postcode"]                = '';
-        $_POST["city"]                    = '';
-        $_POST["state"]                   = '';
-        $_POST["country"]                 = '';
-        $_POST["telephone"]               = '';
-        $_POST["fax"]                     = '';
-        
-        return '';
+        $value = (string)$p_variable;
+
+        /**
+         * Goal:
+         * Block URL/domain spam in ANY registration field while allowing normal names/addresses
+         * that may contain dots or slashes (e.g. "z. Hd. Frau Meier", "St. Johann Straße 5",
+         * "1. OG / Hinterhaus").
+         */
+
+        // 1) Block obvious URLs (http/https/www) anywhere.
+        $reUrl = '/\b(?:https?:\/\/|www\.)\S+/i';
+
+        // 2) Block "naked" domains including new TLDs (.store, .online, etc.) + optional path (e.g. tesst.com/, blogspot.com/Viju).
+        //    This does NOT block abbreviations like "St." or "z. Hd." because it requires a real TLD.
+        $reDomain = '/\b(?:[a-z0-9-]+\.)+(?:[a-z]{2,63}|xn--[a-z0-9-]{2,59})(?:\/\S*)?\b/i';
+
+        // 3) Block common obfuscations using brackets/parentheses/spaces:
+        //    example[.]com, example(.)com, example[dot]com, example(dot)com, example dot com
+        $reObfuscated = '/\b[a-z0-9-]+(?:\s*(?:\[\s*(?:\.|dot)\s*\]|\(\s*(?:\.|dot)\s*\)|\s+dot\s+)\s*[a-z0-9-]+)+\b/i';
+
+        // 4) Optional: block square brackets entirely (very uncommon in real names/addresses, common in spam).
+        //    Keep enabled if you want to be stricter.
+        $reBrackets = '/[\[\]]/';
+
+        if (preg_match($reBrackets, $value) || preg_match($reUrl, $value) || preg_match($reDomain, $value) || preg_match($reObfuscated, $value))
+        {
+            // Clear registration fields to prevent account creation with spam content.
+            $_POST["firstname"]               = '';
+            $_POST["lastname"]                = '';
+            $_POST["email_address"]           = '';
+            $_POST["email_address_confirm"]   = '';
+            $_POST["vat"]                     = '';
+            $_POST["street_address"]          = '';
+            $_POST["house_number"]            = '';
+            $_POST["additional_address_info"] = '';
+            $_POST["suburb"]                  = '';
+            $_POST["postcode"]                = '';
+            $_POST["city"]                    = '';
+            $_POST["state"]                   = '';
+            $_POST["country"]                 = '';
+            $_POST["telephone"]               = '';
+            $_POST["fax"]                     = '';
+
+            return '';
+        }
     }
-    
+
     return $p_variable;
 }
 
