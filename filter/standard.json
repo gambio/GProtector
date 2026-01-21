@@ -1,7 +1,7 @@
 [
   {
     "key": "Alphabetisch-Filter 1",
-    "script_name": "admin\/gm_emails.php",
+    "script_name": "admin/gm_emails.php",
     "variables": [
       {
         "type": "GET",
@@ -13,7 +13,7 @@
   },
   {
     "key": "Alphabetisch-Filter 2",
-    "script_name": "admin\/yatego.php",
+    "script_name": "admin/yatego.php",
     "variables": [
       {
         "type": "GET",
@@ -33,7 +33,7 @@
   },
   {
     "key": "Alphabetisch-Filter 3",
-    "script_name": "admin\/gm_offline.php",
+    "script_name": "admin/gm_offline.php",
     "variables": [
       {
         "type": "POST",
@@ -45,7 +45,7 @@
   },
   {
     "key": "Alphabetisch-Filter 5",
-    "script_name": "admin\/magnalister.php",
+    "script_name": "admin/magnalister.php",
     "variables": [
       {
         "type": "GET",
@@ -65,7 +65,7 @@
   },
   {
     "key": "Alphabetisch-Filter 6",
-    "script_name": "admin\/banner_statistics.php",
+    "script_name": "admin/banner_statistics.php",
     "variables": [
       {
         "type": "GET",
@@ -96,7 +96,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 1",
-    "script_name": "admin\/products_attributes.php",
+    "script_name": "admin/products_attributes.php",
     "variables": [
       {
         "type": "GET",
@@ -109,15 +109,15 @@
   {
     "key": "Alphanumerisch-Filter 2",
     "script_name": [
-      "admin\/categories.php",
-      "admin\/create_account.php",
-      "admin\/countries.php",
-      "admin\/customers.php",
-      "admin\/gm_gprint.php",
-      "admin\/orders.php",
-      "admin\/paypal.php",
-      "admin\/show_logs.php",
-      "admin\/specials.php"
+      "admin/categories.php",
+      "admin/create_account.php",
+      "admin/countries.php",
+      "admin/customers.php",
+      "admin/gm_gprint.php",
+      "admin/orders.php",
+      "admin/paypal.php",
+      "admin/show_logs.php",
+      "admin/specials.php"
     ],
     "variables": [
       {
@@ -130,7 +130,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 3",
-    "script_name": "admin\/customers.php",
+    "script_name": "admin/customers.php",
     "variables": [
       {
         "type": "GET",
@@ -143,55 +143,55 @@
   {
     "key": "Alphanumerisch-Filter 4",
     "script_name": [
-      "admin\/accounting.php",
-      "admin\/backup.php",
-      "admin\/banner_manager.php",
-      "admin\/blacklist.php",
-      "admin\/campaigns.php",
-      "admin\/categories.php",
-      "admin\/configuration.php",
-      "admin\/content_manager.php",
-      "admin\/countries.php",
-      "admin\/coupon_admin.php",
-      "admin\/create_account.php",
-      "admin\/cross_sell_groups.php",
-      "admin\/csv_backend.php",
-      "admin\/currencies.php",
-      "admin\/customers.php",
-      "admin\/customers_status.php",
-      "admin\/geo_zones.php",
-      "admin\/gm_backup_files_zip.php.php",
-      "admin\/gm_gprint.php",
-      "admin\/gm_module_export.php",
-      "admin\/gm_module_part_export.php",
-      "admin\/gm_opensearch.php",
-      "admin\/gm_product_export.php",
-      "admin\/gm_trusted_shops_id.php",
-      "admin\/gm_trusted_shops_widget.php",
-      "admin\/gm_sitemap.php",
-      "admin\/gv_mail.php",
-      "admin\/gm_meta.php",
-      "admin\/languages.php",
-      "admin\/mail.php",
-      "admin\/manufacturers.php",
-      "admin\/mediafinanz.php",
-      "admin\/modules.php",
-      "admin\/module_export.php",
-      "admin\/module_newsletter.php",
-      "admin\/orders.php",
-      "admin\/orders_edit.php",
-      "admin\/orders_status.php",
-      "admin\/paypal.php",
-      "admin\/products_attributes.php",
-      "admin\/products_vpe.php",
-      "admin\/properties_combis.php",
-      "admin\/request_port.php",
-      "admin\/reviews.php",
-      "admin\/shipping_status.php",
-      "admin\/specials.php",
-      "admin\/tax_classes.php",
-      "admin\/tax_rates.php",
-      "admin\/zones.php",
+      "admin/accounting.php",
+      "admin/backup.php",
+      "admin/banner_manager.php",
+      "admin/blacklist.php",
+      "admin/campaigns.php",
+      "admin/categories.php",
+      "admin/configuration.php",
+      "admin/content_manager.php",
+      "admin/countries.php",
+      "admin/coupon_admin.php",
+      "admin/create_account.php",
+      "admin/cross_sell_groups.php",
+      "admin/csv_backend.php",
+      "admin/currencies.php",
+      "admin/customers.php",
+      "admin/customers_status.php",
+      "admin/geo_zones.php",
+      "admin/gm_backup_files_zip.php.php",
+      "admin/gm_gprint.php",
+      "admin/gm_module_export.php",
+      "admin/gm_module_part_export.php",
+      "admin/gm_opensearch.php",
+      "admin/gm_product_export.php",
+      "admin/gm_trusted_shops_id.php",
+      "admin/gm_trusted_shops_widget.php",
+      "admin/gm_sitemap.php",
+      "admin/gv_mail.php",
+      "admin/gm_meta.php",
+      "admin/languages.php",
+      "admin/mail.php",
+      "admin/manufacturers.php",
+      "admin/mediafinanz.php",
+      "admin/modules.php",
+      "admin/module_export.php",
+      "admin/module_newsletter.php",
+      "admin/orders.php",
+      "admin/orders_edit.php",
+      "admin/orders_status.php",
+      "admin/paypal.php",
+      "admin/products_attributes.php",
+      "admin/products_vpe.php",
+      "admin/properties_combis.php",
+      "admin/request_port.php",
+      "admin/reviews.php",
+      "admin/shipping_status.php",
+      "admin/specials.php",
+      "admin/tax_classes.php",
+      "admin/tax_rates.php",
+      "admin/zones.php",
       "login.php"
     ],
     "variables": [
@@ -205,7 +205,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 5",
-    "script_name": "admin\/categories.php",
+    "script_name": "admin/categories.php",
     "variables": [
       {
         "type": "GET",
@@ -221,7 +221,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 6",
-    "script_name": "admin\/gm_logo.php",
+    "script_name": "admin/gm_logo.php",
     "variables": [
       {
         "type": "GET",
@@ -233,7 +233,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 7",
-    "script_name": "admin\/paypal.php",
+    "script_name": "admin/paypal.php",
     "variables": [
       {
         "type": "GET",
@@ -245,7 +245,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 8",
-    "script_name": "admin\/geo_zones.php",
+    "script_name": "admin/geo_zones.php",
     "variables": [
       {
         "type": "GET",
@@ -257,7 +257,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 10",
-    "script_name": "admin\/orders_edit.php",
+    "script_name": "admin/orders_edit.php",
     "variables": [
       {
         "type": "GET",
@@ -270,10 +270,10 @@
   {
     "key": "Alphanumerisch-Filter 11",
     "script_name": [
-      "admin\/gm_module_export.php",
-      "admin\/gm_module_part_export.php",
-      "admin\/modules.php",
-      "admin\/module_export.php"
+      "admin/gm_module_export.php",
+      "admin/gm_module_part_export.php",
+      "admin/modules.php",
+      "admin/module_export.php"
     ],
     "variables": [
       {
@@ -290,7 +290,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 12",
-    "script_name": "admin\/mediafinanz.php",
+    "script_name": "admin/mediafinanz.php",
     "variables": [
       {
         "type": "POST",
@@ -310,7 +310,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 13",
-    "script_name": "admin\/magnalister.php",
+    "script_name": "admin/magnalister.php",
     "variables": [
       {
         "type": "GET",
@@ -323,9 +323,9 @@
   {
     "key": "Alphanumerisch-Filter 14",
     "script_name": [
-      "admin\/ekomi.php",
-      "admin\/gm_guestbook.php",
-      "admin\/gm_miscellaneous.php"
+      "admin/ekomi.php",
+      "admin/gm_guestbook.php",
+      "admin/gm_miscellaneous.php"
     ],
     "variables": [
       {
@@ -338,7 +338,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 15",
-    "script_name": "admin\/content_manager.php",
+    "script_name": "admin/content_manager.php",
     "variables": [
       {
         "type": "GET",
@@ -351,8 +351,8 @@
   {
     "key": "Alphanumerisch-Filter 16",
     "script_name": [
-      "admin\/gm_module_part_export.php",
-      "admin\/yatego.php"
+      "admin/gm_module_part_export.php",
+      "admin/yatego.php"
     ],
     "variables": [
       {
@@ -365,7 +365,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 17",
-    "script_name": "admin\/stats_sales_report.php",
+    "script_name": "admin/stats_sales_report.php",
     "variables": [
       {
         "type": "GET",
@@ -377,7 +377,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 18",
-    "script_name": "admin\/stats_campaigns.php",
+    "script_name": "admin/stats_campaigns.php",
     "variables": [
       {
         "type": "GET",
@@ -389,7 +389,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 19",
-    "script_name": "admin\/properties_combis.php",
+    "script_name": "admin/properties_combis.php",
     "variables": [
       {
         "type": "GET",
@@ -402,8 +402,8 @@
   {
     "key": "Alphanumerisch-Filter 20",
     "script_name": [
-      "admin\/nc_clickandbuy.php",
-      "admin\/yoochoose.php"
+      "admin/nc_clickandbuy.php",
+      "admin/yoochoose.php"
     ],
     "variables": [
       {
@@ -416,7 +416,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 21",
-    "script_name": "admin\/mail.php",
+    "script_name": "admin/mail.php",
     "variables": [
       {
         "type": "GET",
@@ -428,7 +428,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 22",
-    "script_name": "admin\/intraship.php",
+    "script_name": "admin/intraship.php",
     "variables": [
       {
         "type": "POST",
@@ -451,7 +451,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 23",
-    "script_name": "admin\/orders.php",
+    "script_name": "admin/orders.php",
     "variables": [
       {
         "type": "GET",
@@ -463,7 +463,7 @@
   },
   {
     "key": "Alphanumerisch-Filter 24",
-    "script_name": "admin\/orders.php",
+    "script_name": "admin/orders.php",
     "variables": [
       {
         "type": "GET",
@@ -473,9 +473,35 @@
     "function": "only_alphanumeric",
     "severity": "error"
   },
+
+  {
+    "key": "Alphanumerisch-Filter 25",
+    "script_name": "request_port.php",
+    "variables": [
+      {
+        "type": "GET",
+        "property": "module"
+      }
+    ],
+    "function": "only_alphanumeric",
+    "severity": "error"
+  },
+  {
+    "key": "Alphanumerisch-Filter 26",
+    "script_name": "request_port.php",
+    "variables": [
+      {
+        "type": "GET",
+        "property": "action"
+      }
+    ],
+    "function": "only_alphanumeric",
+    "severity": "error"
+  },
+
   {
     "key": "Rekursiv-Integer-Filter 1",
-    "script_name": "admin\/gm_feature_control.php",
+    "script_name": "admin/gm_feature_control.php",
     "variables": [
       {
         "type": "POST",
@@ -487,7 +513,7 @@
   },
   {
     "key": "Rekursiv-Integer-Filter 2",
-    "script_name": "admin\/gm_meta.php",
+    "script_name": "admin/gm_meta.php",
     "variables": [
       {
         "type": "POST",
@@ -516,6 +542,10 @@
       {
         "type": "GET",
         "property": "previousModifiers"
+      },
+      {
+        "type": "POST",
+        "property": "modifiers"
       }
     ],
     "function": "recursive_integer_value",
@@ -537,7 +567,7 @@
   },
   {
     "key": "Dateinamen-Filter 1",
-    "script_name": "admin\/backup.php",
+    "script_name": "admin/backup.php",
     "variables": [
       {
         "type": "GET",
@@ -549,7 +579,7 @@
   },
   {
     "key": "Dateinamen-Filter 2",
-    "script_name": "admin\/csv_backend.php",
+    "script_name": "admin/csv_backend.php",
     "variables": [
       {
         "type": "POST",
@@ -561,7 +591,7 @@
   },
   {
     "key": "Dateinamen-Filter 3",
-    "script_name": "admin\/show_logs.php",
+    "script_name": "admin/show_logs.php",
     "variables": [
       {
         "type": "GET",
@@ -577,7 +607,7 @@
   },
   {
     "key": "Dateinamen-Filter 4",
-    "script_name": "admin\/content_manager.php",
+    "script_name": "admin/content_manager.php",
     "variables": [
       {
         "type": "GET",
@@ -589,7 +619,7 @@
   },
   {
     "key": "Dateinamen-Filter 5",
-    "script_name": "admin\/languages.php",
+    "script_name": "admin/languages.php",
     "variables": [
       {
         "type": "POST",
@@ -601,7 +631,7 @@
   },
   {
     "key": "htmlentities-Filter 1",
-    "script_name": "admin\/gv_mail.php",
+    "script_name": "admin/gv_mail.php",
     "variables": [
       {
         "type": "POST",
@@ -617,7 +647,7 @@
   },
   {
     "key": "htmlentities-Filter 2",
-    "script_name": "admin\/mail.php",
+    "script_name": "admin/mail.php",
     "variables": [
       {
         "type": "GET",
@@ -633,7 +663,7 @@
   },
   {
     "key": "htmlentities-Filter 3",
-    "script_name": "admin\/gm_bookmarks_action.php",
+    "script_name": "admin/gm_bookmarks_action.php",
     "variables": [
       {
         "type": "GET",
@@ -645,7 +675,7 @@
   },
   {
     "key": "htmlentities-Filter 4",
-    "script_name": "admin\/gm_opensearch.php",
+    "script_name": "admin/gm_opensearch.php",
     "variables": [
       {
         "type": "POST",
@@ -681,7 +711,7 @@
   },
   {
     "key": "htmlentities-Filter 6",
-    "script_name": "admin\/gm_security.php",
+    "script_name": "admin/gm_security.php",
     "variables": [
       {
         "type": "POST",
@@ -697,7 +727,7 @@
   },
   {
     "key": "htmlentities-Filter 7",
-    "script_name": "admin\/mobile_configuration.php",
+    "script_name": "admin/mobile_configuration.php",
     "variables": [
       {
         "type": "POST",
@@ -749,7 +779,7 @@
   },
   {
     "key": "Integer-Filter 1",
-    "script_name": "admin\/gm_emails.php",
+    "script_name": "admin/gm_emails.php",
     "variables": [
       {
         "type": "GET",
@@ -766,9 +796,9 @@
   {
     "key": "Integer-Filter 2",
     "script_name": [
-      "admin\/banner_manager.php",
-      "admin\/banner_statistics.php",
-      "admin\/blacklist.php"
+      "admin/banner_manager.php",
+      "admin/banner_statistics.php",
+      "admin/blacklist.php"
     ],
     "variables": [
       {
@@ -782,32 +812,32 @@
   {
     "key": "Integer-Filter 3",
     "script_name": [
-      "admin\/blacklist.php",
-      "admin\/banner_manager.php",
-      "admin\/banner_statistics.php",
-      "admin\/campaigns.php",
-      "admin\/countries.php",
-      "admin\/coupon_admin.php",
-      "admin\/cross_sell_groups.php",
-      "admin\/currencies.php",
-      "admin\/customers.php",
-      "admin\/customers_status.php",
-      "admin\/gm_feature_control.php",
-      "admin\/gm_slider.php",
-      "admin\/languages.php",
-      "admin\/lettr_de.php",
-      "admin\/manufacturers.php",
-      "admin\/orders.php",
-      "admin\/orders_status.php",
-      "admin\/products_vpe.php",
-      "admin\/quantity_units.php",
-      "admin\/specials.php",
-      "admin\/shipping_status.php",
-      "admin\/show_logs.php",
-      "admin\/tax_classes.php",
-      "admin\/tax_rates.php",
-      "admin\/yatego.php",
-      "admin\/zones.php"
+      "admin/blacklist.php",
+      "admin/banner_manager.php",
+      "admin/banner_statistics.php",
+      "admin/campaigns.php",
+      "admin/countries.php",
+      "admin/coupon_admin.php",
+      "admin/cross_sell_groups.php",
+      "admin/currencies.php",
+      "admin/customers.php",
+      "admin/customers_status.php",
+      "admin/gm_feature_control.php",
+      "admin/gm_slider.php",
+      "admin/languages.php",
+      "admin/lettr_de.php",
+      "admin/manufacturers.php",
+      "admin/orders.php",
+      "admin/orders_status.php",
+      "admin/products_vpe.php",
+      "admin/quantity_units.php",
+      "admin/specials.php",
+      "admin/shipping_status.php",
+      "admin/show_logs.php",
+      "admin/tax_classes.php",
+      "admin/tax_rates.php",
+      "admin/yatego.php",
+      "admin/zones.php"
     ],
     "variables": [
       {
@@ -820,7 +850,7 @@
   },
   {
     "key": "Integer-Filter 4",
-    "script_name": "admin\/categories.php",
+    "script_name": "admin/categories.php",
     "variables": [
       {
         "type": "POST",
@@ -857,16 +887,16 @@
   {
     "key": "Integer-Filter 5",
     "script_name": [
-      "admin\/campaigns.php",
-      "admin\/categories.php",
-      "admin\/countries.php",
-      "admin\/coupon_manager.php",
-      "admin\/currencies.php",
-      "admin\/customers.php",
-      "admin\/customers_status.php",
-      "admin\/orders.php",
-      "admin\/orders_edit",
-      "admin\/zones.php"
+      "admin/campaigns.php",
+      "admin/categories.php",
+      "admin/countries.php",
+      "admin/coupon_manager.php",
+      "admin/currencies.php",
+      "admin/customers.php",
+      "admin/customers_status.php",
+      "admin/orders.php",
+      "admin/orders_edit",
+      "admin/zones.php"
     ],
     "variables": [
       {
@@ -879,7 +909,7 @@
   },
   {
     "key": "Integer-Filter 6",
-    "script_name": "admin\/geo_zones.php",
+    "script_name": "admin/geo_zones.php",
     "variables": [
       {
         "type": "GET",
@@ -903,7 +933,7 @@
   },
   {
     "key": "Integer-Filter 7",
-    "script_name": "admin\/gm_gprint.php",
+    "script_name": "admin/gm_gprint.php",
     "variables": [
       {
         "type": "POST",
@@ -928,9 +958,9 @@
   {
     "key": "Integer-Filter 8",
     "script_name": [
-      "admin\/gm_meta.php",
-      "admin\/gm_scroller",
-      "admin\/gm_statusbar"
+      "admin/gm_meta.php",
+      "admin/gm_scroller",
+      "admin/gm_statusbar"
     ],
     "variables": [
       {
@@ -943,7 +973,7 @@
   },
   {
     "key": "Integer-Filter 9",
-    "script_name": "admin\/gm_slider.php",
+    "script_name": "admin/gm_slider.php",
     "variables": [
       {
         "type": "REQUEST",
@@ -972,10 +1002,10 @@
   {
     "key": "Integer-Filter 10",
     "script_name": [
-      "admin\/orders_edit.php",
-      "admin\/orders_status.php",
-      "admin\/products_vpe",
-      "admin\/shipping_status.php"
+      "admin/orders_edit.php",
+      "admin/orders_status.php",
+      "admin/products_vpe",
+      "admin/shipping_status.php"
     ],
     "variables": [
       {
@@ -988,7 +1018,7 @@
   },
   {
     "key": "Integer-Filter 11",
-    "script_name": "admin\/products_attributes.php",
+    "script_name": "admin/products_attributes.php",
     "variables": [
       {
         "type": "POST",
@@ -1013,8 +1043,8 @@
   {
     "key": "Integer-Filter 12",
     "script_name": [
-      "admin\/tax_classes.php",
-      "admin\/tax_rates.php"
+      "admin/tax_classes.php",
+      "admin/tax_rates.php"
     ],
     "variables": [
       {
@@ -1027,7 +1057,7 @@
   },
   {
     "key": "Integer-Filter 13",
-    "script_name": "admin\/yatego.php",
+    "script_name": "admin/yatego.php",
     "variables": [
       {
         "type": "GET",
@@ -1043,7 +1073,7 @@
   },
   {
     "key": "Integer-Filter 14",
-    "script_name": "admin\/customers.php",
+    "script_name": "admin/customers.php",
     "variables": [
       {
         "type": "GET",
@@ -1055,7 +1085,7 @@
   },
   {
     "key": "Integer-Filter 16",
-    "script_name": "admin\/orders_edit.php",
+    "script_name": "admin/orders_edit.php",
     "variables": [
       {
         "type": "GET",
@@ -1067,7 +1097,7 @@
   },
   {
     "key": "Integer-Filter 17",
-    "script_name": "admin\/languages.php",
+    "script_name": "admin/languages.php",
     "variables": [
       {
         "type": "GET",
@@ -1079,7 +1109,7 @@
   },
   {
     "key": "Integer-Filter 18",
-    "script_name": "admin\/gm_sitemap.php",
+    "script_name": "admin/gm_sitemap.php",
     "variables": [
       {
         "type": "GET",
@@ -1091,7 +1121,7 @@
   },
   {
     "key": "Integer-Filter 19",
-    "script_name": "admin\/gm_feature_control.php",
+    "script_name": "admin/gm_feature_control.php",
     "variables": [
       {
         "type": "REQUEST",
@@ -1107,7 +1137,7 @@
   },
   {
     "key": "Integer-Filter 20",
-    "script_name": "admin\/banner_statistics.php",
+    "script_name": "admin/banner_statistics.php",
     "variables": [
       {
         "type": "GET",
@@ -1123,7 +1153,7 @@
   },
   {
     "key": "Integer-Filter 21",
-    "script_name": "admin\/configuration.php",
+    "script_name": "admin/configuration.php",
     "variables": [
       {
         "type": "GET",
@@ -1135,7 +1165,7 @@
   },
   {
     "key": "Integer-Filter 22",
-    "script_name": "admin\/content_manager.php",
+    "script_name": "admin/content_manager.php",
     "variables": [
       {
         "type": "GET",
@@ -1151,7 +1181,7 @@
   },
   {
     "key": "Integer-Filter 24",
-    "script_name": "admin\/gm_security.php",
+    "script_name": "admin/gm_security.php",
     "variables": [
       {
         "type": "POST",
@@ -1183,7 +1213,7 @@
   },
   {
     "key": "Integer-Filter 25",
-    "script_name": "admin\/stats_sales_report.php",
+    "script_name": "admin/stats_sales_report.php",
     "variables": [
       {
         "type": "GET",
@@ -1239,7 +1269,7 @@
   },
   {
     "key": "Integer-Filter 26",
-    "script_name": "admin\/stats_campaigns.php",
+    "script_name": "admin/stats_campaigns.php",
     "variables": [
       {
         "type": "GET",
@@ -1283,7 +1313,7 @@
   },
   {
     "key": "Integer-Filter 27",
-    "script_name": "admin\/specials.php",
+    "script_name": "admin/specials.php",
     "variables": [
       {
         "type": "GET",
@@ -1295,7 +1325,7 @@
   },
   {
     "key": "Integer-Filter 28",
-    "script_name": "admin\/popup_memo.php",
+    "script_name": "admin/popup_memo.php",
     "variables": [
       {
         "type": "GET",
@@ -1307,7 +1337,7 @@
   },
   {
     "key": "Integer-Filter 29",
-    "script_name": "admin\/properties_combis.php",
+    "script_name": "admin/properties_combis.php",
     "variables": [
       {
         "type": "GET",
@@ -1319,7 +1349,7 @@
   },
   {
     "key": "Integer-Filter 30",
-    "script_name": "admin\/quantity_units.php",
+    "script_name": "admin/quantity_units.php",
     "variables": [
       {
         "type": "REQUEST",
@@ -1340,8 +1370,8 @@
   {
     "key": "Integer-Filter 31",
     "script_name": [
-      "admin\/create_account.php",
-      "admin\/customers.php"
+      "admin/create_account.php",
+      "admin/customers.php"
     ],
     "variables": [
       {
@@ -1354,7 +1384,7 @@
   },
   {
     "key": "Integer-Filter 32",
-    "script_name": "admin\/create_account.php",
+    "script_name": "admin/create_account.php",
     "variables": [
       {
         "type": "POST",
@@ -1366,7 +1396,7 @@
   },
   {
     "key": "Integer-Filter 33",
-    "script_name": "admin\/csv_backend.php",
+    "script_name": "admin/csv_backend.php",
     "variables": [
       {
         "type": "POST",
@@ -1379,8 +1409,8 @@
   {
     "key": "Integer-Filter 34",
     "script_name": [
-      "admin\/manufacturers.php",
-      "admin\/customers.php"
+      "admin/manufacturers.php",
+      "admin/customers.php"
     ],
     "variables": [
       {
@@ -1393,7 +1423,7 @@
   },
   {
     "key": "Integer-Filter 35",
-    "script_name": "admin\/orders.php",
+    "script_name": "admin/orders.php",
     "variables": [
       {
         "type": "POST",
@@ -1405,7 +1435,7 @@
   },
   {
     "key": "Integer-Filter 36",
-    "script_name": "admin\/gm_ebay.php",
+    "script_name": "admin/gm_ebay.php",
     "variables": [
       {
         "type": "POST",
@@ -1417,7 +1447,7 @@
   },
   {
     "key": "Integer-Filter 37",
-    "script_name": "admin\/coupon_admin.php",
+    "script_name": "admin/coupon_admin.php",
     "variables": [
       {
         "type": "GET",
@@ -1429,7 +1459,7 @@
   },
   {
     "key": "Integer-Filter 38",
-    "script_name": "admin\/gm_opensearch.php",
+    "script_name": "admin/gm_opensearch.php",
     "variables": [
       {
         "type": "GET",
@@ -1441,7 +1471,7 @@
   },
   {
     "key": "Integer-Filter 39",
-    "script_name": "admin\/new_attributes.php",
+    "script_name": "admin/new_attributes.php",
     "variables": [
       {
         "type": "POST",
@@ -1457,7 +1487,7 @@
   },
   {
     "key": "Integer-Filter 40",
-    "script_name": "admin\/yatego.php",
+    "script_name": "admin/yatego.php",
     "variables": [
       {
         "type": "GET",
@@ -1469,7 +1499,7 @@
   },
   {
     "key": "Integer-Filter 41",
-    "script_name": "admin\/print_intraship_label.php",
+    "script_name": "admin/print_intraship_label.php",
     "variables": [
       {
         "type": "GET",
@@ -1481,7 +1511,7 @@
   },
   {
     "key": "Integer-Filter 42",
-    "script_name": "admin\/intraship.php",
+    "script_name": "admin/intraship.php",
     "variables": [
       {
         "type": "POST",
@@ -1503,7 +1533,7 @@
   },
   {
     "key": "Integer-Filter 43",
-    "script_name": "admin\/orders.php",
+    "script_name": "admin/orders.php",
     "variables": [
       {
         "type": "GET",
@@ -1515,7 +1545,7 @@
   },
   {
     "key": "Integer-Filter 44",
-    "script_name": "admin\/admin.php",
+    "script_name": "admin/admin.php",
     "variables": [
       {
         "type": "GET",
@@ -1531,7 +1561,7 @@
   },
   {
     "key": "Integer-Filter 45",
-    "script_name": "admin\/reviews.php",
+    "script_name": "admin/reviews.php",
     "variables": [
       {
         "type": "GET",
@@ -1563,7 +1593,7 @@
   },
   {
     "key": "Integer-Filter 45",
-    "script_name": "admin\/request_port.php",
+    "script_name": "admin/request_port.php",
     "variables": [
       {
         "type": "GET",
@@ -1632,9 +1662,26 @@
     "function": "convert_to_integer",
     "severity": "error"
   },
+
+  {
+    "key": "Integer-Filter 49",
+    "script_name": [
+      "admin/listcategories.php",
+      "admin/listproducts.php"
+    ],
+    "variables": [
+      {
+        "type": "GET",
+        "property": "cid"
+      }
+    ],
+    "function": "convert_to_integer",
+    "severity": "error"
+  },
+
   {
     "key": "Nummerisch-Filter 1",
-    "script_name": "admin\/gm_gmotion.php",
+    "script_name": "admin/gm_gmotion.php",
     "variables": [
       {
         "type": "POST",
@@ -1650,7 +1697,7 @@
   },
   {
     "key": "Nummerisch-Filter 2",
-    "script_name": "admin\/orders.php",
+    "script_name": "admin/orders.php",
     "variables": [
       {
         "type": "GET",
@@ -1662,7 +1709,7 @@
   },
   {
     "key": "Nummerisch-Filter 3",
-    "script_name": "admin\/specials.php",
+    "script_name": "admin/specials.php",
     "variables": [
       {
         "type": "GET",
@@ -1678,7 +1725,7 @@
   },
   {
     "key": "Nummerisch-Filter 4",
-    "script_name": "admin\/intraship.php",
+    "script_name": "admin/intraship.php",
     "variables": [
       {
         "type": "POST",
@@ -1723,7 +1770,7 @@
   },
   {
     "key": "Preis-Filter 1",
-    "script_name": "admin\/specials.php",
+    "script_name": "admin/specials.php",
     "variables": [
       {
         "type": "POST",
@@ -1735,7 +1782,7 @@
   },
   {
     "key": "Text-Filter 1",
-    "script_name": "admin\/products_attributes.php",
+    "script_name": "admin/products_attributes.php",
     "variables": [
       {
         "type": "POST",
@@ -1751,7 +1798,7 @@
   },
   {
     "key": "Text-Filter 2",
-    "script_name": "admin\/gm_gprint.php",
+    "script_name": "admin/gm_gprint.php",
     "variables": [
       {
         "type": "GET",
@@ -1763,7 +1810,7 @@
   },
   {
     "key": "Text-Filter 3",
-    "script_name": "admin\/quantity_units.php",
+    "script_name": "admin/quantity_units.php",
     "variables": [
       {
         "type": "POST",
@@ -1775,7 +1822,7 @@
   },
   {
     "key": "Text-Filter 4",
-    "script_name": "admin\/clear_cache.php",
+    "script_name": "admin/clear_cache.php",
     "variables": [
       {
         "type": "GET",
@@ -1811,7 +1858,7 @@
   },
   {
     "key": "Text-Filter 5",
-    "script_name": "admin\/customers.php",
+    "script_name": "admin/customers.php",
     "variables": [
       {
         "type": "GET",
@@ -1823,7 +1870,7 @@
   },
   {
     "key": "Text-Filter 6",
-    "script_name": "admin\/magnalister.php",
+    "script_name": "admin/magnalister.php",
     "variables": [
       {
         "type": "GET",
@@ -1843,7 +1890,7 @@
   },
   {
     "key": "Text-Filter 7",
-    "script_name": "admin\/intraship.php",
+    "script_name": "admin/intraship.php",
     "variables": [
       {
         "type": "POST",
@@ -1864,7 +1911,7 @@
   },
   {
     "key": "Text-Filter 8",
-    "script_name": "admin\/gm_slider.php",
+    "script_name": "admin/gm_slider.php",
     "variables": [
       {
         "type": "POST",
@@ -1880,7 +1927,7 @@
   },
   {
     "key": "Text-Filter 9",
-    "script_name": "admin\/customers_status.php",
+    "script_name": "admin/customers_status.php",
     "variables": [
       {
         "type": "POST",
@@ -1973,7 +2020,7 @@
   },
   {
     "key": "Zeichen-Filter 1",
-    "script_name": "admin\/coupon_admin.php",
+    "script_name": "admin/coupon_admin.php",
     "variables": [
       {
         "type": "GET",
@@ -1985,7 +2032,7 @@
   },
   {
     "key": "Zeichen-Filter 2",
-    "script_name": "admin\/categories.php",
+    "script_name": "admin/categories.php",
     "variables": [
       {
         "type": "POST",
@@ -2001,7 +2048,7 @@
   },
   {
     "key": "Zeichen-Filter 3",
-    "script_name": "admin\/mail.php",
+    "script_name": "admin/mail.php",
     "variables": [
       {
         "type": "POST",
@@ -2013,7 +2060,7 @@
   },
   {
     "key": "Zeichen-Filter 4",
-    "script_name": "admin\/gm_product_export.php",
+    "script_name": "admin/gm_product_export.php",
     "variables": [
       {
         "type": "GET",
@@ -2025,7 +2072,7 @@
   },
   {
     "key": "Zeichen-Filter 5",
-    "script_name": "admin\/languages.php",
+    "script_name": "admin/languages.php",
     "variables": [
       {
         "type": "POST",
@@ -2041,7 +2088,7 @@
   },
   {
     "key": "Zeichen-Filter 6",
-    "script_name": "admin\/show_logs.php",
+    "script_name": "admin/show_logs.php",
     "variables": [
       {
         "type": "GET",
@@ -2057,7 +2104,7 @@
   },
   {
     "key": "Zeichen-Filter 7",
-    "script_name": "admin\/products_attributes.php",
+    "script_name": "admin/products_attributes.php",
     "variables": [
       {
         "type": "GET",
@@ -2069,7 +2116,7 @@
   },
   {
     "key": "Zeichen-Filter 8",
-    "script_name": "admin\/amazoncheckout_config.php",
+    "script_name": "admin/amazoncheckout_config.php",
     "variables": [
       {
         "type": "REQUEST",
@@ -2129,7 +2176,7 @@
   },
   {
     "key": "Zeichen-Filter 9",
-    "script_name": "admin\/intraship.php",
+    "script_name": "admin/intraship.php",
     "variables": [
       {
         "type": "POST",
@@ -2155,8 +2202,8 @@
   {
     "key": "Zeichen-Filter 10",
     "script_name": [
-      "export\/xml_export.php",
-      "export\/cao_import.php"
+      "export/xml_export.php",
+      "export/cao_import.php"
     ],
     "variables": [
       {
@@ -2193,7 +2240,7 @@
   },
   {
     "key": "Rekursiv-Alphanumerisch-Filter 1",
-    "script_name": "admin\/accounting.php",
+    "script_name": "admin/accounting.php",
     "variables": [
       {
         "type": "POST",
@@ -2205,7 +2252,7 @@
   },
   {
     "key": "Rekursiv-Alphanumerisch-Filter 2",
-    "script_name": "admin\/stats_sales_report.php",
+    "script_name": "admin/stats_sales_report.php",
     "variables": [
       {
         "type": "GET",
@@ -2217,7 +2264,7 @@
   },
   {
     "key": "Rekursiv-Text-Filter 1",
-    "script_name": "admin\/quantity_units.php",
+    "script_name": "admin/quantity_units.php",
     "variables": [
       {
         "type": "POST",
@@ -2229,7 +2276,7 @@
   },
   {
     "key": "Rekursiv-Text-Filter 2",
-    "script_name": "admin\/includes\/ckeditor\/filemanager\/connectors\/php\/inc\/vendor\/wideimage\/demo\/index.php",
+    "script_name": "admin/includes/ckeditor/filemanager/connectors/php/inc/vendor/wideimage/demo/index.php",
     "variables": [
       {
         "type": "GET",
@@ -2253,7 +2300,7 @@
   },
   {
     "key": "Rekursiv-Zeichen-Filter 1",
-    "script_name": "admin\/gm_module_export.php",
+    "script_name": "admin/gm_module_export.php",
     "variables": [
       {
         "type": "POST",
@@ -2265,7 +2312,7 @@
   },
   {
     "key": "Rekursiv-htmlspecialchars-Filter 1",
-    "script_name": "admin\/gm_feature_control.php",
+    "script_name": "admin/gm_feature_control.php",
     "variables": [
       {
         "type": "POST",
@@ -2277,7 +2324,7 @@
   },
   {
     "key": "Rekursiv-htmlspecialchars-Filter 2",
-    "script_name": "admin\/gm_feature_control.php",
+    "script_name": "admin/gm_feature_control.php",
     "variables": [
       {
         "type": "POST",
@@ -2289,7 +2336,7 @@
   },
   {
     "key": "Rekursiv-htmlspecialchars-Filter 3",
-    "script_name": "admin\/gm_feature_control.php",
+    "script_name": "admin/gm_feature_control.php",
     "variables": [
       {
         "type": "POST",
@@ -2301,7 +2348,7 @@
   },
   {
     "key": "Rekursiv-htmlspecialchars-Filter 4",
-    "script_name": "admin\/gm_feature_control.php",
+    "script_name": "admin/gm_feature_control.php",
     "variables": [
       {
         "type": "POST",
@@ -2314,7 +2361,7 @@
   {
     "key": "htmlspecialchars-Filter 1",
     "script_name": [
-      "admin\/reviews.php"
+      "admin/reviews.php"
     ],
     "variables": [
       {
@@ -2344,7 +2391,7 @@
   {
     "key": "htmlspecialchars-Filter 2",
     "script_name": [
-      "admin\/request_port.php"
+      "admin/request_port.php"
     ],
     "variables": [
       {
@@ -2389,7 +2436,7 @@
   },
   {
     "key": "htmlspecialchars-Filter 5",
-    "script_name": "admin\/coupon_admin.php",
+    "script_name": "admin/coupon_admin.php",
     "variables": [
       {
         "type": "POST",
@@ -2609,7 +2656,7 @@
   },
   {
     "key": "Tag-Filter 6",
-    "script_name": "admin\/categories.php",
+    "script_name": "admin/categories.php",
     "variables": [
       {
         "type": "POST",
@@ -2621,7 +2668,7 @@
   },
   {
     "key": "Tag-Filter 7",
-    "script_name": "admin\/banner_manager.php",
+    "script_name": "admin/banner_manager.php",
     "variables": [
       {
         "type": "POST",
@@ -2633,7 +2680,7 @@
   },
   {
     "key": "Tag-Filter 8",
-    "script_name": "admin\/content_manager.php",
+    "script_name": "admin/content_manager.php",
     "variables": [
       {
         "type": "POST",
@@ -2649,7 +2696,7 @@
   },
   {
     "key": "Strip-Tags-Filter 1",
-    "script_name": "admin\/module_newsletter.php",
+    "script_name": "admin/module_newsletter.php",
     "variables": [
       {
         "type": "POST",
@@ -2677,7 +2724,7 @@
   },
   {
     "key": "Rekursiv-Tag-Filter 2",
-    "script_name": "admin\/products_vpe.php",
+    "script_name": "admin/products_vpe.php",
     "variables": [
       {
         "type": "POST",
@@ -2689,7 +2736,7 @@
   },
   {
     "key": "Rekursiv-Tag-Filter 3",
-    "script_name": "admin\/customers_status.php",
+    "script_name": "admin/customers_status.php",
     "variables": [
       {
         "type": "POST",
@@ -2701,7 +2748,7 @@
   },
   {
     "key": "Rekursiv-Tag-Filter 4",
-    "script_name": "admin\/orders_status.php",
+    "script_name": "admin/orders_status.php",
     "variables": [
       {
         "type": "POST",
@@ -2797,20 +2844,9 @@
     "function": "filter_ids",
     "severity": "error"
   },
+
   {
-    "key": "request_port module hardening",
-    "script_name": "request_port.php",
-    "variables": [
-      {
-        "type": "GET",
-        "property": "module"
-      }
-    ],
-    "function": "only_alphanumeric",
-    "severity": "error"
-  },
-  {
-    "key": "request_port key hex-only mitigation",
+    "key": "Hex-Filter 1",
     "script_name": "request_port.php",
     "variables": [
       {
