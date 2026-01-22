@@ -2844,7 +2844,30 @@
     "function": "filter_ids",
     "severity": "error"
   },
-
+  {
+    "key": "request_port module hardening",
+    "script_name": "request_port.php",
+    "variables": [
+      {
+        "type": "GET",
+        "property": "module"
+      }
+    ],
+    "function": "only_alphanumeric",
+    "severity": "error"
+  },
+  {
+    "key": "request_port key hex-only mitigation",
+    "script_name": "request_port.php",
+    "variables": [
+      {
+        "type": "GET",
+        "property": "key"
+      }
+    ],
+    "function": "only_hex_code",
+    "severity": "error"
+  },
   {
     "key": "Hex-Filter 1",
     "script_name": "request_port.php",
