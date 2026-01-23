@@ -473,6 +473,32 @@
     "function": "only_alphanumeric",
     "severity": "error"
   },
+
+  {
+    "key": "Alphanumerisch-Filter 25",
+    "script_name": "request_port.php",
+    "variables": [
+      {
+        "type": "GET",
+        "property": "module"
+      }
+    ],
+    "function": "only_alphanumeric",
+    "severity": "error"
+  },
+  {
+    "key": "Alphanumerisch-Filter 26",
+    "script_name": "request_port.php",
+    "variables": [
+      {
+        "type": "GET",
+        "property": "action"
+      }
+    ],
+    "function": "only_alphanumeric",
+    "severity": "error"
+  },
+
   {
     "key": "Rekursiv-Integer-Filter 1",
     "script_name": "admin\/gm_feature_control.php",
@@ -516,6 +542,10 @@
       {
         "type": "GET",
         "property": "previousModifiers"
+      },
+      {
+        "type": "POST",
+        "property": "modifiers"
       }
     ],
     "function": "recursive_integer_value",
@@ -1632,6 +1662,23 @@
     "function": "convert_to_integer",
     "severity": "error"
   },
+
+  {
+    "key": "Integer-Filter 49",
+    "script_name": [
+      "admin\/listcategories.php",
+      "admin\/listproducts.php"
+    ],
+    "variables": [
+      {
+        "type": "GET",
+        "property": "cid"
+      }
+    ],
+    "function": "convert_to_integer",
+    "severity": "error"
+  },
+
   {
     "key": "Nummerisch-Filter 1",
     "script_name": "admin\/gm_gmotion.php",
@@ -2811,6 +2858,18 @@
   },
   {
     "key": "request_port key hex-only mitigation",
+    "script_name": "request_port.php",
+    "variables": [
+      {
+        "type": "GET",
+        "property": "key"
+      }
+    ],
+    "function": "only_hex_code",
+    "severity": "error"
+  },
+  {
+    "key": "Hex-Filter 1",
     "script_name": "request_port.php",
     "variables": [
       {
