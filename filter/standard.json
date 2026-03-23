@@ -2879,5 +2879,22 @@
     ],
     "function": "only_hex_code",
     "severity": "error"
+  },
+
+  {
+    "key": "Integer-Filter 50",
+    "script_name": "request_port.php",
+    "variables": [
+      {
+        "type": "POST",
+        "property": "products_id"
+      },
+      {
+        "type": "POST",
+        "property": "products_qty"
+      }
+    ],
+    "function": "convert_to_integer",
+    "severity": "error"
   }
 ]
