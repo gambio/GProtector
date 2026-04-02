@@ -2888,13 +2888,22 @@
       {
         "type": "POST",
         "property": "products_id"
-      },
+      }
+    ],
+    "function": "convert_to_integer",
+    "severity": "error"
+  },
+
+  {
+    "key": "Float-Filter 1",
+    "script_name": "request_port.php",
+    "variables": [
       {
         "type": "POST",
         "property": "products_qty"
       }
     ],
-    "function": "convert_to_integer",
+    "function": "convert_to_float",
     "severity": "error"
   }
 ]
