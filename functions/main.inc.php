@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  main.inc.php 2023-02-20
+  main.inc.php 2026-04-02
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2023 Gambio GmbH
@@ -370,9 +370,10 @@ function gprotector_block_all_urls_in_registration_form($p_variable)
         // 1) Block obvious URLs (http/https/www) anywhere.
         $reUrl = '/\b(?:https?:\/\/|www\.)\S+/i';
 
-        // 2) Block "naked" domains including new TLDs (.store, .online, etc.) + optional path (e.g. tesst.com/, blogspot.com/Viju).
-        //    This does NOT block abbreviations like "St." or "z. Hd." because it requires a real TLD.
-        $reDomain = '/\b(?:[a-z0-9-]+\.)+(?:[a-z]{2,63}|xn--[a-z0-9-]{2,59})(?:\/\S*)?\b/i';
+        // 2) Block "naked" domains (.store, .online, etc.) + optional path (e.g. tesst.com/, blogspot.com/Viju).
+        //    Requires the first segment to be at least 4 characters to avoid false positives on
+        //    common address abbreviations: "St.Gallen", "a.d.Th.", "zHd.XXY", "Nr.5" etc.
+        $reDomain = '/\b[a-z0-9][a-z0-9-]{2,}[a-z0-9](?:\.[a-z0-9-]+)*\.(?:[a-z]{2,63}|xn--[a-z0-9-]{2,59})(?:\/\S*)?\b/i';
 
         // 3) Block common obfuscations using brackets/parentheses/spaces:
         //    example[.]com, example(.)com, example[dot]com, example(dot)com, example dot com
