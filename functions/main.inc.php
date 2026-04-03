@@ -13,6 +13,11 @@ function gprotector_convert_to_integer($p_variable)
     return (string)(int)$p_variable;
 }
 
+function gprotector_convert_to_float($p_variable)
+{
+    return (string)(float)$p_variable;
+}
+
 function gprotector_only_alphabetic($p_variable)
 {
     return preg_replace('/[^a-zA-Z]/', '', (string)$p_variable);
