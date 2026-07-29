@@ -376,9 +376,13 @@ function gprotector_block_all_urls_in_registration_form($p_variable)
         $reUrl = '/\b(?:https?:\/\/|www\.)\S+/i';
 
         // 2) Block "naked" domains (.store, .online, etc.) + optional path (e.g. tesst.com/, blogspot.com/Viju).
-        //    Requires the first segment to be at least 4 characters to avoid false positives on
-        //    common address abbreviations: "St.Gallen", "a.d.Th.", "zHd.XXY", "Nr.5" etc.
-        $reDomain = '/\b[a-z0-9][a-z0-9-]{2,}[a-z0-9](?:\.[a-z0-9-]+)*\.(?:[a-z]{2,63}|xn--[a-z0-9-]{2,59})(?:\/\S*)?\b/i';
+        //    Requires the label directly in front of the dot to be at least 4 characters AND to
+        //    contain no hyphen, to avoid false positives on common address abbreviations:
+        //    "St.Gallen", "a.d.Th.", "zHd.XXY", "Nr.5" etc. Allowing a hyphen inside that label
+        //    would let a hyphenated place name pad the length check, so that "Söding-St.Johann"
+        //    matches as "ding-St.Johann". Punycode labels contain hyphens by design and therefore
+        //    need their own alternative, otherwise IDN domains would slip through.
+        $reDomain = '/\b(?:[a-z0-9]{4,}|xn--[a-z0-9-]{2,59})(?:\.[a-z0-9-]+)*\.(?:[a-z]{2,63}|xn--[a-z0-9-]{2,59})(?:\/\S*)?\b/i';
 
         // 3) Block common obfuscations using brackets/parentheses/spaces:
         //    example[.]com, example(.)com, example[dot]com, example(dot)com, example dot com
