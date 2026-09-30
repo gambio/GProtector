@@ -1,0 +1,11 @@
+[
+  {
+    "key": "styleedit-storefront-auth",
+    "script_name": "shop.php",
+    "variables": [{ "type": "GET", "property": "do" }],
+    "pattern": "#^StyleEdit4Authentication(?:\\W|$)#",
+    "action": "deny",
+    "function": "filter_text",
+    "severity": "error"
+  }
+]
