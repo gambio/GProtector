@@ -106,13 +106,17 @@ class FilterCache
         }
 
         foreach ($filterRules as $rule) {
-            if (!isset($rule['key'], $rule['script_name'], $rule['variables'], $rule['function'], $rule['severity'])
+            $isDenyRule = ($rule['action'] ?? null) === Action::DENY;
+            if (!isset($rule['key'], $rule['script_name'], $rule['variables'], $rule['severity'])
+                || (!$isDenyRule && !isset($rule['function']))
                 || !is_string($rule['key'])
                 || (!is_string($rule['script_name'])
                     && !is_array($rule['script_name']))
                 || !is_array($rule['variables'])
-                || !is_string($rule['function'])
-                || !is_string($rule['severity'])) {
+                || (isset($rule['function']) && !is_string($rule['function']))
+                || !is_string($rule['severity'])
+                || (isset($rule['action']) && !is_string($rule['action']))
+                || (isset($rule['pattern']) && !is_string($rule['pattern']))) {
                 return false;
             }
 

@@ -10,6 +10,8 @@
 
 namespace GProtector;
 
+use \InvalidArgumentException;
+
 class Filter
 {
     /**
@@ -28,7 +30,7 @@ class Filter
     private $variables;
     
     /**
-     * @var string $method
+     * @var string|null $method
      */
     private $method;
     
@@ -36,6 +38,16 @@ class Filter
      * @var string $severity
      */
     private $severity;
+    
+    /**
+     * @var string $action
+     */
+    private $action;
+    
+    /**
+     * @var Pattern|null $pattern
+     */
+    private $pattern;
     
     
     /**
@@ -46,21 +58,27 @@ class Filter
      * @param Key                  $key
      * @param ScriptNameCollection $scriptNames
      * @param VariableCollection   $variables
-     * @param Method               $method
+     * @param Method|null          $method
      * @param Severity             $severity
+     * @param Action               $action
+     * @param Pattern|null         $pattern
      */
     private function __construct(
         Key $key,
         ScriptNameCollection $scriptNames,
         VariableCollection $variables,
-        Method $method,
-        Severity $severity
+        ?Method $method,
+        Severity $severity,
+        Action $action,
+        ?Pattern $pattern
     ) {
         $this->key         = $key->key();
         $this->scriptNames = $scriptNames->getArray();
         $this->variables   = $variables->getArray();
-        $this->method      = $method->method();
+        $this->method      = $method === null ? null : $method->method();
         $this->severity    = $severity->severity();
+        $this->action      = $action->action();
+        $this->pattern     = $pattern;
     }
     
     
@@ -70,6 +88,7 @@ class Filter
      * @param $rawFilter
      *
      * @return Filter
+     * @throws InvalidArgumentException
      */
     
     public static function fromData($rawFilter)
@@ -92,10 +111,22 @@ class Filter
             $variables[] = new Variable($variableName['type'], $variableName['property'], $isSubcategory ? $variableName['subcategory'] : null);
         }
         $variableCollection = new VariableCollection($variables);
-        $method             = new Method($rawFilter['function']);
         $severity           = new Severity($rawFilter['severity']);
+        $action             = new Action($rawFilter['action'] ?? Action::SANITIZE);
+        $pattern            = isset($rawFilter['pattern']) ? new Pattern($rawFilter['pattern']) : null;
+        $isDeny             = $action->action() === Action::DENY;
         
-        return new static($key, $scriptNameCollection, $variableCollection, $method, $severity);
+        if ($isDeny && $pattern === null) {
+            throw new InvalidArgumentException('A deny rule needs a $pattern');
+        }
+        if ($isDeny && $pattern->matches('')) {
+            throw new InvalidArgumentException('The $pattern of a deny rule must not match an empty value');
+        }
+        
+        // a deny rule may omit the function; older engines still need one to accept the file
+        $method = !$isDeny || isset($rawFilter['function']) ? new Method($rawFilter['function'] ?? null) : null;
+        
+        return new static($key, $scriptNameCollection, $variableCollection, $method, $severity, $action, $pattern);
     }
     
     
@@ -135,7 +166,7 @@ class Filter
     /**
      * Getter for method
      *
-     * @return string
+     * @return string|null
      */
     public function method()
     {
@@ -151,5 +182,27 @@ class Filter
     public function severity()
     {
         return $this->severity;
+    }
+    
+    
+    /**
+     * Getter for action
+     *
+     * @return string
+     */
+    public function action()
+    {
+        return $this->action;
+    }
+    
+    
+    /**
+     * Getter for pattern
+     *
+     * @return Pattern|null
+     */
+    public function pattern()
+    {
+        return $this->pattern;
     }
 }

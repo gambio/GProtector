@@ -22,6 +22,7 @@ if (!class_exists('\Composer\Autoload\ClassLoader', false)) {
 
 require_once __DIR__ . '/config.inc.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/GProtectorLogConnectorInterface.inc.php';
+require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/Action.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/GProtector.inc.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/Filter.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/FilterCache.php';
@@ -30,6 +31,7 @@ require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/FilterReader.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/Key.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/MetaData.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/Method.php';
+require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/Pattern.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/ScriptName.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/ScriptNameCollection.php';
 require_once GAMBIO_PROTECTOR_CLASSES_DIR . '/Severity.php';

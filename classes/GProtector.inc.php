@@ -11,6 +11,7 @@
 namespace GProtector;
 
 use Exception;
+use InvalidArgumentException;
 
 class GProtector
 {
@@ -71,6 +72,7 @@ class GProtector
         $filters = $this->readFilterFiles();
         $this->addFilters($filters);
         $this->filter();
+        $this->denyForbiddenValues();
     }
     
     
@@ -97,7 +99,12 @@ class GProtector
         $rawFilters = array_merge($rawFilters, $this->reader->getCustomFilterRules());
         
         
-        return FilterCollection::fromData($rawFilters);
+        return FilterCollection::fromData($rawFilters, function ($rawFilter, InvalidArgumentException $exception) {
+            $key = is_array($rawFilter) && is_string($rawFilter['key'] ?? null) ? $rawFilter['key'] : '';
+            $this->log('Die Regel "' . $key . '" wurde übersprungen: ' . $exception->getMessage(),
+                       'gprotector_error',
+                       'error');
+        });
     }
     
     
@@ -216,7 +223,9 @@ class GProtector
             'script_name_array' => $filter->scriptName(),
             'variables_array'   => $filter->variables(),
             'function'          => $filter->method(),
-            'severity'          => $filter->severity()
+            'severity'          => $filter->severity(),
+            'action'            => $filter->action(),
+            'pattern'           => $filter->pattern()
         ];
     }
     
@@ -227,6 +236,10 @@ class GProtector
             foreach ($this->filterArray as $filterName => $dataArray) {
                 if (isset($valueReference)) {
                     unset($valueReference);
+                }
+                
+                if (is_array($dataArray) && $dataArray['action'] === Action::DENY) {
+                    continue;
                 }
                 
                 if (is_array($dataArray) && isset($dataArray['script_name_array'])
@@ -299,7 +312,9 @@ class GProtector
                                                     if (isset($valueReference) && $valueReference !== '') {
                                                         // run filter
                                                         $variableCopy   = $valueReference;
-                                                        $valueReference = call_user_func($function, $valueReference);
+                                                        $valueReference = $this->applyFunction($function,
+                                                                                               $valueReference,
+                                                                                               $dataArray['pattern']);
                                                         if ($variableCopy != $valueReference) {
                                                             $this->log(
                                                                 'Die Regel "' . $filterName
@@ -361,6 +376,108 @@ class GProtector
         }
         
         return true;
+    }
+    
+    
+    /**
+     * Runs the filter function on the value. With a pattern, only on matching values (array: per element).
+     *
+     * @param string       $function
+     * @param mixed        $value
+     * @param Pattern|null $pattern
+     *
+     * @return mixed
+     */
+    private function applyFunction($function, $value, $pattern)
+    {
+        if ($pattern === null) {
+            return call_user_func($function, $value);
+        }
+        
+        if (is_array($value)) {
+            foreach ($value as $key => $item) {
+                $value[$key] = $this->applyFunction($function, $item, $pattern);
+            }
+            
+            return $value;
+        }
+        
+        return $pattern->matches($value) ? call_user_func($function, $value) : $value;
+    }
+    
+    
+    /**
+     * Refuses the request if a deny rule matches. Runs after all filter functions, so it sees the values the
+     * shop will use.
+     */
+    private function denyForbiddenValues()
+    {
+        foreach ($this->filterArray as $filterName => $dataArray) {
+            if ($dataArray['action'] !== Action::DENY) {
+                continue;
+            }
+            
+            foreach ($dataArray['script_name_array'] as $scriptPath) {
+                if ($this->isScript($scriptPath->scriptName()) !== true) {
+                    continue;
+                }
+                
+                foreach ($dataArray['variables_array'] as $variable) {
+                    foreach ($this->getRequestValues($variable) as $variableName => $value) {
+                        if ($dataArray['pattern']->matches($value)) {
+                            $this->log('Die Regel "' . $filterName . '" hat eine Anfrage blockiert.',
+                                       'security',
+                                       $dataArray['severity']);
+                            $this->log("blockierte Anfrage\r\nFilterregel: " . $filterName . "\r\nVariable: "
+                                       . $variableName . "\r\nWert: " . print_r($value, true),
+                                       'security_debug',
+                                       $dataArray['severity']);
+                            $this->blockIp();
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    /**
+     * Returns the request values a rule variable points to, keyed by a readable variable name.
+     *
+     * @param Variable $variable
+     *
+     * @return array
+     */
+    private function getRequestValues(Variable $variable)
+    {
+        switch (strtoupper($variable->type())) {
+            case 'GET':
+                $source = $_GET;
+                break;
+            case 'POST':
+                $source = $_POST;
+                break;
+            default:
+                $source = $_REQUEST;
+        }
+        
+        $values = [];
+        if ($variable->isSubCategory()) {
+            foreach ($variable->properties() as $property) {
+                if (isset($source[$variable->subCategory()][$property])) {
+                    $values['_' . strtoupper($variable->type()) . '["' . $variable->subCategory() . '"]["' . $property
+                            . '"]'] = $source[$variable->subCategory()][$property];
+                }
+            }
+        } else {
+            foreach ((array)$variable->properties() as $property) {
+                if (isset($source[$property])) {
+                    $values['_' . strtoupper($variable->type()) . '["' . $property . '"]'] = $source[$property];
+                }
+            }
+        }
+        
+        return $values;
     }
     
     

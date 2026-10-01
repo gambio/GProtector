@@ -46,16 +46,25 @@ class FilterCollection implements IteratorAggregate
     /**
      * This function creates a new FilterCollection
      *
-     * @param $rawFilters
+     * @param               $rawFilters
+     * @param callable|null $onInvalidFilter called with ($rawFilter, InvalidArgumentException) for a rule that
+     *                                       cannot be read; the rule is skipped. Without it, the exception is thrown.
      *
      * @return FilterCollection
      */
     
-    public static function fromData($rawFilters)
+    public static function fromData($rawFilters, ?callable $onInvalidFilter = null)
     {
         $filterArray = [];
         foreach ($rawFilters as $rawFilter) {
-            $filterArray[] = Filter::fromData($rawFilter);
+            try {
+                $filterArray[] = Filter::fromData($rawFilter);
+            } catch (InvalidArgumentException $e) {
+                if ($onInvalidFilter === null) {
+                    throw $e;
+                }
+                $onInvalidFilter($rawFilter, $e);
+            }
         }
     
         return new static($filterArray);
