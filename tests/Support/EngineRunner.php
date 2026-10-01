@@ -130,7 +130,7 @@ PHP
         foreach (json_decode(file_get_contents(dirname($scriptPath) . '/state.json'), true) as $state) {
             $results[] = $state + ['blocked' => false, 'output' => ''];
         }
-        if (preg_match('/^(?:PHP )?Fatal error: (.*)$/m', $stderr, $fatal)) {
+        if (preg_match('/^(?:PHP )?Fatal error:\s+(.*)$/m', $stderr, $fatal)) {
             $message   = preg_replace('/ in \S+:\d+$/', '', $fatal[1]);
             $results[] = ['blocked' => false, 'output' => 'fatal: ' . $message, 'get' => null, 'post' => null, 'request' => null];
         } elseif ($stdout !== '') {
