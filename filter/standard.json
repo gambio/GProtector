@@ -2761,9 +2761,7 @@
   {
     "key": "URL anti-spambot-mechanic",
     "script_name": [
-      "shop.php",
-      "create_account.php",
-      "create_guest_account.php"
+      "shop.php"
     ],
     "variables": [
       {
