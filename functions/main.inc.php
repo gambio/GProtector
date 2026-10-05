@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  main.inc.php 2026-04-02
+  main.inc.php 2026-10-05
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2023 Gambio GmbH
@@ -360,8 +360,15 @@ function gprotector_recursive_filter_tags($p_variable)
 
 function gprotector_block_all_urls_in_registration_form($p_variable)
 {
-    // Only apply during registration / guest checkout.
-    if (!isset($_GET['do']) || $_GET['do'] === 'CreateRegistree/Proceed' || $_GET['do'] === 'CreateGuest/Proceed')
+    // Only apply when the request reaches the registration or guest checkout action. "do" is resolved the same way
+    // the shop router resolves it (leading word characters of each part, action names case-insensitive), so this
+    // check covers exactly the requests that end up in these actions.
+    $doParts    = isset($_GET['do']) && is_string($_GET['do']) ? explode('/', $_GET['do']) : [''];
+    $controller = preg_split('/\W/', $doParts[0])[0];
+    $action     = isset($doParts[1]) ? preg_split('/\W/', $doParts[1])[0] : '';
+
+    if ((strcasecmp($controller, 'CreateRegistree') === 0 || strcasecmp($controller, 'CreateGuest') === 0)
+        && strcasecmp($action, 'Proceed') === 0)
     {
         $value = (string)$p_variable;
 
@@ -381,7 +388,8 @@ function gprotector_block_all_urls_in_registration_form($p_variable)
         //    "St.Gallen", "a.d.Th.", "zHd.XXY", "Nr.5" etc. Allowing a hyphen inside that label
         //    would let a hyphenated place name pad the length check, so that "Söding-St.Johann"
         //    matches as "ding-St.Johann". Punycode labels contain hyphens by design and therefore
-        //    need their own alternative, otherwise IDN domains would slip through.
+        //    need their own alternative, otherwise IDN domains would slip through. The price is that hyphenated
+        //    domains whose last label before the dot is shorter than 4 characters ("foo-bar.ru") are not caught.
         $reDomain = '/\b(?:[a-z0-9]{4,}|xn--[a-z0-9-]{2,59})(?:\.[a-z0-9-]+)*\.(?:[a-z]{2,63}|xn--[a-z0-9-]{2,59})(?:\/\S*)?\b/i';
 
         // 3) Block common obfuscations using brackets/parentheses/spaces:
