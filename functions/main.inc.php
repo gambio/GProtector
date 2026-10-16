@@ -1,6 +1,6 @@
 <?php
 /* --------------------------------------------------------------
-  main.inc.php 2026-04-02
+  main.inc.php 2026-10-16
   Gambio GmbH
   http://www.gambio.de
   Copyright (c) 2023 Gambio GmbH
